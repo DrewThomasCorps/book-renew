@@ -1,12 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+const App = () =>
+  <Fragment>
       <h1>React App</h1>
-    </div>
-  );
-}
+  </Fragment>;
 
 export default App;
