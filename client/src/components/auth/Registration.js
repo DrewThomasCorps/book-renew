@@ -10,7 +10,9 @@ const Registration = () => {
 
     const {email, password, passwordConfirmation} = accountData;
 
-    const handleFormSubmit = async e => {
+    const handleInputChange = e => setAccountData({ ...accountData, [e.target.name] : e.target.value});
+
+    const handleAccountCreationSubmit = async e => {
         e.preventDefault();
 
         if(password !== passwordConfirmation){
@@ -20,16 +22,14 @@ const Registration = () => {
                 email,
                 password
             };
-            console.log(newAccount)
+            console.log(newAccount);
         }
     };
-
-    const handleInputChange = e => setAccountData({ ...accountData, [e.target.name] : e.target.value});
 
     return(
         <Fragment>
             <h1>Account Creation</h1>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleAccountCreationSubmit}>
                 <input type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                 <input type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
                 <input type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
