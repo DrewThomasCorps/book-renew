@@ -28,15 +28,15 @@ const Registration = () => {
 
     return(
         <Fragment>
-            <h1>Account Creation</h1>
-            <form onSubmit={handleAccountCreationSubmit}>
-                <input type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
-                <input type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                <input type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
-                <input type={"submit"} value={"Sign Up"} />
+            <h1 className={"form-heading"}>Account Creation</h1>
+            <form className={"form form-registration"} onSubmit={handleAccountCreationSubmit}>
+                <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
+                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
+                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
+                <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
             </form>
-            <div>
-                <p>Already have an account? <Link to={"/"}>Sign in here</Link></p>
+            <div className={"info-box"}>
+                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in here</Link></p>
             </div>
         </Fragment>
     )
