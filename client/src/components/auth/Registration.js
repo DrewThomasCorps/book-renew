@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Registration = () => {
     const [accountData, setAccountData] = useState({
@@ -34,6 +35,9 @@ const Registration = () => {
                 <input type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
                 <input type={"submit"} value={"Sign Up"} />
             </form>
+            <div>
+                <p>Already have an account? <Link to={"/"}>Sign in here</Link></p>
+            </div>
         </Fragment>
     )
 };

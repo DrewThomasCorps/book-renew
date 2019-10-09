@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {Link} from 'react-router-dom';
 
 const Login = () => {
     return(
@@ -9,6 +10,9 @@ const Login = () => {
                 <input type={"password"} placeholder={"Password"} />
                 <input type={"submit"} value={"Sign In"} />
             </form>
+            <div>
+                <p>Don't have an account? <Link to={"/registration"}>Sign up here</Link></p>
+            </div>
         </Fragment>
     )
 };
