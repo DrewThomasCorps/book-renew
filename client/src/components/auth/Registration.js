@@ -3,12 +3,13 @@ import {Link} from 'react-router-dom';
 
 const Registration = () => {
     const [accountData, setAccountData] = useState({
+        username: '',
         email: '',
         password: '',
         passwordConfirmation: ''
     });
 
-    const {email, password, passwordConfirmation} = accountData;
+    const {username, email, password, passwordConfirmation} = accountData;
 
     const handleInputChange = e => setAccountData({ ...accountData, [e.target.name] : e.target.value});
 
@@ -19,6 +20,7 @@ const Registration = () => {
             console.log("Password mismatch");
         } else {
             const newAccount = {
+                username,
                 email,
                 password
             };
@@ -30,6 +32,7 @@ const Registration = () => {
         <Fragment>
             <h1 className={"form-heading"}>Account Creation</h1>
             <form className={"form form-registration"} onSubmit={handleAccountCreationSubmit}>
+                <input className={"form-input"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
                 <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                 <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
                 <input className={"form-input"} type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
