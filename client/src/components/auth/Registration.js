@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from 'react';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 const Registration = () => {
@@ -19,12 +20,27 @@ const Registration = () => {
         if(password !== passwordConfirmation){
             console.log("Password mismatch");
         } else {
-            const newAccount = {
+            const User = {
                 username,
                 email,
                 password
             };
-            console.log(newAccount);
+
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                const body = JSON.stringify(User);
+
+                const res = await axios.post('http://localhost:8080/users', body, config);
+                console.log(res);
+            } catch (err) {
+                console.error(err);
+            }
+            console.log(User);
         }
     };
 
