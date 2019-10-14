@@ -20,7 +20,7 @@ export const registerUser = ({username,email,password}) => async dispatch => {
       const res = await axios.post(BASE_URL+"/users", body, setHeaders);
       dispatch({
           type: REGISTER_SUCCESS,
-          payload: res.data
+          payload: {'authToken' : '123456'}
       })
   } catch (err) {
       console.log(err);
