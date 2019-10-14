@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {BASE_URL} from '../../config/config';
 
 const Registration = () => {
     const [accountData, setAccountData] = useState({
@@ -35,7 +36,7 @@ const Registration = () => {
 
                 const body = JSON.stringify(User);
 
-                const res = await axios.post('http://localhost:8080/users', body, config);
+                const res = await axios.post(BASE_URL+"/users", body, config);
                 console.log(res);
             } catch (err) {
                 console.error(err);
@@ -51,7 +52,9 @@ const Registration = () => {
                 <input className={"form-input"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
                 <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                 <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
+                <input className={"form-input"} type={"password"} onChange={handleInputChange}
+                       name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}
+                />
                 <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
             </form>
             <div className={"info-box"}>
