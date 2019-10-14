@@ -1,9 +1,10 @@
 import React, {Fragment, useState} from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {BASE_URL} from '../../config/config';
+import PropTypes from 'prop-types';
+import { registerUser } from '../../actions/auth';
 
-const Registration = () => {
+const Registration = ({registerUser}) => {
     const [accountData, setAccountData] = useState({
         username: '',
         email: '',
@@ -21,27 +22,7 @@ const Registration = () => {
         if(password !== passwordConfirmation){
             console.log("Password mismatch");
         } else {
-            const User = {
-                username,
-                email,
-                password
-            };
-
-            try {
-                const setHeaders = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                };
-
-                const body = JSON.stringify(User);
-
-                const res = await axios.post(BASE_URL+"/users", body, setHeaders);
-                console.log(res);
-            } catch (err) {
-                console.error(err);
-            }
-            console.log(User);
+            registerUser({username,email,password});
         }
     };
 
@@ -64,4 +45,8 @@ const Registration = () => {
     )
 };
 
-export default Registration;
+Registration.propTypes = {
+    registerUser: PropTypes.func.isRequired
+};
+
+export default connect(null, {registerUser})(Registration);
