@@ -1,5 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {Link} from 'react-router-dom';
+import axios from "axios";
+import {BASE_URL} from "../../config/config";
 
 const Login = () => {
     const [loginInformation, setLoginInformation] = useState({
@@ -22,6 +24,23 @@ const Login = () => {
                 password
             };
             console.log(signInAttempt);
+
+            try {
+                const setHeaders = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                const body = JSON.stringify(signInAttempt);
+                //axios request
+                if(password === password){
+                    localStorage.setItem('isAuthenticated', 'true');
+                }
+
+            } catch (err){
+                console.log(err);
+            }
         }
     };
 
