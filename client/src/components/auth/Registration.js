@@ -1,10 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/auth';
 
-const Registration = ({registerUser}) => {
+const Registration = ({registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
         username: '',
         email: '',
@@ -26,6 +26,10 @@ const Registration = ({registerUser}) => {
         }
     };
 
+    if(isAuthenticated){
+        return <Redirect to={"/dashboard"}/>;
+    }
+
     return(
         <Fragment>
             <h1 className={"form-heading"}>Account Creation</h1>
@@ -46,7 +50,12 @@ const Registration = ({registerUser}) => {
 };
 
 Registration.propTypes = {
-    registerUser: PropTypes.func.isRequired
+    registerUser: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, {registerUser})(Registration);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {registerUser})(Registration);
