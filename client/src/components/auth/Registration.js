@@ -28,7 +28,7 @@ const Registration = () => {
             };
 
             try {
-                const config = {
+                const setHeaders = {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -36,7 +36,7 @@ const Registration = () => {
 
                 const body = JSON.stringify(User);
 
-                const res = await axios.post(BASE_URL+"/users", body, config);
+                const res = await axios.post(BASE_URL+"/users", body, setHeaders);
                 console.log(res);
             } catch (err) {
                 console.error(err);
