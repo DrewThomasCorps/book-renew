@@ -1,14 +1,18 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {Link, Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { registerUser } from '../../actions/auth';
 
-const Registration = () => {
+const Registration = ({registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
+        username: '',
         email: '',
         password: '',
         passwordConfirmation: ''
     });
 
-    const {email, password, passwordConfirmation} = accountData;
+    const {username, email, password, passwordConfirmation} = accountData;
 
     const handleInputChange = e => setAccountData({ ...accountData, [e.target.name] : e.target.value});
 
@@ -18,21 +22,24 @@ const Registration = () => {
         if(password !== passwordConfirmation){
             console.log("Password mismatch");
         } else {
-            const newAccount = {
-                email,
-                password
-            };
-            console.log(newAccount);
+            registerUser({username,email,password});
         }
     };
+
+    if(isAuthenticated){
+        return <Redirect to={"/dashboard"}/>;
+    }
 
     return(
         <Fragment>
             <h1 className={"form-heading"}>Account Creation</h1>
             <form className={"form form-registration"} onSubmit={handleAccountCreationSubmit}>
+                <input className={"form-input"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
                 <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                 <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"} />
+                <input className={"form-input"} type={"password"} onChange={handleInputChange}
+                       name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}
+                />
                 <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
             </form>
             <div className={"info-box"}>
@@ -42,4 +49,13 @@ const Registration = () => {
     )
 };
 
-export default Registration;
+Registration.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {registerUser})(Registration);
