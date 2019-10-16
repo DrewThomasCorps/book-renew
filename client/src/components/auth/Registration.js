@@ -32,15 +32,14 @@ const Registration = ({registerUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <form className={"form form-registration"} onSubmit={handleAccountCreationSubmit}>
-                <h1 className={"form-heading"}>Account Creation</h1>
-                <input className={"form-input"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
-                <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange}
-                       name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}
-                />
-                <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
+            <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
+                <h1 className={"h3 form-heading mb-3"}>Account Creation</h1>
+                <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
+                <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
+                <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
+                <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange}
+                       name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}/>
+                <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Sign Up"} />
                 <div className={"info-box"}>
                     <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in</Link> here.</p>
                 </div>
