@@ -44,7 +44,6 @@ public class UserTests {
         JSONObject userJsonObject = new JSONObject();
         userJsonObject.put("name", "testUser");
         userJsonObject.put("email", "test@test.com");
-        userJsonObject.put("username", "testUsername");
         userJsonObject.put("password", "testPassword");
         return userJsonObject;
     }
@@ -64,7 +63,6 @@ public class UserTests {
         Assert.assertNotNull(responseRoot);
         Assert.assertEquals("testUser", responseRoot.path("name").asText());
         Assert.assertEquals("test@test.com", responseRoot.path("email").asText());
-        Assert.assertEquals("testUsername", responseRoot.path("username").asText());
         Assert.assertEquals("", responseRoot.path("password").asText());
         Assert.assertNotNull(responseRoot.path("id"));
     }
