@@ -25,15 +25,13 @@ const Login = ({loginUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <form className={"form form-login"} onSubmit={handleLoginSubmit}>
-                <h1 className={"form-heading"}>book renew</h1>
-                <h3 className={"form-input"}>Email:</h3>
-                <input className={"form-user-input"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
-                <h3 className={"form-input"}>Password:</h3>
-                <input className={"form-user-input"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
-                <input className={"btn btn-primary"} type={"submit"} value={"Log In"} />
+            <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
+                <h1 className={"h3 form-heading mb-3"}>book renew</h1>
+                <input className={"form-user-input mb-4 form-control"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
+                <input className={"form-user-input mb-4 form-control"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
+                <input className={"btn btn-primary mb-4 form-control btn-lg btn-block"} type={"submit"} value={"Log In"} />
                 <div className={"info-box"}>
-                    <p className={"info-box-text"}>Don't have an account? Click to <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> today.</p>
+                    <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> here.</p>
                 </div>
             </form>
         </Fragment>
