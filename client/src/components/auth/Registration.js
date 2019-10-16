@@ -41,7 +41,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
                        name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}/>
                 <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Sign Up"} />
                 <div className={"info-box"}>
-                    <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in</Link> here.</p>
+                    <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link text-white"} to={"/"}>Sign in</Link> here.</p>
                 </div>
             </form>
         </Fragment>
