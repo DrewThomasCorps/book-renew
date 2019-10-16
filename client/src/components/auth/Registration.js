@@ -43,7 +43,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
                 <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
             </form>
             <div className={"info-box"}>
-                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in here</Link></p>
+                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in</Link> here.</p>
             </div>
         </Fragment>
     )
