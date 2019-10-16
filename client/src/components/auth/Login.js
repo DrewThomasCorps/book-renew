@@ -25,17 +25,17 @@ const Login = ({loginUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <h1 className={"form-heading"}>book renew</h1>
             <form className={"form form-login"} onSubmit={handleLoginSubmit}>
+                <h1 className={"form-heading"}>book renew</h1>
                 <h3 className={"form-input"}>Email:</h3>
                 <input className={"form-user-input"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
                 <h3 className={"form-input"}>Password:</h3>
                 <input className={"form-user-input"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
                 <input className={"btn btn-primary"} type={"submit"} value={"Log In"} />
+                <div className={"info-box"}>
+                    <p className={"info-box-text"}>Don't have an account? Click to <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> today.</p>
+                </div>
             </form>
-            <div className={"info-box"}>
-                <p className={"info-box-text"}>Don't have an account? Click to <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> today.</p>
-            </div>
         </Fragment>
     )
 };
