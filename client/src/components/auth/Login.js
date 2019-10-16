@@ -4,6 +4,8 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/auth';
 
+import logo from "../../book_renew_white_vertical_logo.svg";
+
 const Login = ({loginUser, isAuthenticated}) => {
     const [loginInformation, setLoginInformation] = useState({
         email: '',
@@ -26,12 +28,13 @@ const Login = ({loginUser, isAuthenticated}) => {
     return(
         <Fragment>
             <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
+                <img src={logo} alt={"book renew logo"}/>
                 <h1 className={"h3 form-heading mb-3"}>book renew</h1>
                 <input className={"form-user-input mb-4 form-control"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
                 <input className={"form-user-input mb-4 form-control"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
-                <input className={"btn btn-primary mb-4 form-control btn-lg btn-block"} type={"submit"} value={"Log In"} />
+                <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Log In"} />
                 <div className={"info-box"}>
-                    <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> here.</p>
+                    <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link text-white"} to={"/registration"}>Sign up</Link> here.</p>
                 </div>
             </form>
         </Fragment>
