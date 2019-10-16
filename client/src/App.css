@@ -24,7 +24,7 @@ body {
     margin: 0 0 -1px;
 }
 
-.form-login {
+.form-login, .form-registration {
     width: 100%;
     max-width: 330px;
     padding: 15px;
