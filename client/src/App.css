@@ -5,7 +5,7 @@ body {
 }
 
 .form-heading {
-    color: white;
+    color: #F6FDFE;
     width: 100%;
     max-width: 330px;
     padding: 15px;
@@ -13,7 +13,7 @@ body {
 }
 
 .form-input {
-    color: white;
+    color: #F6FDFE;
 }
 
 .form-user-input {
@@ -31,19 +31,26 @@ body {
     margin: auto;
 }
 
+.btn {
+    border-radius:  50rem;
+    border: 2px solid;
+}
+
 .btn-primary {
-    color: white;
+    color: #F6FDFE;
     background-color: #2FADD2;
-    position: relative;
-    display: block;
-    width: 30%;
-    padding: .5rem 1rem;
-    border-radius: .3rem;
-    border-color: white;
+    border-color: #F6FDFE;
+}
+
+.btn-primary:hover {
+    color: #F6FDFE;
+    background-color: #2CA4C9;
+    border-color: #F6FDFE;
+
 }
 
 .info-box {
-    color: white;
+    color: #F6FDFE;
     max-width: 330px;
     padding: 15px;
     margin: auto;
