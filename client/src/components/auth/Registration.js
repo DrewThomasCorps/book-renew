@@ -34,7 +34,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
         <Fragment>
             <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                 <h1 className={"h3 form-heading mb-3"}>Account Creation</h1>
-                <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
+                <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Name"} />
                 <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                 <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
                 <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange}
