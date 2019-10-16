@@ -29,6 +29,7 @@ body {
     max-width: 330px;
     padding: 15px;
     margin: auto;
+    border: 2px solid #F6FDFE;
 }
 
 .btn {
@@ -46,7 +47,6 @@ body {
     color: #F6FDFE;
     background-color: #2CA4C9;
     border-color: #F6FDFE;
-
 }
 
 .info-box {
