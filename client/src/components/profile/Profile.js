@@ -2,17 +2,17 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
 
-const Dashboard = props => {
+const Profile = props => {
     return (
         <Fragment>
-            <div>Dashboard</div>
+            <div>Profile</div>
             <Navigation />
         </Fragment>
     )
 };
 
-Dashboard.propTypes = {
+Profile.propTypes = {
 
 };
 
-export default Dashboard;
+export default Profile;
