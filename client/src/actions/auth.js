@@ -16,6 +16,7 @@ export const loadUser = () => async dispatch => {
     }
 
     try {
+        const res = await axios.get(BASE_URL+"/users/1");
         dispatch({
             type: USER_LOADED,
             payload: {'authToken' : '123456'}
@@ -60,6 +61,7 @@ export const loginUser = (email,password) => async dispatch => {
     const body = JSON.stringify({email,password});
 
     try {
+        const res = await axios.get(BASE_URL+"/users/1");
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {'authToken' : '123456'}
