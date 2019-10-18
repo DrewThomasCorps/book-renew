@@ -6,13 +6,13 @@ import { registerUser } from '../../actions/auth';
 
 const Registration = ({registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         passwordConfirmation: ''
     });
 
-    const {username, email, password, passwordConfirmation} = accountData;
+    const {name, email, password, passwordConfirmation} = accountData;
 
     const handleInputChange = e => setAccountData({ ...accountData, [e.target.name] : e.target.value});
 
@@ -22,7 +22,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
         if(password !== passwordConfirmation){
             console.log("Password mismatch");
         } else {
-            registerUser({username,email,password});
+            registerUser({name,email,password});
         }
     };
 
@@ -37,7 +37,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
                     <section className={"row form-container"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                             <h1 className={"h3 form-heading my-5"}>Account Creation</h1>
-                            <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Name"} />
+                            <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name={"name"} value={name} placeholder={"Name"} />
                             <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                             <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
                             <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange}
