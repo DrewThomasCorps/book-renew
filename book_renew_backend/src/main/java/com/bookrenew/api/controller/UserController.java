@@ -2,7 +2,6 @@ package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.User;
 import com.bookrenew.api.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ public class UserController {
 
     private final UserRepository repository;
 
-    @Autowired
     public UserController(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
