@@ -28,17 +28,17 @@ export const loadUser = () => async dispatch => {
     }
 };
 
-export const registerUser = ({username,email,password}) => async dispatch => {
+export const registerUser = ({name,email,password}) => async dispatch => {
   const setHeaders = {
       headers: {
           'Content-Type': 'application/json'
       }
   };
 
-  const body = JSON.stringify({username,email,password});
+  const body = JSON.stringify({name,email,password});
 
   try {
-      const res = await axios.post(BASE_URL+"/users", body, setHeaders);
+      await axios.post(BASE_URL+"/users", body, setHeaders);
       dispatch({
           type: REGISTER_SUCCESS,
           payload: {'authToken' : '123456'}
