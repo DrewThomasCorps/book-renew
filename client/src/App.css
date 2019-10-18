@@ -1,7 +1,13 @@
+* {
+    font-family: Lato, sans-serif;
+}
 
-body {
-    background-color: #2FADD2;
-    font-family: Lato, serif;
+.br-container-fluid {
+    min-height: 100vh;
+}
+
+.br-bg-blue {
+    background-color: #268faf;
 }
 
 .form-heading {
@@ -35,7 +41,7 @@ body {
 
 .btn-primary {
     color: #F6FDFE;
-    background-color: #2FADD2;
+    background-color: #268faf;
     border-color: #F6FDFE;
 }
 

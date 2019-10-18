@@ -22,7 +22,7 @@ const App = () =>{
     <Provider store={store}>
         <Router>
             <Fragment>
-                <section className={"container"}>
+                <section className={"container-fluid"}>
                     <Switch>
                         <Route exact path="/" component={Login} />
                         <Route exact path="/registration" component={Registration} />
