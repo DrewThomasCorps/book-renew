@@ -31,6 +31,7 @@ public class UserTests {
     @Test
     public void testCRUD() throws JSONException, IOException {
         this.testCreateUser();
+        this.testDuplicateUserEmail();
     }
 
     private void testCreateUser() throws JSONException, IOException {
@@ -38,6 +39,12 @@ public class UserTests {
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         this.sendPostRequest(request);
         this.testPostResponseContainsCorrectData();
+    }
+    private void testDuplicateUserEmail() throws JSON Exception, IOException
+    {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HTTPEntity<String> request = this.buildRequest(userJsonObject);
+
     }
 
     private JSONObject buildUserJsonObject() throws JSONException {
@@ -68,6 +75,7 @@ public class UserTests {
         Assert.assertEquals("", responseRoot.path("password").asText());
         Assert.assertNotNull(responseRoot.path("id"));
     }
+    private void testEmailIsUnique
 
 
 }

@@ -53,4 +53,15 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+    ExampleMatcher emailMatcher = ExampleMatcher.matching()
+            .withIgnorePaths("id")
+            .withMatcher("email",ignoreCase());
+    User probe = new User();
+    probe.setEmail(email);
+    Example<User> example = Example.of(probe, emailMatcher);
+    boolean exists = userRepoitory.exists(example);
+    if(exists == true)
+    {
+       //return message that already exists
+    }
 }
