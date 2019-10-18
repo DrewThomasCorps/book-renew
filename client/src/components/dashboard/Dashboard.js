@@ -8,7 +8,7 @@ const Dashboard = props => {
             <section className={"row"}>
                 <div className={"container-fluid br-container-fluid"}>
                     <section className={"row"}>
-                        <h1>Dashboard</h1>
+                        <h1 className={"location-header"}>Dashboard</h1>
                     </section>
                     <section className={"row"}>
                         <Navigation />
