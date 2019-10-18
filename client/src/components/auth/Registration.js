@@ -33,8 +33,8 @@ const Registration = ({registerUser, isAuthenticated}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <div className={"container-fluid br-container-fluid br-bg-blue"}>
-                    <section className={"row"}>
+                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                    <section className={"row form-container"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                             <h1 className={"h3 form-heading my-5"}>Account Creation</h1>
                             <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Name"} />
