@@ -4,6 +4,8 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/auth';
 
+import logo from "../../book_renew_white_vertical_logo.svg";
+
 const Login = ({loginUser, isAuthenticated}) => {
     const [loginInformation, setLoginInformation] = useState({
         email: '',
@@ -25,17 +27,21 @@ const Login = ({loginUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <h1 className={"form-heading"}>book renew</h1>
-            <form className={"form form-login"} onSubmit={handleLoginSubmit}>
-                <h3 className={"form-input"}>Email:</h3>
-                <input className={"form-user-input"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
-                <h3 className={"form-input"}>Password:</h3>
-                <input className={"form-user-input"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
-                <input className={"btn btn-primary"} type={"submit"} value={"Log In"} />
-            </form>
-            <div className={"info-box"}>
-                <p className={"info-box-text"}>Don't have an account? Click to <Link className={"info-box-link"} to={"/registration"}>Sign up</Link> today.</p>
-            </div>
+            <section className={"row"}>
+                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                    <section className={"row form-container"}>
+                        <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
+                            <img src={logo} alt={"book renew logo"} className={"my-5"}/>
+                            <input className={"form-user-input mb-4 form-control"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
+                            <input className={"form-user-input mb-4 form-control"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
+                            <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Log In"} />
+                            <div className={"info-box mb-5"}>
+                                <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link text-white"} to={"/registration"}>Sign up</Link> here.</p>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
         </Fragment>
     )
 };

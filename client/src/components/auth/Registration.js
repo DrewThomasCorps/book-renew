@@ -32,19 +32,24 @@ const Registration = ({registerUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <h1 className={"form-heading"}>Account Creation</h1>
-            <form className={"form form-registration"} onSubmit={handleAccountCreationSubmit}>
-                <input className={"form-input"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Username"} />
-                <input className={"form-input"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                <input className={"form-input"} type={"password"} onChange={handleInputChange}
-                       name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}
-                />
-                <input className={"btn btn-primary"} type={"submit"} value={"Sign Up"} />
-            </form>
-            <div className={"info-box"}>
-                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link"} to={"/"}>Sign in here</Link></p>
-            </div>
+            <section className={"row"}>
+                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                    <section className={"row form-container"}>
+                        <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
+                            <h1 className={"h3 form-heading my-5"}>Account Creation</h1>
+                            <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name="username" value={username} placeholder={"Name"} />
+                            <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
+                            <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
+                            <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange}
+                                   name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}/>
+                            <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Sign Up"} />
+                            <div className={"info-box mb-5"}>
+                                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link text-white"} to={"/"}>Sign in</Link> here.</p>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
         </Fragment>
     )
 };
