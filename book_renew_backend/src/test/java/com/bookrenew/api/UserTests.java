@@ -31,7 +31,6 @@ public class UserTests {
     @Test
     public void testCRUD() throws JSONException, IOException {
         this.testCreateUser();
-        this.testDuplicateUserEmail();
     }
 
     private void testCreateUser() throws JSONException, IOException {
@@ -40,12 +39,7 @@ public class UserTests {
         this.sendPostRequest(request);
         this.testPostResponseContainsCorrectData();
     }
-    private void testDuplicateUserEmail() throws JSON Exception, IOException
-    {
-        JSONObject userJsonObject = this.buildUserJsonObject();
-        HTTPEntity<String> request = this.buildRequest(userJsonObject);
 
-    }
 
     private JSONObject buildUserJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
@@ -65,7 +59,6 @@ public class UserTests {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "users", request, String.class);
         responseRoot = objectMapper.readTree(userResultsAsJsonString);
     }
-
     private void testPostResponseContainsCorrectData() {
         Assert.assertNotNull(responseRoot);
         Assert.assertEquals("testUser", responseRoot.path("name").asText());
@@ -73,7 +66,6 @@ public class UserTests {
         Assert.assertEquals("", responseRoot.path("password").asText());
         Assert.assertNotNull(responseRoot.path("id"));
     }
-    private void testEmailIsUnique
 
 
 }

@@ -46,6 +46,4 @@ public class UserController {
         User user = repository.findById(longId).orElse(null);
         repository.delete(user);
     }
-
-
 }

@@ -2,12 +2,16 @@ package com.bookrenew.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import javax.persistence.*;
 
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
+
 @Entity
 @Table(name = "users")
-public class User {
+public class User<email> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,15 +57,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    ExampleMatcher emailMatcher = ExampleMatcher.matching()
-            .withIgnorePaths("id")
-            .withMatcher("email",ignoreCase());
-    User probe = new User();
-    probe.setEmail(email);
-    Example<User> example = Example.of(probe, emailMatcher);
-    boolean exists = userRepoitory.exists(example);
-    if(exists == true)
-    {
-       //return message that already exists
-    }
+
 }
