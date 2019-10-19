@@ -40,7 +40,7 @@ export default function(state = initialState, action){
             localStorage.removeItem('authToken');
             return {
                 ...state,
-                token: null,
+                authToken: null,
                 isAuthenticated: false,
                 loading: false
             };

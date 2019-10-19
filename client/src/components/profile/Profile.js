@@ -8,7 +8,7 @@ const Profile = props => {
             <section className={"row"}>
                 <div className={"container-fluid br-container-fluid"}>
                     <section className={"row"}>
-                        <h1>Profile</h1>
+                        <h1 className={"location-header"}>Profile</h1>
                     </section>
                     <section className={"row"}>
                         <Navigation />
