@@ -14,17 +14,15 @@ export const loadUser = () => async dispatch => {
     if (localStorage.authToken) {
         setAuthToken(localStorage.authToken)
     }
-
-    try {
-        const response = await axios.get(BASE_URL + "/users/self");
+    axios.get(BASE_URL + "/users/self").then(response => {
         dispatch({
             type: USER_LOADED,
         })
-    } catch (err) {
+    }).catch(error => {
         dispatch({
             type: AUTH_ERROR
         })
-    }
+    });
 };
 
 export const registerUser = ({name, email, password}) => async dispatch => {
@@ -59,22 +57,19 @@ export const loginUser = (email, password) => async dispatch => {
 
     const body = JSON.stringify({email, password});
 
-    try {
-        axios.post(BASE_URL + "/login", body, setHeaders)
-            .then(response => {
-                console.log(response);
+    axios.post(BASE_URL + "/login", body, setHeaders)
+        .then(response => {
+            console.log(response);
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: {'authToken': response.headers['authorization']}
             });
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: {'authToken': '123456'}
-        });
-
-        dispatch(loadUser());
-    } catch (err) {
-        console.log(err);
+            dispatch(loadUser());
+        }).catch(error => {
+        console.log(error);
         dispatch({
             type: LOGIN_FAIL
         })
-    }
+    });
 };
 
