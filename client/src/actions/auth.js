@@ -15,10 +15,12 @@ export const loadUser = () => async dispatch => {
         setAuthToken(localStorage.authToken)
     }
     axios.get(BASE_URL + "/users/self").then(response => {
+        //TODO handle response data
         dispatch({
             type: USER_LOADED,
         })
     }).catch(error => {
+        console.log(error);
         dispatch({
             type: AUTH_ERROR
         })
@@ -66,7 +68,7 @@ export const loginUser = (email, password) => async dispatch => {
             });
             dispatch(loadUser());
         }).catch(error => {
-        console.log(error);
+        //TODO handle error data
         dispatch({
             type: LOGIN_FAIL
         })
