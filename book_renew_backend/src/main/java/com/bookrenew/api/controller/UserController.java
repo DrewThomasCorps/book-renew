@@ -20,7 +20,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping(consumes = "application/json", produces = {"application/json"}, path="/register")
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/register")
     public User create(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
