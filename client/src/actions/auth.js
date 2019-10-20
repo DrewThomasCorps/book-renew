@@ -18,8 +18,7 @@ export const loadUser = () => async dispatch => {
     try {
         const res = await axios.get(BASE_URL+"/users/1");
         dispatch({
-            type: USER_LOADED,
-            payload: {'authToken' : '123456'}
+            type: USER_LOADED
         })
     } catch (err){
         dispatch({
@@ -61,10 +60,10 @@ export const loginUser = (email,password) => async dispatch => {
     const body = JSON.stringify({email,password});
 
     try {
-        const res = await axios.get(BASE_URL+"/users/1");
+        const res = await axios.post(BASE_URL+"/login",body,setHeaders);
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: {'authToken' : '123456'}
+            payload: {'authToken' : res.setHeaders["pragma"]}
         });
 
         dispatch(loadUser());
