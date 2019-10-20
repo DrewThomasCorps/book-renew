@@ -26,9 +26,19 @@ public class UserController {
         return repository.save(user);
     }
 
-    @GetMapping(produces = {"application/json"}, path = "/authenticated")
+    @GetMapping(produces = {"application/json"}, path = "/self")
     public User getAuthenticatedUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return this.getUserFromAuthCredentials();
+    }
+
+    @DeleteMapping(path = "/self")
+    public void deleteUser() {
+        User user = this.getUserFromAuthCredentials();
+        repository.delete(user);
+    }
+
+    private User getUserFromAuthCredentials() {
+        Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         return repository.findByEmail(email);
     }
