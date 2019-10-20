@@ -1,7 +1,9 @@
 package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.User;
+import com.bookrenew.api.entity.UserDetailsServiceImpl;
 import com.bookrenew.api.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +47,19 @@ public class UserController {
         Long longId = Long.parseLong(id);
         User user = repository.findById(longId).orElse(null);
         repository.delete(user);
+    }
+
+    @GetMapping(produces = {"application/json"})
+    public Map<String, String> findByEmail() {
+        Map<String, String> userMap = new HashMap<>();
+        if(repository.findByEmail() == null)
+        {
+            userMap.put("error", "200");
+        }
+        else
+        {
+            userMap.put("error", "409");
+        }
+        return userMap;
     }
 }
