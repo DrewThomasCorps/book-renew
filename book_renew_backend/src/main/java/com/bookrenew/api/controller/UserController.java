@@ -7,6 +7,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
@@ -33,4 +36,18 @@ public class UserController {
         return repository.findByEmail(email);
     }
 
+    @GetMapping(produces = {"application/json"})
+    public Map<String, String> findByEmail() {Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Map<String, String> userMap = new HashMap<>();
+        if(repository.findByEmail(email) == null)
+        {
+            userMap.put("error", "200");
+        }
+        else
+        {
+            userMap.put("error", "409");
+        }
+        return userMap;
+    }
 }
