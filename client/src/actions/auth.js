@@ -11,60 +11,63 @@ import {BASE_URL} from "../config/config";
 import setAuthToken from "../utils/setAuthToken";
 
 export const loadUser = () => async dispatch => {
-    if(localStorage.authToken){
+    if (localStorage.authToken) {
         setAuthToken(localStorage.authToken)
     }
 
     try {
-        const res = await axios.get(BASE_URL+"/users/1");
+        const response = await axios.get(BASE_URL + "/users/self");
         dispatch({
             type: USER_LOADED,
-            payload: {'authToken' : '123456'}
+            payload: {'authToken': '123456'}
         })
-    } catch (err){
+    } catch (err) {
         dispatch({
             type: AUTH_ERROR
         })
     }
 };
 
-export const registerUser = ({name,email,password}) => async dispatch => {
-  const setHeaders = {
-      headers: {
-          'Content-Type': 'application/json'
-      }
-  };
-
-  const body = JSON.stringify({name,email,password});
-
-  try {
-      await axios.post(BASE_URL+"/users", body, setHeaders);
-      dispatch({
-          type: REGISTER_SUCCESS,
-          payload: {'authToken' : '123456'}
-      })
-  } catch (err) {
-      console.log(err);
-      dispatch({
-          type: REGISTER_FAIL
-      })
-  }
-};
-
-export const loginUser = (email,password) => async dispatch => {
+export const registerUser = ({name, email, password}) => async dispatch => {
     const setHeaders = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
-    const body = JSON.stringify({email,password});
+    const body = JSON.stringify({name, email, password});
 
     try {
-        const res = await axios.get(BASE_URL+"/users/1");
+        await axios.post(BASE_URL + "/users", body, setHeaders);
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: {'authToken': '123456'}
+        })
+    } catch (err) {
+        console.log(err);
+        dispatch({
+            type: REGISTER_FAIL
+        })
+    }
+};
+
+export const loginUser = (email, password) => async dispatch => {
+    const setHeaders = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({email, password});
+
+    try {
+        axios.post(BASE_URL + "/login", body, setHeaders)
+            .then(response => {
+                console.log(response);
+            });
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: {'authToken' : '123456'}
+            payload: {'authToken': '123456'}
         });
 
         dispatch(loadUser());
