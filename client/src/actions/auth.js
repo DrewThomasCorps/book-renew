@@ -19,7 +19,6 @@ export const loadUser = () => async dispatch => {
         const response = await axios.get(BASE_URL + "/users/self");
         dispatch({
             type: USER_LOADED,
-            payload: {'authToken': '123456'}
         })
     } catch (err) {
         dispatch({
