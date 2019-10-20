@@ -30,7 +30,7 @@ public class ApiApplication {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://bookrenew.com"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://bookrenew.com", "https://www.bookrenew.com"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         config.setExposedHeaders(Collections.singletonList("Authorization"));
