@@ -23,9 +23,6 @@ public class User<email> {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String error;
-
 
     public Long getId() {
         return id;
