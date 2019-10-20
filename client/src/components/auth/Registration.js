@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/auth';
+import logo from "../../book_renew_white_vertical_logo.svg";
 
 const Registration = ({registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
@@ -36,7 +37,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
                 <div className={"col-12 br-container-fluid br-bg-blue"}>
                     <section className={"form-container"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
-                            <h1 className={"h3 form-heading my-5"}>Account Creation</h1>
+                            <img src={logo} alt={"book renew logo"} className={"my-5"}/>
                             <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name={"name"} value={name} placeholder={"Name"} />
                             <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
                             <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
