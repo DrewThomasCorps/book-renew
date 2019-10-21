@@ -7,10 +7,10 @@ const Navigation = () => {
             <nav className={"br-navbar"}>
                 <ul className={"br-navbar-nav"}>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-item"} to={"/dashboard"}>Dashboard</Link>
+                        <Link className={"br-nav-link"} to={"/dashboard"}>Dashboard</Link>
                     </li>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-item"} to={"/profile"}>Profile</Link>
+                        <Link className={"br-nav-link"} to={"/profile"}>Profile</Link>
                     </li>
                 </ul>
             </nav>
