@@ -5,15 +5,9 @@ import Navigation from "../layout/Navigation";
 const Dashboard = props => {
     return (
         <Fragment>
-            <section className={"row"}>
-                <div className={"container-fluid br-container-fluid"}>
-                    <section className={"row"}>
-                        <h1 className={"location-header"}>Dashboard</h1>
-                    </section>
-                    <section className={"row"}>
-                        <Navigation />
-                    </section>
-                </div>
+            <Navigation />
+            <section className={"pl-54 row"}>
+                <h1>Dashboard</h1>
             </section>
         </Fragment>
     )
