@@ -31,6 +31,11 @@
     border-color: #F6FDFE;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #F6FDFE;
+    background-color: #1c677d;
+    border-color: #1c677d;
+}
 .form-container {
     position: absolute;
     top: 50%;
