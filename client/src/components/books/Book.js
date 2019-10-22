@@ -23,7 +23,6 @@ const Book = ({
                     {/*Should use user === auth.user._id, requires response data from backend*/}
                     {!auth.loading && auth.isAuthenticated === true && (
                         <div className={"col-12 col-sm-1"}>
-                            <h3>{id}</h3>
                             <button className={"btn btn-danger"} onClick={e=> deleteBook(id)}>Delete</button>
                         </div>
                     )}
