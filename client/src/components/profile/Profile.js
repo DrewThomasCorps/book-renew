@@ -7,7 +7,9 @@ const Profile = props => {
         <Fragment>
             <Navigation />
             <section className={"pl-54 row"}>
-                <h1 className={""}>Profile</h1>
+                <div className={"col-12"}>
+                    <h1>Profile</h1>
+                </div>
             </section>
         </Fragment>
     )
