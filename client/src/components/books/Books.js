@@ -1,0 +1,32 @@
+import React, {Fragment, useEffect} from 'react';
+import { connect } from 'react-redux';
+import { getBooks } from "../../actions/book";
+import PropTypes from 'prop-types';
+import Book from "./Book";
+
+const Books = ({getBooks,book:{books,loading}}) => {
+    useEffect(() => {
+        getBooks();
+    }, [getBooks]);
+
+    return (
+        <Fragment>
+            <div className={"col-12"}>
+                <h2>Your Books</h2>
+                <Book />
+                <hr/>
+            </div>
+        </Fragment>
+    )
+};
+
+Books.propTypes = {
+    getBooks: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    book: state.book
+});
+
+export default connect(mapStateToProps,{getBooks})(Books);
