@@ -9,15 +9,16 @@ const Books = ({getBooks,book:{books,loading}}) => {
         getBooks();
     }, [getBooks]);
 
-    return (
+    return loading ? <Fragment /> :
         <Fragment>
             <div className={"col-12"}>
                 <h2>Your Books</h2>
-                <Book />
+                {books.map(book => (
+                    <Book key={book.id} book={book} />
+                ))}
                 <hr/>
             </div>
-        </Fragment>
-    )
+        </Fragment>;
 };
 
 Books.propTypes = {
