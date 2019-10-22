@@ -8,3 +8,4 @@ export const GET_BOOKS = 'GET_BOOKS';
 export const BOOK_ERROR = 'BOOK_ERROR';
 export const DELETE_BOOK = 'DELETE_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
+export const LOGOUT = 'LOGOUT';
