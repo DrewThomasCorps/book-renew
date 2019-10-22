@@ -1,7 +1,8 @@
 import {
     GET_BOOKS,
     BOOK_ERROR,
-    DELETE_BOOK
+    DELETE_BOOK,
+    ADD_BOOK
 } from '../actions/types';
 
 const initialState = {
@@ -21,6 +22,12 @@ export default function(state= initialState, action){
                 books: payload,
                 loading: false
             };
+        case ADD_BOOK:
+            return {
+                ...state,
+                books: [...state.books, payload],
+                loading: false
+            }
         case DELETE_BOOK:
             return {
                 ...state,

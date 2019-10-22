@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getBooks } from "../../actions/book";
 import PropTypes from 'prop-types';
 import Book from "./Book";
+import BookForm from "./BookForm";
 
 const Books = ({getBooks,book:{books,loading}}) => {
     useEffect(() => {
@@ -16,6 +17,7 @@ const Books = ({getBooks,book:{books,loading}}) => {
                 {books.map(book => (
                     <Book key={book.id} book={book} />
                 ))}
+                <BookForm />
                 <hr/>
             </div>
         </Fragment>;
