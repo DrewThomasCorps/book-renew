@@ -6,7 +6,7 @@ const Profile = props => {
     return (
         <Fragment>
             <Navigation />
-            <section className={"pl-54 row"}>
+            <section className={"row br-content-container"}>
                 <div className={"col-12"}>
                     <h1>Profile</h1>
                 </div>

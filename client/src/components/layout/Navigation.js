@@ -10,6 +10,9 @@ const Navigation = () => {
                         <Link className={"br-nav-link"} to={"/dashboard"}>Dashboard</Link>
                     </li>
                     <li className={"br-nav-item"}>
+                        <Link className={"br-nav-link"} to={"/trades"}>Trades</Link>
+                    </li>
+                    <li className={"br-nav-item"}>
                         <Link className={"br-nav-link"} to={"/profile"}>Profile</Link>
                     </li>
                 </ul>
