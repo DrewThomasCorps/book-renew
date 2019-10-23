@@ -14,21 +14,10 @@
    viewBox="0 0 10.593669 8.2636814"
    version="1.1"
    id="svg8"
-   sodipodi:docname="exchange-icon.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="exchange-icon.svg">
   <defs
-     id="defs2">
-    <clipPath
-       id="clipPath18356"
-       clipPathUnits="userSpaceOnUse">
-      <circle
-         style="opacity:0.5;fill:#23819e;fill-opacity:1;stroke:none;stroke-width:0.26458332;paint-order:stroke fill markers"
-         id="circle18358"
-         cx="172.8244"
-         cy="132.48412"
-         r="10.65226" />
-    </clipPath>
-  </defs>
+     id="defs2" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -36,21 +25,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.2"
-     inkscape:cx="52.138328"
-     inkscape:cy="1.1955528"
+     inkscape:zoom="3.959798"
+     inkscape:cx="99.737947"
+     inkscape:cy="-65.689522"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -67,11 +56,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-11.659458,-27.817835)">
-    <path
-       inkscape:connector-curvature="0"
-       id="path823"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Font Awesome 5 Free';-inkscape-font-specification:'Font Awesome 5 Free';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f6fdfe;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       d="m 11.669793,30.125294 c 0,0.289388 0.206706,0.496091 0.496094,0.496091 h 7.441406 v 0.992187 c 0,0.454753 0.516764,0.661459 0.826823,0.351401 l 1.653646,-1.653645 c 0.206705,-0.186034 0.206705,-0.496094 0,-0.682128 L 20.434116,27.975554 C 20.124057,27.644825 19.607293,27.8722 19.607293,28.306283 v 0.992188 h -7.441406 c -0.289388,0 -0.496094,0.227375 -0.496094,0.496094 z m 10.08724,3.141924 h -7.441407 v -0.992187 c 0,-0.434081 -0.537434,-0.661459 -0.847493,-0.330729 l -1.653646,1.653645 c -0.206706,0.186037 -0.206706,0.496094 0,0.682131 l 1.653646,1.653645 c 0.310059,0.310058 0.847493,0.103352 0.847493,-0.351401 v -0.992187 h 7.441407 c 0.268717,0 0.496093,-0.206706 0.496093,-0.496094 v -0.330729 c 0,-0.268716 -0.227376,-0.496094 -0.496093,-0.496094 z" />
-  </g>
+     transform="translate(-1.5032159,-1.6254209)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot815"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-12.09337,-29.499706)"><flowRegion
+         id="flowRegion817"><rect
+           id="rect819"
+           width="720"
+           height="297.14285"
+           x="51.42857"
+           y="108.23397" /></flowRegion><flowPara
+         id="flowPara821"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Font Awesome 5 Free';-inkscape-font-specification:'Font Awesome 5 Free'"></flowPara></flowRoot>  </g>
 </svg>
