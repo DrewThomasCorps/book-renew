@@ -4,7 +4,7 @@ import Navigation from "../layout/Navigation";
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 
-const Profile = ({logoutUser}) => {
+const Profile = ({ auth: {loading}, logoutUser}) => {
     return (
         <Fragment>
             <Navigation />
@@ -16,7 +16,7 @@ const Profile = ({logoutUser}) => {
                 <div className={"col-12"}>
                     <h3>Rating</h3>
                     <h3>Email</h3>
-                    <a href="#" onClick={logoutUser}>Log Out</a>
+                    { !loading && (<a href="#" onClick={logoutUser}>Log Out</a>)}
                 </div>
             </section>
         </Fragment>
