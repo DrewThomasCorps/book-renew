@@ -11,7 +11,7 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
             <section className={"row br-content-container"}>
                 { !loading && (
                     <div className={"col-12"}>
-                        <img src={"https://via.placeholder.com/250"} />
+                        <img src={"https://via.placeholder.com/250"} alt={user+" Profile Image"}/>
                         <h2>{user.name}</h2>
                         <h3>{user.email}</h3>
                         <a href="#" onClick={logoutUser}>Log Out</a>
@@ -29,6 +29,6 @@ Profile.propTypes = {
 
 const mapStateToProps = state => ({
     auth: state.auth
-})
+});
 
 export default connect(mapStateToProps,{ logoutUser })(Profile);
