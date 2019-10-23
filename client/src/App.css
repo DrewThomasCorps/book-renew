@@ -131,6 +131,9 @@
     color: #F6FDFE;
     background-color: #268FaF;
 }
+.br-nav-icon {
+    width: 26px;
+}
 
 @media (max-width: 590px) {
     .form-login, .form-registration {
@@ -165,5 +168,9 @@
     }
     .br-nav-item:last-of-type {
         width: 34%;
+    }
+    .br-nav-icon {
+        height: 40px;
+        width: auto;
     }
 }
