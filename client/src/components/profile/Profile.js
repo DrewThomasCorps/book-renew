@@ -4,20 +4,19 @@ import Navigation from "../layout/Navigation";
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 
-const Profile = ({ auth: {loading}, logoutUser}) => {
+const Profile = ({ auth: {user,loading}, logoutUser}) => {
     return (
         <Fragment>
             <Navigation />
             <section className={"row br-content-container"}>
-                <div className={"col-12"}>
-                    <img src={"https://via.placeholder.com/250"} />
-                    <h2>Name</h2>
-                </div>
-                <div className={"col-12"}>
-                    <h3>Rating</h3>
-                    <h3>Email</h3>
-                    { !loading && (<a href="#" onClick={logoutUser}>Log Out</a>)}
-                </div>
+                { !loading && (
+                    <div className={"col-12"}>
+                        <img src={"https://via.placeholder.com/250"} />
+                        <h2>{user.name}</h2>
+                        <h3>{user.email}</h3>
+                        <a href="#" onClick={logoutUser}>Log Out</a>
+                    </div>
+                )}
             </section>
         </Fragment>
     )
