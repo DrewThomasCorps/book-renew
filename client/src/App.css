@@ -41,7 +41,8 @@
     background-color: #1c677d;
     border-color: #1c677d;
 }
-.form-container {
+
+.br-vCenter {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -105,6 +106,7 @@
 .br-nav-item {
     height: 54px;
     width: 54px;
+    position: relative;
 }
 
 .br-nav-item:hover {
