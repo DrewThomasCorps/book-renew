@@ -10,13 +10,13 @@ const Navigation = () => {
             <nav className={"br-navbar text-center"}>
                 <ul className={"br-navbar-nav"}>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/dashboard"}><img alt={"Dashboard Icon"} className={"br-nav-icon"} src={dashboardIcon} /></Link>
+                        <Link className={"br-nav-link"} to={"/dashboard"}><img alt={"Dashboard Icon"} className={"br-nav-icon br-vCenter"} src={dashboardIcon} /></Link>
                     </li>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/trades"}><img alt={"Trades Icon"} className={"br-nav-icon"} src={exchangeIcon} /></Link>
+                        <Link className={"br-nav-link"} to={"/trades"}><img alt={"Trades Icon"} className={"br-nav-icon br-vCenter"} src={exchangeIcon} /></Link>
                     </li>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/profile"}><img alt={"Profile Icon"} className={"br-nav-icon"} src={profileIcon} /></Link>
+                        <Link className={"br-nav-link"} to={"/profile"}><img alt={"Profile Icon"} className={"br-nav-icon br-vCenter"} src={profileIcon} /></Link>
                     </li>
                 </ul>
             </nav>
