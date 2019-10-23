@@ -16,9 +16,9 @@ export const loadUser = () => async dispatch => {
         setAuthToken(localStorage.authToken)
     }
     axios.get(BASE_URL + "/users/self").then(response => {
-        //TODO handle response data
         dispatch({
             type: USER_LOADED,
+            payload: response.data
         })
     }).catch(error => {
         console.log(error);
