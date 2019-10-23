@@ -7,14 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User<email> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -22,7 +22,6 @@ public class User {
 
     @Column(nullable = false)
     private String name;
-
 
     public Long getId() {
         return id;
@@ -53,4 +52,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }

@@ -1,21 +1,22 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
-import Books from "../books/Books";
 
-const Dashboard = props => {
+const Trades = props => {
     return (
         <Fragment>
             <Navigation />
             <section className={"row br-content-container"}>
-                <Books />
+                <div className={"col-12"}>
+                    <h1>Trades</h1>
+                </div>
             </section>
         </Fragment>
     )
 };
 
-Dashboard.propTypes = {
+Trades.propTypes = {
 
 };
 
-export default Dashboard;
+export default Trades;

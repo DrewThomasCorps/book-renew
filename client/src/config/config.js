@@ -1,3 +1,3 @@
 export const LOCAL_HOST = true;
 
-export const BASE_URL = LOCAL_HOST ? "http://localhost:8080" : "";
+export const BASE_URL = LOCAL_HOST ? "http://localhost:8080" : "http://bookrenew:8080";

@@ -29,7 +29,7 @@ const Login = ({loginUser, isAuthenticated}) => {
         <Fragment>
             <section className={"row"}>
                 <div className={"col-12 br-container-fluid br-bg-blue"}>
-                    <section className={"row form-container"}>
+                    <section className={"form-container"}>
                         <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>
                             <input className={"form-user-input mb-4 form-control"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>

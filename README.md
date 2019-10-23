@@ -2,7 +2,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In order to run the front-end of this project the user must install Node.js.<br />
-The latest version of Node.js can be found at (https://nodejs.org/en/download/)
+The latest version of Node.js can be found at [Install Node](https://nodejs.org/en/download/)
 
 ## Available Scripts
 

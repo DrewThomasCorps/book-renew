@@ -6,6 +6,10 @@
     min-height: 100vh;
 }
 
+.br-content-container {
+    padding-left: 54px;
+}
+
 .br-bg-blue {
     background-color: #268faf;
 }
@@ -15,7 +19,12 @@
     border: 2px solid;
 }
 
+.btn:active {
+    background-color: #F6FDFE;
+}
+
 .btn-primary {
+    transition: .25s;
     color: #F6FDFE;
     background-color: #268faf;
     border-color: #F6FDFE;
@@ -27,6 +36,11 @@
     border-color: #F6FDFE;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #F6FDFE;
+    background-color: #1c677d;
+    border-color: #1c677d;
+}
 .form-container {
     position: absolute;
     top: 50%;
@@ -66,6 +80,58 @@
     margin: auto;
 }
 
+.br-navbar {
+    background-color: #373F51;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 54px;
+    z-index: 100;
+}
+
+.br-navbar-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #F6FDFE;
+    background-color: #373F51;
+}
+
+.br-nav-item {
+    height: 54px;
+    width: 54px;
+}
+
+.br-nav-item:hover {
+    /*background-color: #268faf;*/
+    cursor: pointer;
+}
+
+.br-nav-link {
+    display: block;
+    height: 54px;
+    width: 54px;
+    color:#F6FDFE;
+    text-decoration: none;
+    transition:.25s;
+}
+
+.br-nav-link:hover {
+    background-color: #268faf;
+    color: #F6FDFE;
+    text-decoration: none;
+}
+
+.br-nav-link:active {
+    color: #F6FDFE;
+    background-color: #268FaF;
+}
+
 @media (max-width: 590px) {
     .form-login, .form-registration {
         width: 100%;
@@ -74,5 +140,30 @@
         padding: 0;
         margin: 0 auto;
         border: none;
+    }
+    .br-content-container {
+        padding-left: 0;
+        padding-bottom: 96px;
+    }
+    .br-navbar {
+        bottom: 0;
+        height: 96px;
+        width: 100%;
+        z-index: 100;
+    }
+    .br-navbar-nav li{
+        display: inline-block;
+    }
+    .br-nav-link {
+        display: inline-block;
+        height: 96px;
+        width: 100%;
+    }
+    .br-nav-item {
+        height: 96px;
+        width: 33%;
+    }
+    .br-nav-item:last-of-type {
+        width: 34%;
     }
 }
