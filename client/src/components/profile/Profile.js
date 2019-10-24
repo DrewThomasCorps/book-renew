@@ -9,6 +9,7 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
         <Fragment>
             <Navigation />
             <section className={"row br-content-container"}>
+                <h1>Profile</h1>
                 { !loading && (
                     <div className={"col-12"}>
                         <img src={"https://via.placeholder.com/250"} alt={user.name+" Profile Image"}/>
