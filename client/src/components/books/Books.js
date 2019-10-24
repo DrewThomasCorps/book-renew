@@ -12,11 +12,13 @@ const Books = ({getBooks,book:{books,loading}}) => {
 
     return loading ? <Fragment /> :
         <Fragment>
-            <div className={"col-12"}>
+            <div className={"col-12 container-fluid"}>
                 <h2>Your Books</h2>
-                {books.map(book => (
-                    <Book key={book.id} book={book} />
-                ))}
+                <div className={"row"}>
+                    {books.map(book => (
+                        <Book key={book.id} book={book} />
+                    ))}
+                </div>
                 <BookForm />
                 <hr/>
             </div>
