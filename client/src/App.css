@@ -14,6 +14,10 @@
     background-color: #268faf;
 }
 
+.main-text-color {
+    color: #373F51;
+}
+
 .btn {
     border-radius:  50rem;
     border: 2px solid;
@@ -147,6 +151,11 @@
     background-color: #268FaF;
     color: white;
     border-color: #268FaF;
+}
+
+.isbn-input-box {
+    padding: 5px;
+    margin: 4px;
 }
 
 @media (max-width: 590px) {
