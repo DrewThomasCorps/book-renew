@@ -14,7 +14,7 @@ const BookForm = ({ addBook }) => {
                 setISBN('');
             }}>
                 <input type={"text"} placeholder={"Book ISBN"} value={bookISBN} onChange={e => setISBN(e.target.value)}/>
-                <input type={"submit"} className={"btn btn-dark my-1"} value={"Add Book"} />
+                <input type={"submit"} className={"btn btn-dark my-1 md-3 add-book-btn"} value={"Add Book"}/>
             </form>
         </div>
     )

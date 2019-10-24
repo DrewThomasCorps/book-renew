@@ -13,12 +13,19 @@ const Books = ({getBooks,book:{books,loading}}) => {
     return loading ? <Fragment /> :
         <Fragment>
             <div className={"col-12"}>
-                <h2>Your Books</h2>
+                <h3>My Books</h3>
+                <BookForm/>
                 {books.map(book => (
                     <Book key={book.id} book={book} />
                 ))}
-                <BookForm />
                 <hr/>
+                <h3>Books I Need</h3>
+                <BookForm/>
+                {books.map(book => (
+                    <Book key={book.id} book={book} />
+                ))}
+                <hr/>
+                <h3>Active Trades</h3>
             </div>
         </Fragment>;
 };
