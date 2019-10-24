@@ -8,6 +8,7 @@ const Dashboard = props => {
         <Fragment>
             <Navigation />
             <section className={"row br-content-container"}>
+                <h1>Dashboard</h1>
                 <Books />
             </section>
         </Fragment>
