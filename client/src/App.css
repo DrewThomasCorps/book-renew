@@ -137,6 +137,18 @@
     width: 26px;
 }
 
+.add-book-btn {
+    background-color: white;
+    border-color: #268FaF;
+    color: #268FaF;
+}
+
+.add-book-btn:hover {
+    background-color: #268FaF;
+    color: white;
+    border-color: #268FaF;
+}
+
 @media (max-width: 590px) {
     .form-login, .form-registration {
         width: 100%;
