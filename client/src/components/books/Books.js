@@ -13,7 +13,7 @@ const Books = ({getBooks,book:{books,loading}}) => {
     return loading ? <Fragment /> :
         <Fragment>
             <div className={"col-12"}>
-                <h2>Your Books</h2>
+                <h3>Your Books</h3>
                 {books.map(book => (
                     <Book key={book.id} book={book} />
                 ))}
