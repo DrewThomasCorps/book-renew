@@ -9,6 +9,7 @@ const Trades = props => {
             <section className={"row br-content-container"}>
                 <div className={"col-12"}>
                     <h1>Trades</h1>
+                    <hr/>
                 </div>
             </section>
         </Fragment>
