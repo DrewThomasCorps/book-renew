@@ -29,14 +29,14 @@ const Login = ({loginUser, isAuthenticated}) => {
         <Fragment>
             <section className={"row"}>
                 <div className={"col-12 br-container-fluid br-bg-blue"}>
-                    <section className={"form-container"}>
+                    <section className={"br-vCenter"}>
                         <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>
                             <input className={"form-user-input mb-4 form-control"} type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email Address"}/>
                             <input className={"form-user-input mb-4 form-control"} type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
                             <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Log In"} />
                             <div className={"info-box mb-5"}>
-                                <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link text-white"} to={"/registration"}>Sign up</Link> here.</p>
+                                <p className={"info-box-text"}>Don't have an account? <Link className={"info-box-link text-white font-weight-bold"} to={"/registration"}>Sign up</Link> here.</p>
                             </div>
                         </form>
                     </section>

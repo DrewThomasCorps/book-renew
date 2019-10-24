@@ -41,7 +41,8 @@
     background-color: #1c677d;
     border-color: #1c677d;
 }
-.form-container {
+
+.br-vCenter {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -105,6 +106,7 @@
 .br-nav-item {
     height: 54px;
     width: 54px;
+    position: relative;
 }
 
 .br-nav-item:hover {
@@ -130,6 +132,21 @@
 .br-nav-link:active {
     color: #F6FDFE;
     background-color: #268FaF;
+}
+.br-nav-icon {
+    width: 26px;
+}
+
+.add-book-btn {
+    background-color: white;
+    border-color: #268FaF;
+    color: #268FaF;
+}
+
+.add-book-btn:hover {
+    background-color: #268FaF;
+    color: white;
+    border-color: #268FaF;
 }
 
 @media (max-width: 590px) {
@@ -165,5 +182,9 @@
     }
     .br-nav-item:last-of-type {
         width: 34%;
+    }
+    .br-nav-icon {
+        height: 40px;
+        width: auto;
     }
 }
