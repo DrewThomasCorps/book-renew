@@ -10,7 +10,7 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
             <Navigation />
             <section className={"row br-content-container"}>
                 { !loading && (
-                    <div className={"col-12"}>
+                    <div className={"col-12 main-text-color"}>
                         <h1>Profile</h1>
                     <hr/>
                         <img src={"https://via.placeholder.com/250"} alt={user.name+" Profile Image"}/>
