@@ -23,6 +23,9 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
+
+
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/register")
     public User create(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -46,18 +49,5 @@ public class UserController {
         return repository.findByEmail(email);
     }
 
-    @GetMapping(produces = {"application/json"})
-    public Map<String, String> findByEmail() {Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        Map<String, String> userMap = new HashMap<>();
-        if(repository.findByEmail(email) == null)
-        {
-            userMap.put("error", "200");
-        }
-        else
-        {
-            userMap.put("error", "409");
-        }
-        return userMap;
-    }
+
 }
