@@ -27,22 +27,44 @@ public class BookController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/owned")
-    public Book create(@RequestBody Book book){
-        Book createdBook = this.bookRepository.save(book);
-        User user = this.getUserFromAuthCredentials();
-        BookUser bookUser = new BookUser();
-        bookUser.setBook(createdBook);
-        bookUser.setUser(user);
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/owned")
+    public Book addToOwned(@RequestBody Book book) {
+        Book createdBook = this.createBook(book);
+        BookUser bookUser = this.setupBookUser(createdBook);
         bookUser.setStatus(BookUser.Status.owner);
         bookUserRepository.save(bookUser);
         return createdBook;
     }
 
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/wishlist")
+    public Book addToWishlist(@RequestBody Book book) {
+        Book createdBook = this.createBook(book);
+        BookUser bookUser = this.setupBookUser(createdBook);
+        bookUser.setStatus(BookUser.Status.wishlist);
+        bookUserRepository.save(bookUser);
+        return createdBook;
+    }
+
+    private Book createBook(Book book) {
+        Book createdBook = book;
+        if (bookRepository.findByIsbn(book.getIsbn()) == null) {
+            createdBook = bookRepository.save(book);
+        }
+        return createdBook;
+    }
+
     private User getUserFromAuthCredentials() {
-        Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         return userRepository.findByEmail(email);
+    }
+
+    private BookUser setupBookUser(Book book) {
+        User user = this.getUserFromAuthCredentials();
+        BookUser bookUser = new BookUser();
+        bookUser.setBook(book);
+        bookUser.setUser(user);
+        return bookUser;
     }
 
 }

@@ -23,16 +23,13 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/register")
-    public User create(@RequestBody User user){
-        if(repository.findByEmail(user.getEmail()) == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return repository.save(user);
-        }
-        else
-        {
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/register")
+    public User create(@RequestBody User user) {
+        if (repository.findByEmail(user.getEmail()) != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email Already Exists");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return repository.save(user);
     }
 
     @GetMapping(produces = {"application/json"}, path = "/self")
@@ -40,16 +37,16 @@ public class UserController {
         return this.getUserFromAuthCredentials();
     }
 
+    private User getUserFromAuthCredentials() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        return repository.findByEmail(email);
+    }
+
     @DeleteMapping(path = "/self")
     public void deleteUser() {
         User user = this.getUserFromAuthCredentials();
         repository.delete(user);
-    }
-
-    private User getUserFromAuthCredentials() {
-        Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        return repository.findByEmail(email);
     }
 
 
