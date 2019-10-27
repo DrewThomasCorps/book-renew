@@ -28,76 +28,6 @@ class UserTests {
     private String authToken;
 
     @Test
-    @Order(6)
-    void testDeleteUser() {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendDeleteRequest(request);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-    }
-
-    private ResponseEntity<String> sendDeleteRequest(HttpEntity<String> request) {
-        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
-    }
-
-    @Test
-    @Order(5)
-    void testGetAuthenticatedUser() throws IOException {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
-        this.testAuthenticatedUserResponseResults(response);
-    }
-
-    private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
-        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
-    }
-
-    private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
-        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
-    }
-
-    @Test
-    @Order(4)
-    void testLoginSuccess() throws JSONException, IOException {
-        JSONObject loginCredentials = this.buildLoginCredentials();
-        HttpEntity<String> request = this.buildRequest(loginCredentials);
-        ResponseEntity<String> response = this.sendLoginRequest(request);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
-        Assertions.assertNotNull(authToken);
-    }
-
-    private JSONObject buildLoginCredentials() throws JSONException {
-        JSONObject credentials = new JSONObject();
-        credentials.put("email", "test@test.com");
-        credentials.put("password", "testPassword");
-        return credentials;
-    }
-
-    @Test
-    @Order(3)
-    void testLoginFailsWithIncorrectCredentials() throws JSONException {
-        JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
-        HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
-        HttpClientErrorException exception =
-                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendLoginRequest(request));
-        Assertions.assertEquals(403, exception.getRawStatusCode());
-    }
-
-    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
-        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
-                request, String.class);
-    }
-
-    private JSONObject buildIncorrectLoginCredentials() throws JSONException {
-        JSONObject credentials = new JSONObject();
-        credentials.put("email", "test@test.com");
-        credentials.put("password", "wrong_password");
-        return credentials;
-    }
-
-    @Test
     @Order(1)
     void testUserRegister() throws JSONException, IOException {
         JSONObject userJsonObject = this.buildUserJsonObject();
@@ -116,6 +46,75 @@ class UserTests {
         Assertions.assertEquals(409, exception.getRawStatusCode());
     }
 
+    @Test
+    @Order(3)
+    void testLoginFailsWithIncorrectCredentials() throws JSONException {
+        JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
+        HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendLoginRequest(request));
+        Assertions.assertEquals(403, exception.getRawStatusCode());
+    }
+
+    @Test
+    @Order(4)
+    void testLoginSuccess() throws JSONException, IOException {
+        JSONObject loginCredentials = this.buildLoginCredentials();
+        HttpEntity<String> request = this.buildRequest(loginCredentials);
+        ResponseEntity<String> response = this.sendLoginRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
+        Assertions.assertNotNull(authToken);
+    }
+
+    @Test
+    @Order(5)
+    void testGetAuthenticatedUser() throws IOException {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        this.testAuthenticatedUserResponseResults(response);
+    }
+
+    @Test
+    @Order(6)
+    void testDeleteUser() {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendDeleteRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    private ResponseEntity<String> sendDeleteRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
+    }
+
+    private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertNotNull(responseRoot);
+        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
+    }
+
+    private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
+    }
+
+    private JSONObject buildLoginCredentials() throws JSONException {
+        JSONObject credentials = new JSONObject();
+        credentials.put("email", "test@test.com");
+        credentials.put("password", "testPassword");
+        return credentials;
+    }
+
+    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
+        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
+                request, String.class);
+    }
+
+    private JSONObject buildIncorrectLoginCredentials() throws JSONException {
+        JSONObject credentials = new JSONObject();
+        credentials.put("email", "test@test.com");
+        credentials.put("password", "wrong_password");
+        return credentials;
+    }
 
     private JSONObject buildUserJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();

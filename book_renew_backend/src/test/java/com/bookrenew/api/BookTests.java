@@ -59,6 +59,19 @@ class BookTests {
         this.testBookResponseContainsCorrectInformation();
     }
 
+    @Test
+    @Order(4)
+    void testDeleteBook() {
+        String id = responseRoot.path("id").asText();
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendDeleteBookRequest(request, id);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
+        return restTemplate.exchange(baseUrl + "books/delete/" + id, HttpMethod.DELETE, request, String.class);
+    }
+
     private JSONObject buildBookJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
         userJsonObject.put("title", "Harry Potter and the Deathly Hollows");
@@ -118,8 +131,8 @@ class BookTests {
 
     private void testBookResponseContainsCorrectInformation() {
         Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", responseRoot.path("title").asText());
-        Assertions.assertEquals("9780545010221", responseRoot.path("isbn").asText());
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", responseRoot.path("book").path("title").asText());
+        Assertions.assertEquals("9780545010221", responseRoot.path("book").path("isbn").asText());
     }
 
     private void sendDeleteUserRequest(HttpEntity<String> request) {
