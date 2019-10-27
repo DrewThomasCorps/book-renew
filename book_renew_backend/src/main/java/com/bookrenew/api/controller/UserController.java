@@ -2,18 +2,12 @@ package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.User;
 import com.bookrenew.api.repository.UserRepository;
-import org.assertj.core.api.Assertions;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpClientErrorException.Conflict;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.servlet.http.HttpServletResponse;
 
 
 @RestController
@@ -28,9 +22,6 @@ public class UserController {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
-
-
-
 
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/register")
     public User create(@RequestBody User user){
