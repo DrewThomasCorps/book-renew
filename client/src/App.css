@@ -6,8 +6,16 @@
     min-height: 100vh;
 }
 
+.br-content-container {
+    padding-left: 54px;
+}
+
 .br-bg-blue {
     background-color: #268faf;
+}
+
+.main-text-color {
+    color: #373F51;
 }
 
 .btn {
@@ -20,6 +28,7 @@
 }
 
 .btn-primary {
+    transition: .25s;
     color: #F6FDFE;
     background-color: #268faf;
     border-color: #F6FDFE;
@@ -36,7 +45,8 @@
     background-color: #1c677d;
     border-color: #1c677d;
 }
-.form-container {
+
+.br-vCenter {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -75,18 +85,17 @@
     margin: auto;
 }
 
-.location-header {
-    background-color: #2E3544;
-    color: #F6FDFE;
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    padding: .5rem;
-}
-
 .br-navbar {
-    height: 100%;
     background-color: #373F51;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 54px;
+    z-index: 100;
 }
 
 .br-navbar-nav {
@@ -94,27 +103,59 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    width: 150px;
     color: #F6FDFE;
     background-color: #373F51;
 }
 
 .br-nav-item {
-    display: block;
-    color:#F6FDFE;
-    padding: 8px 16px;
-    text-decoration: none;
+    height: 54px;
+    width: 54px;
+    position: relative;
 }
 
 .br-nav-item:hover {
+    /*background-color: #268faf;*/
+    cursor: pointer;
+}
+
+.br-nav-link {
+    display: block;
+    height: 54px;
+    width: 54px;
+    color:#F6FDFE;
+    text-decoration: none;
+    transition:.25s;
+}
+
+.br-nav-link:hover {
     background-color: #268faf;
     color: #F6FDFE;
     text-decoration: none;
 }
 
-.br-nav-item:active {
+.br-nav-link:active {
     color: #F6FDFE;
     background-color: #268FaF;
+}
+.br-nav-icon {
+    width: 26px;
+}
+
+.add-book-btn {
+    background-color: white;
+    border-color: #268FaF;
+    color: #268FaF;
+}
+
+.add-book-btn:hover {
+    background-color: #268FaF;
+    color: white;
+    border-color: #268FaF;
+}
+
+.isbn-input-box {
+    padding: 5px;
+    margin: 4px;
 }
 
 @media (max-width: 590px) {
@@ -125,5 +166,34 @@
         padding: 0;
         margin: 0 auto;
         border: none;
+    }
+    .br-content-container {
+        padding-left: 0;
+        padding-bottom: 96px;
+    }
+    .br-navbar {
+        bottom: 0;
+        height: 96px;
+        width: 100%;
+        z-index: 100;
+    }
+    .br-navbar-nav li{
+        display: inline-block;
+    }
+    .br-nav-link {
+        display: inline-block;
+        height: 96px;
+        width: 100%;
+    }
+    .br-nav-item {
+        height: 96px;
+        width: 33%;
+    }
+    .br-nav-item:last-of-type {
+        width: 34%;
+    }
+    .br-nav-icon {
+        height: 40px;
+        width: auto;
     }
 }

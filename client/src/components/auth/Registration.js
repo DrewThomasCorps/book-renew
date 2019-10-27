@@ -35,7 +35,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
         <Fragment>
             <section className={"row"}>
                 <div className={"col-12 br-container-fluid br-bg-blue"}>
-                    <section className={"form-container"}>
+                    <section className={"br-vCenter"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>
                             <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name={"name"} value={name} placeholder={"Name"} />
@@ -45,7 +45,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
                                    name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}/>
                             <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Sign Up"} />
                             <div className={"info-box mb-5"}>
-                                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link text-white"} to={"/"}>Sign in</Link> here.</p>
+                                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link text-white font-weight-bold"} to={"/"}>Sign in</Link> here.</p>
                             </div>
                         </form>
                     </section>

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ class UserTests {
     @Test
     void testUser() throws JSONException, IOException {
         this.testUserRegister();
+        this.testDuplicateUser();
         this.testLoginFailsWithIncorrectCredentials();
         this.testLoginSuccess();
         this.testGetAuthenticatedUser();
@@ -103,6 +105,28 @@ class UserTests {
         this.testRegisterResponseContainsCorrectData();
     }
 
+
+
+
+
+
+    private void testDuplicateUser() throws JSONException, IOException {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        HttpServerErrorException exception =
+                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(500, exception.getRawStatusCode());
+    }
+
+
+
+
+
+
+
+
+
+
     private JSONObject buildUserJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
         userJsonObject.put("name", "testUser");
@@ -137,6 +161,5 @@ class UserTests {
         Assertions.assertEquals("", responseRoot.path("password").asText());
         Assertions.assertNotNull(responseRoot.path("id"));
     }
-
-
 }
+
