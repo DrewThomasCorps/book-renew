@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
@@ -106,25 +107,13 @@ class UserTests {
     }
 
 
-
-
-
-
     private void testDuplicateUser() throws JSONException, IOException {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
-        HttpServerErrorException exception =
-                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendRegisterRequest(request));
-        Assertions.assertEquals(500, exception.getRawStatusCode());
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(409, exception.getRawStatusCode());
     }
-
-
-
-
-
-
-
-
 
 
     private JSONObject buildUserJsonObject() throws JSONException {

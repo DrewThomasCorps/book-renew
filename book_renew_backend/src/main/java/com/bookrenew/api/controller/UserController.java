@@ -2,13 +2,19 @@ package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.User;
 import com.bookrenew.api.repository.UserRepository;
+import org.assertj.core.api.Assertions;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpClientErrorException.Conflict;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
+
 
 @RestController
 @RequestMapping(path = "/users")
@@ -27,9 +33,15 @@ public class UserController {
 
 
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path="/register")
-    public User create(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return repository.save(user);
+    public User create(@RequestBody User user){
+        if(repository.findByEmail(user.getEmail()) == null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return repository.save(user);
+        }
+        else
+        {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email Already Exists");
+        }
     }
 
     @GetMapping(produces = {"application/json"}, path = "/self")
