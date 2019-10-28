@@ -2,8 +2,7 @@ package com.bookrenew.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -11,13 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserTests {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -27,16 +28,56 @@ class UserTests {
     private String authToken;
 
     @Test
-    void testUser() throws JSONException, IOException {
-        this.testUserRegister();
-        this.testDuplicateUser();
-        this.testLoginFailsWithIncorrectCredentials();
-        this.testLoginSuccess();
-        this.testGetAuthenticatedUser();
-        this.testDeleteUser();
+    @Order(1)
+    void testUserRegister() throws JSONException, IOException {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        this.sendRegisterRequest(request);
+        this.testRegisterResponseContainsCorrectData();
     }
 
-    private void testDeleteUser() {
+    @Test
+    @Order(2)
+    void testCreatingDuplicateUserReturns409() throws JSONException, IOException {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(409, exception.getRawStatusCode());
+    }
+
+    @Test
+    @Order(3)
+    void testLoginFailsWithIncorrectCredentials() throws JSONException {
+        JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
+        HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendLoginRequest(request));
+        Assertions.assertEquals(403, exception.getRawStatusCode());
+    }
+
+    @Test
+    @Order(4)
+    void testLoginSuccess() throws JSONException, IOException {
+        JSONObject loginCredentials = this.buildLoginCredentials();
+        HttpEntity<String> request = this.buildRequest(loginCredentials);
+        ResponseEntity<String> response = this.sendLoginRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
+        Assertions.assertNotNull(authToken);
+    }
+
+    @Test
+    @Order(5)
+    void testGetAuthenticatedUser() throws IOException {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        this.testAuthenticatedUserResponseResults(response);
+    }
+
+    @Test
+    @Order(6)
+    void testDeleteUser() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteRequest(request);
         Assertions.assertEquals(200, response.getStatusCodeValue());
@@ -46,14 +87,8 @@ class UserTests {
         return restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
     }
 
-    private void testGetAuthenticatedUser() throws IOException {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
-        this.testAuthenticatedUserResponseResults(response);
-    }
-
     private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
-        responseRoot = objectMapper.readTree(response.getBody());
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
         Assertions.assertNotNull(responseRoot);
         Assertions.assertEquals("testUser", responseRoot.path("name").asText());
     }
@@ -62,28 +97,11 @@ class UserTests {
         return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
     }
 
-    private void testLoginSuccess() throws JSONException, IOException {
-        JSONObject loginCredentials = this.buildLoginCredentials();
-        HttpEntity<String> request = this.buildRequest(loginCredentials);
-        ResponseEntity<String> response = this.sendLoginRequest(request);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
-        Assertions.assertNotNull(authToken);
-    }
-
     private JSONObject buildLoginCredentials() throws JSONException {
         JSONObject credentials = new JSONObject();
         credentials.put("email", "test@test.com");
         credentials.put("password", "testPassword");
         return credentials;
-    }
-
-    private void testLoginFailsWithIncorrectCredentials() throws JSONException {
-        JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
-        HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
-        HttpClientErrorException exception =
-                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendLoginRequest(request));
-        Assertions.assertEquals(403, exception.getRawStatusCode());
     }
 
     private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
@@ -97,35 +115,6 @@ class UserTests {
         credentials.put("password", "wrong_password");
         return credentials;
     }
-
-    private void testUserRegister() throws JSONException, IOException {
-        JSONObject userJsonObject = this.buildUserJsonObject();
-        HttpEntity<String> request = this.buildRequest(userJsonObject);
-        this.sendRegisterRequest(request);
-        this.testRegisterResponseContainsCorrectData();
-    }
-
-
-
-
-
-
-    private void testDuplicateUser() throws JSONException, IOException {
-        JSONObject userJsonObject = this.buildUserJsonObject();
-        HttpEntity<String> request = this.buildRequest(userJsonObject);
-        HttpServerErrorException exception =
-                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendRegisterRequest(request));
-        Assertions.assertEquals(500, exception.getRawStatusCode());
-    }
-
-
-
-
-
-
-
-
-
 
     private JSONObject buildUserJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
@@ -151,6 +140,7 @@ class UserTests {
 
     private void sendRegisterRequest(HttpEntity<String> request) throws IOException {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "users/register", request, String.class);
+        assert userResultsAsJsonString != null;
         responseRoot = objectMapper.readTree(userResultsAsJsonString);
     }
 
