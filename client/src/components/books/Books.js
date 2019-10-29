@@ -13,23 +13,15 @@ const Books = ({getBooks,book:{books,loading}}) => {
     return loading ? <Fragment /> :
         <Fragment>
             <div className={"col-12 container-fluid"}>
-                <h2>My Books</h2>
+                <h2>Add Books</h2>
                 <BookForm />
-                <div className={"row"}>
-                    {books.map(book => (
-                        <Book key={book.id} book={book} />
-                    ))}
-                </div>
+                {/*TODO Map books when GET request completed*/}
+                {/*<div className={"row"}>*/}
+                {/*    {books.map(book => (*/}
+                {/*        <Book key={book.isbn} book={book.title} />*/}
+                {/*    ))}*/}
+                {/*</div>*/}
                 <hr/>
-                <h3>Books I Need</h3>
-                <BookForm/>
-                <div className={"row"}>
-                    {books.map(book => (
-                        <Book key={book.id} book={book} />
-                    ))}
-                </div>
-                <hr/>
-                <h3>Active Trades</h3>
             </div>
         </Fragment>;
 };

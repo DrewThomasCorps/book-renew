@@ -49,31 +49,23 @@ export const deleteBook = id => async dispatch => {
 };
 
 export const addBook = formData => async dispatch => {
-    const config = {
+    const setHeaders = {
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type': 'application/json'
         }
     };
 
     try {
-        //TODO implement axios request to add book, should return book as JSON
-        console.log(formData);
+        const res = await axios.post(BASE_URL + "/books/" + formData.bookStatus, formData, setHeaders);
         dispatch({
             type: ADD_BOOK,
-            payload:             {
-                id: 6,
-                title: "Harry Potter and the Chamber of Secrets",
-                isbn: formData.bookISBN
-
-            }
-        });
-
-        console.log('Book removed');
-    } catch (err) {
+            payload: res.book
+        })
+    } catch (error) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status },
+            payload: { msg: error.response.statusText, status: error.response.status },
             loading: false
-        });
+        })
     }
 };
