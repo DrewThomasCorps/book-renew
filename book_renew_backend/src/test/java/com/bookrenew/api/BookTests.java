@@ -76,7 +76,7 @@ class BookTests {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         HttpServerErrorException exception =
-                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendDeleteBookRequest(request, id+1000));
+                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendDeleteBookRequest(request, id));
         Assertions.assertEquals(500, exception.getRawStatusCode());    }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
