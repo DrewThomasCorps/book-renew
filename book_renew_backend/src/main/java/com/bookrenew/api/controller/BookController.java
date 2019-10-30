@@ -50,7 +50,13 @@ public class BookController {
         if (!user.getEmail().equals(bookUser.getUser().getEmail())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");
         }
-        bookUserRepository.delete(bookUser);
+        if(bookRepository.findById(longId) != null) {
+            bookUserRepository.delete(bookUser);
+        }
+        else
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id does not exist");
+        }
     }
 
     private Book createBook(Book book) {

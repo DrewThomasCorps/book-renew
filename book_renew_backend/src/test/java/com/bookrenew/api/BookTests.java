@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -67,6 +68,16 @@ class BookTests {
         ResponseEntity<String> response = this.sendDeleteBookRequest(request, id);
         Assertions.assertEquals(200, response.getStatusCodeValue());
     }
+
+    @Test
+    @Order(5)
+    void testDeleteBookWithNonExistentIdReturns500()
+    {
+        String id = responseRoot.path("id").asText();
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        HttpServerErrorException exception =
+                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendDeleteBookRequest(request, id+1000));
+        Assertions.assertEquals(500, exception.getRawStatusCode());    }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
         return restTemplate.exchange(baseUrl + "books/delete/" + id, HttpMethod.DELETE, request, String.class);
