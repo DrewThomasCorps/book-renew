@@ -10,6 +10,7 @@ const BookForm = ({ addBook }) => {
 
     return (
         <div className={"book-form"}>
+            <h2>Add Books</h2>
             <form onSubmit={e => {
                 e.preventDefault();
                 addBook({ isbn, title, bookStatus });

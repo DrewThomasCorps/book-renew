@@ -2,6 +2,10 @@
     font-family: Lato, sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: bold;
+}
+
 .br-container-fluid {
     min-height: 100vh;
 }
@@ -21,6 +25,7 @@
 .btn {
     border-radius:  50rem;
     border: 2px solid;
+    font-weight: bold;
 }
 
 .btn:active {

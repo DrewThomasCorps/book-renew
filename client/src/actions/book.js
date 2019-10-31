@@ -14,7 +14,14 @@ export const getBooks = () => async dispatch => {
             {
                 id: 5,
                 title: "Harry Potter and the Philosopher's Stone",
-                isbn: "0747532745"
+                isbn: "0747532745",
+                status: "library"
+
+            },{
+                id: 6,
+                title: "Harry Potter and the Chamber of Secrets",
+                isbn: "0747532746",
+                status: "wishlist"
 
             }
         ];

@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     books: [],
-    book: null,
     loading: true,
     error: {}
 };
