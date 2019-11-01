@@ -6,6 +6,7 @@ import com.bookrenew.api.entity.User;
 import com.bookrenew.api.repository.BookRepository;
 import com.bookrenew.api.repository.BookUserRepository;
 import com.bookrenew.api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,7 @@ public class BookController {
     private final BookUserRepository bookUserRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public BookController(BookRepository bookRepository, BookUserRepository bookUserRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.bookUserRepository = bookUserRepository;
@@ -45,18 +47,12 @@ public class BookController {
     @DeleteMapping(path = "/delete/{id}")
     public void deleteBookUserById(@PathVariable("id") String id){
         Long longId = Long.parseLong(id);
-        BookUser bookUser = bookUserRepository.findById(longId).orElse(new BookUser());
+        BookUser bookUser = bookUserRepository.findById(longId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist"));
         User user = this.getUserFromAuthCredentials();
         if (!user.getEmail().equals(bookUser.getUser().getEmail())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");
         }
-        if(bookRepository.findById(longId) != null) {
-            bookUserRepository.delete(bookUser);
-        }
-        else
-        {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id does not exist");
-        }
+        bookUserRepository.delete(bookUser);
     }
 
     private Book createBook(Book book) {

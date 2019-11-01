@@ -1,5 +1,6 @@
 package com.bookrenew.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
@@ -10,10 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -61,7 +62,7 @@ class BookTests {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void testDeleteBook() {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
@@ -70,14 +71,14 @@ class BookTests {
     }
 
     @Test
-    @Order(5)
-    void testDeleteBookWithNonExistentIdReturns500()
-    {
+    @Order(6)
+    void testDeleteBookWithNonExistentIdReturns500() {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
-        HttpServerErrorException exception =
-                Assertions.assertThrows(HttpServerErrorException.class, () -> this.sendDeleteBookRequest(request, id));
-        Assertions.assertEquals(500, exception.getRawStatusCode());    }
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteBookRequest(request, id));
+        Assertions.assertEquals(400, exception.getRawStatusCode());
+    }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
         return restTemplate.exchange(baseUrl + "books/delete/" + id, HttpMethod.DELETE, request, String.class);
@@ -148,5 +149,9 @@ class BookTests {
 
     private void sendDeleteUserRequest(HttpEntity<String> request) {
         restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
+    }
+
+    private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
     }
 }
