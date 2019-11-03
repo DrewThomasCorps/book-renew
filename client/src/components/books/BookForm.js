@@ -9,15 +9,16 @@ const BookForm = ({ addBook }) => {
     const [bookStatus, setStatus] = useState('owned');
 
     return (
-        <div className={"book-form"}>
-            <h2>Add Books</h2>
-            <form onSubmit={e => {
+        <div className={"row book-form-container"}>
+            
+            <form className="col-12" onSubmit={e => {
                 e.preventDefault();
                 addBook({ isbn, title, bookStatus });
                 setISBN('');
                 setTitle('');
                 setStatus('owned');
             }}>
+                <h2>Add Books</h2>
                 <select className="form-control isbn-input-box" value={bookStatus} onChange={e=> setStatus(e.target.value)}>
                     <option value={"owned"}>Library</option>
                     <option value={"wishlist"}>Wishlist</option>
