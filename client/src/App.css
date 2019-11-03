@@ -151,6 +151,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #F6FDFE;
     background-color: #268FaF;
 }
+
+.br-nav-link.active{
+    background-color: #268FaF;
+}
+
 .br-nav-icon {
     width: 26px;
 }
