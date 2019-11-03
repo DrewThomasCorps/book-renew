@@ -16,7 +16,8 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                     <section className={"col-12"}>
                         <section className={"row"}>
                             <section className={"col-12 content-header"}>
-                                <h1>Profile</h1>
+                                <h1 className={"float-left text-uppercase font-weight-bolder"}>Profile</h1>
+                                <a href="#" className={"float-right"} onClick={logoutUser}>Log Out</a>
                             </section>
                             <section className={"col-12 col-md-9 content-panel"}>
                                 <BookForm />
@@ -32,9 +33,8 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                                 </div>
                             </section>
                             <section className={"col-12 col-md-3 content-panel"}>
-                                <h2>{user.name}</h2>
+                                <h2>Welcome {user.name}</h2>
                                 <h3>{user.email}</h3>
-                                <a href="#" onClick={logoutUser}>Log Out</a>
                             </section>
                         </section>
                     </section>
