@@ -11,7 +11,7 @@ const Books = ({bookType,getBooks,book:{books,loading}}) => {
 
     return loading ? <Fragment/> :
         <Fragment>
-            <h2 className={"text-capitalize"}>{bookType}</h2>
+            <h3 className={"text-capitalize grey-text-color"}>{bookType}</h3>
                 {books.map(book => (
                     book.status === bookType ? <Book key={book.id} book={book} /> : <Fragment/>
                 ))}
