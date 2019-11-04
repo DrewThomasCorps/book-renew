@@ -14,7 +14,7 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
             <Fragment>
                 <section className={"row br-content-container"}>
                     <section className={"col-12"}>
-                        <section className={"row"}>
+                        <section className={"row br-grey"}>
                             <section className={"col-12 content-header"}>
                                 <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>Profile</h1>
                                 <a href="#" className={"float-right btn btn-dark my-1 md-3 add-book-btn"} onClick={logoutUser}>Log Out</a>
@@ -22,12 +22,12 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                             <section className={"col-12 col-md-9 content-panel"}>
                                 <BookForm />
                                 <div className={"row books-container"}>
-                                    <div className={"col-12 book-container"}>
+                                    <div className={"col-10 book-container"}>
                                         <Books bookType={"library"}/>
                                     </div>
                                 </div>
                                 <div className={"row books-container"}>
-                                    <div className={"col-12 book-container"}>
+                                    <div className={"col-10 book-container"}>
                                         <Books bookType={"wishlist"}/>
                                     </div>
                                 </div>
