@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .add-books-margin {
-    margin: 0px 20px 20px 20px;
+    margin: 0 20px 20px 20px;
 }
 
 .add-books-content-margin {
@@ -68,6 +68,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .books-margin {
     margin: 20px;
+}
+
+.book-card {
+    border: 1px solid #8A98B0;
+    margin-left: 20px;
+    color: #373F51;
 }
 .shadow {
     box-shadow: 2px 2px;
