@@ -54,11 +54,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .left-blue-border {
     border-left: 25px solid;
     border-color: #268faf;
-    margin: 20px
 }
 
+.add-books-margin {
+    margin: 0px 20px 20px 20px;
+}
+.add-books-content-margin {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.books-margin {
+    margin: 20px;
+}
 .shadow {
     box-shadow: 2px 2px;
+}
+
+.welcome-box {
+    padding: 20px;
+    height: 100%;
 }
 
 .btn {
@@ -193,6 +208,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .br-nav-icon {
     width: 26px;
+}
+
+.log-out-btn {
+    background-color: #373F51;
+    color: #F0F3F8;
+    border-color: #373F51;
 }
 
 .add-book-btn {
