@@ -11,7 +11,7 @@ const BookForm = ({ addBook }) => {
     return (
         <div className={"row book-form-container"}>
             
-            <form className="col-12" onSubmit={e => {
+            <form className="col-10 br-white left-blue-border" onSubmit={e => {
                 e.preventDefault();
                 addBook({ isbn, title, bookStatus });
                 setISBN('');
