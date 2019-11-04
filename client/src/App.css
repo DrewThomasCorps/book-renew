@@ -38,6 +38,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #373F51;
 }
 
+.grey-text-color {
+    color: #8A98B0;
+}
+
 .content-header {
     padding: 20px;
 }
@@ -51,6 +55,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-left: 25px solid;
     border-color: #268faf;
     margin: 20px
+}
+
+.shadow {
+    box-shadow: 2px 2px;
 }
 
 .btn {
