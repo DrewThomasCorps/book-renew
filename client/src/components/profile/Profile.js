@@ -33,8 +33,8 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                                 </div>
                             </section>
                             <section className={"col-12 order-2 order-md-3 col-md-3 content-panel"}>
-                                <div class={"card bg-blue text-white"}>
-                                    <p class={"h4"}>Welcome {user.name}</p>
+                                <div className={"card bg-blue text-white"}>
+                                    <p className={"h4"}>Welcome {user.name}</p>
                                     <p>{user.email}</p>
                                 </div>
                             </section>
