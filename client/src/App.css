@@ -22,6 +22,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-color: #268faf;
 }
 
+.br-white {
+    background-color: #FFFFFF;
+}
+
+.br-grey {
+    background-color: #F0F3F8;
+}
+
 .ice-white-text {
     color: #F6FDFE;
 }
@@ -30,9 +38,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #373F51;
 }
 
+.content-header {
+    padding: 20px;
+}
+
 .header-border {
     border-bottom: 7px solid;
     border-color: #268faf;
+}
+
+.left-blue-border {
+    border-left: 25px solid;
+    border-color: #268faf;
+    margin: 20px
 }
 
 .btn {
