@@ -22,12 +22,12 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                             <section className={"col-12 col-md-9 content-panel"}>
                                 <BookForm />
                                 <div className={"row books-container"}>
-                                    <div className={"col-10 book-container"}>
+                                    <div className={"col-10 book-container br-white left-blue-border shadow"}>
                                         <Books bookType={"library"}/>
                                     </div>
                                 </div>
                                 <div className={"row books-container"}>
-                                    <div className={"col-10 book-container"}>
+                                    <div className={"col-10 book-container br-white left-blue-border shadow"}>
                                         <Books bookType={"wishlist"}/>
                                     </div>
                                 </div>
