@@ -18,15 +18,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding-left: 54px;
 }
 
-.br-bg-blue {
+.bg-blue {
     background-color: #268faf;
 }
 
-.br-white {
-    background-color: #FFFFFF;
-}
-
-.br-grey {
+.bg-grey {
     background-color: #F0F3F8;
 }
 
@@ -43,13 +39,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .content-header {
-    padding: 20px;
+    padding-top: 20px;
 }
 
 .header-border {
     border-bottom: 8px solid;
     border-color: #268faf;
-    max-width: 25px;
+    max-width: 10rem;
 }
 
 .left-blue-border {
@@ -57,26 +53,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-color: #268faf;
 }
 
-.add-books-margin {
-    margin: 0 20px 20px 20px;
+.book-card-container {
+    padding: 1rem;
 }
 
-.add-books-content-margin {
-    margin-top: 15px;
-    margin-bottom: 15px;
+.book-card-body {
+    border: 2px solid #8A98B0!important;
 }
 
-.books-margin {
-    margin: 20px;
-}
-
-.book-card {
-    border: 1px solid #8A98B0;
-    margin-left: 20px;
-    color: #373F51;
-}
 .shadow {
-    box-shadow: 2px 2px;
+    box-shadow: 0 0 .25rem .25rem rgba(0, 0, 0, 0.05) !important;
 }
 
 .welcome-box {
@@ -87,6 +73,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .btn {
     border-radius:  50rem;
     border: 2px solid;
+    font-weight: bold;
     font-weight: bold;
 }
 
@@ -148,6 +135,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .card {
     padding: 1rem;
     border: none;
+    border-radius: 0;
 }
 
 .info-box {
@@ -241,11 +229,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 4px;
 }
 
-.book-container {
+.book-container,.book-form-container {
     padding: 1rem;
 }
 
-@media (max-width: 590px) {
+@media (max-width: 700px) {
     .form-login, .form-registration {
         width: 100%;
         max-width: 100%;

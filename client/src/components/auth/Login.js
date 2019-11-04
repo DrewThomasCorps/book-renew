@@ -28,7 +28,7 @@ const Login = ({loginUser, isAuthenticated}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                <div className={"col-12 br-container-fluid bg-blue"}>
                     <section className={"br-vCenter"}>
                         <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>

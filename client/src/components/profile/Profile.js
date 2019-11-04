@@ -13,28 +13,30 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
             { !loading && (
             <Fragment>
                 <section className={"row br-content-container"}>
-                    <section className={"col-12"}>
-                        <section className={"row br-grey"}>
-                            <section className={"col-12 content-header"}>
+                    <section className={"col-12 bg-grey vh-100"}>
+                        <section className={"row"}>
+                            <section className={"col-12 order-first content-header"}>
                                 <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>Profile</h1>
                                 <a href="#" className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</a>
                             </section>
-                            <section className={"col-12 col-md-9 content-panel"}>
+                            <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
                                 <BookForm />
-                                <div className={"row books-container"}>
-                                    <div className={"col-10 book-container books-margin br-white left-blue-border shadow"}>
+                                <div className={"row books-container p-2"}>
+                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
                                         <Books bookType={"library"}/>
                                     </div>
                                 </div>
-                                <div className={"row books-container"}>
-                                    <div className={"col-10 book-container books-margin br-white left-blue-border shadow"}>
+                                <div className={"row books-container p-2"}>
+                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
                                         <Books bookType={"wishlist"}/>
                                     </div>
                                 </div>
                             </section>
-                            <section className={"col-12 col-md-3 content-panel br-bg-blue ice-white-text welcome-box shadow"}>
-                                <h2>Welcome {user.name}</h2>
-                                <h3>{user.email}</h3>
+                            <section className={"col-12 order-2 order-md-3 col-md-3 content-panel"}>
+                                <div class={"card bg-blue text-white"}>
+                                    <p class={"h4"}>Welcome {user.name}</p>
+                                    <p>{user.email}</p>
+                                </div>
                             </section>
                         </section>
                     </section>
