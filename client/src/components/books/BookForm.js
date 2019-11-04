@@ -11,14 +11,14 @@ const BookForm = ({ addBook }) => {
     return (
         <div className={"row book-form-container"}>
             
-            <form className="col-10 br-white left-blue-border shadow" onSubmit={e => {
+            <form className="col-10 br-white add-books-margin left-blue-border shadow" onSubmit={e => {
                 e.preventDefault();
                 addBook({ isbn, title, bookStatus });
                 setISBN('');
                 setTitle('');
                 setStatus('owned');
             }}>
-                <h3 className={"text-capitalize grey-text-color"}>Add Books</h3>
+                <h3 className={"text-capitalize grey-text-color add-books-content-margin"}>Add Books</h3>
                 <select className="form-control isbn-input-box" value={bookStatus} onChange={e=> setStatus(e.target.value)}>
                     <option value={"owned"}>Library</option>
                     <option value={"wishlist"}>Wishlist</option>
