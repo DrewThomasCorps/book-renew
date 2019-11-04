@@ -12,7 +12,7 @@ const Book = ({
     return (
         <Fragment>
             <div className={"row"}>
-                <div className={"card col-4"}>
+                <div className={"book-card col-4"}>
                     <div className={"card-body"}>
                         <h5 className={"card-title"}>{title}</h5>
                         <small>{isbn}</small>
