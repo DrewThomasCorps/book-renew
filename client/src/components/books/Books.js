@@ -11,7 +11,7 @@ const Books = ({bookType,getBooks,book:{books,loading}}) => {
 
     return loading ? <Fragment/> :
         <Fragment>
-            <h3 className={"text-capitalize grey-text-color"}>{bookType === "owner" ? "Library" : "Wishlist"}</h3>
+            <h3 className={"text-capitalize grey-text-color"}>{bookType !== "owner" ? bookType : "Library"}</h3>
                 <div className={"row"}>
                 {books.map(book => (
                     book.status === bookType ? <Book key={book.id} book={book} /> : <Fragment/>
