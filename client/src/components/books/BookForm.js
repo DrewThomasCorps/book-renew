@@ -15,11 +15,11 @@ const BookForm = ({ addBook }) => {
                 addBook({ isbn, title, bookStatus });
                 setISBN('');
                 setTitle('');
-                setStatus('owned');
+                setStatus('owner');
             }}>
                 <h3 className={"text-capitalize grey-text-color"}>Add Books</h3>
                 <select className="form-control isbn-input-box" value={bookStatus} onChange={e=> setStatus(e.target.value)}>
-                    <option value={"owned"}>Library</option>
+                    <option value={"owner"}>Library</option>
                     <option value={"wishlist"}>Wishlist</option>
                 </select>
                 <input type={"text"} className={"isbn-input-box"} placeholder={"Book Title"} value={title} onChange={e => setTitle(e.target.value)}/>

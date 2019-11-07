@@ -9,30 +9,15 @@ import {
 
 export const getBooks = () => async dispatch => {
     try {
-        //TODO implement axios request to get books
-        const books = [
-            {
-                id: 5,
-                title: "Harry Potter and the Philosopher's Stone",
-                isbn: "0747532745",
-                status: "library"
-
-            },{
-                id: 6,
-                title: "Harry Potter and the Chamber of Secrets",
-                isbn: "0747532746",
-                status: "wishlist"
-
-            }
-        ];
+        const res = await axios.get(BASE_URL + "/books");
         dispatch({
             type: GET_BOOKS,
-            payload: books
+            payload: res.data
         })
     } catch (err) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: {err}
         });
     }
 };

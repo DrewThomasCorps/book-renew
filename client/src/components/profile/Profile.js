@@ -23,7 +23,7 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                                 <BookForm />
                                 <div className={"row books-container p-2"}>
                                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                                        <Books bookType={"library"}/>
+                                        <Books bookType={"owner"}/>
                                     </div>
                                 </div>
                                 <div className={"row books-container p-2"}>
