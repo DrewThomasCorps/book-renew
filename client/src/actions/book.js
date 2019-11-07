@@ -51,12 +51,12 @@ export const addBook = formData => async dispatch => {
         const res = await axios.post(BASE_URL + "/books/" + formData.bookStatus, formData, setHeaders);
         dispatch({
             type: ADD_BOOK,
-            payload: res.book
+            payload: res.data
         })
     } catch (error) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status },
+            payload: error,
             loading: false
         })
     }

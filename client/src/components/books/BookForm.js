@@ -6,7 +6,7 @@ import { addBook } from '../../actions/book';
 const BookForm = ({ addBook }) => {
     const [isbn, setISBN] = useState('');
     const [title, setTitle] = useState('');
-    const [bookStatus, setStatus] = useState('owned');
+    const [bookStatus, setStatus] = useState('owner');
 
     return (
         <div className={"row p-2"}>

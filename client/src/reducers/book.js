@@ -36,7 +36,7 @@ export default function(state= initialState, action){
         case BOOK_ERROR:
             return {
                 ...state,
-                books: payload
+                error: payload
             };
         default:
             return state;
