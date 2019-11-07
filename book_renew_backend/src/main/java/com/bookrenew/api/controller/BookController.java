@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -55,6 +57,12 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");
         }
         bookUserRepository.delete(bookUser);
+    }
+
+    @GetMapping(path = "")
+    public List<BookUser> getAllBooks(){
+        User user = this.getUserFromAuthCredentials();
+        return bookUserRepository.findByUser_id(user.getId());
     }
 
     private Book createBook(Book book) {
