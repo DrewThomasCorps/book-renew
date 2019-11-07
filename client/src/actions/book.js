@@ -24,7 +24,7 @@ export const getBooks = () => async dispatch => {
 
 export const deleteBook = id => async dispatch => {
     try {
-        //TODO implement axios request to delete book
+        await axios.delete(BASE_URL + "/books/" + id);
         dispatch({
             type: DELETE_BOOK,
             payload: id
@@ -34,7 +34,7 @@ export const deleteBook = id => async dispatch => {
     } catch (err) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status },
+            payload: err,
             loading: false
         });
     }
