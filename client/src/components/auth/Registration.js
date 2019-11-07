@@ -34,7 +34,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                <div className={"col-12 br-container-fluid bg-blue"}>
                     <section className={"br-vCenter"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>

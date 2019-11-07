@@ -1,22 +1,24 @@
 import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import exchangeIcon from "../../exchange-icon.svg";
 import dashboardIcon from "../../dashboard-icon.svg";
 import profileIcon from "../../profile-icon.svg";
 
 const Navigation = () => {
+
     return(
         <Fragment>
             <nav className={"br-navbar text-center"}>
                 <ul className={"br-navbar-nav"}>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/dashboard"}><img alt={"Dashboard Icon"} className={"br-nav-icon br-vCenter"} src={dashboardIcon} /></Link>
+                        <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/dashboard"}><img alt={"Dashboard Icon"} className={"br-nav-icon br-vCenter"} src={dashboardIcon} /></NavLink>
                     </li>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/trades"}><img alt={"Trades Icon"} className={"br-nav-icon br-vCenter"} src={exchangeIcon} /></Link>
+                        <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/trades"}><img alt={"Trades Icon"} className={"br-nav-icon br-vCenter"} src={exchangeIcon} /></NavLink>
                     </li>
                     <li className={"br-nav-item"}>
-                        <Link className={"br-nav-link"} to={"/profile"}><img alt={"Profile Icon"} className={"br-nav-icon br-vCenter"} src={profileIcon} /></Link>
+                        <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/profile"}><img alt={"Profile Icon"} className={"br-nav-icon br-vCenter"} src={profileIcon} /></NavLink>
                     </li>
                 </ul>
             </nav>

@@ -10,28 +10,40 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
     return (
         <Fragment>
             <Navigation />
-                { !loading && (
-                    <Fragment>
-                        <section className={"row br-content-container"}>
-                            <div className={"col-12"}>
-                            <h1>Profile</h1>
-                            <img src={"https://via.placeholder.com/250"} alt={user.name+" Profile Image"}/>
-                            <h2>{user.name}</h2>
-                            <h3>{user.email}</h3>
-                            <a href="#" onClick={logoutUser}>Log Out</a>
-                            </div>
+            { !loading && (
+            <Fragment>
+                <section className={"row br-content-container"}>
+                    <section className={"col-12 bg-grey vh-100"}>
+                        <section className={"row"}>
+                            <section className={"col-12 order-first content-header"}>
+                                <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>Profile</h1>
+                                <a href="#" className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</a>
+                            </section>
+                            <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
+                                <BookForm />
+                                <div className={"row books-container p-2"}>
+                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                                        <Books bookType={"library"}/>
+                                    </div>
+                                </div>
+                                <div className={"row books-container p-2"}>
+                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                                        <Books bookType={"wishlist"}/>
+                                    </div>
+                                </div>
+                            </section>
+                            <section className={"col-12 order-2 order-md-3 col-md-3 content-panel"}>
+                                <div className={"card bg-blue text-white"}>
+                                    <p className={"h4"}>Welcome {user.name}</p>
+                                    <p>{user.email}</p>
+                                </div>
+                            </section>
                         </section>
-                        <section className={"row br-content-container"}>
-                            <BookForm />
-                        </section>
-                        <section className={"row br-content-container"}>
-                            <Books bookType={"library"}/>
-                        </section>
-                        <section className={"row br-content-container"}>
-                            <Books bookType={"wishlist"}/>
-                        </section>
-                    </Fragment>
-                )}
+                    </section>
+
+                </section>
+            </Fragment>
+            )}
         </Fragment>
     )
 };

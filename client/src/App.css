@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: bold;
 }
 
+.font-weight-bolder {
+    font-weight: 900 !important;
+}
+
 .br-container-fluid {
     min-height: 100vh;
 }
@@ -14,12 +18,56 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding-left: 54px;
 }
 
-.br-bg-blue {
+.bg-blue {
     background-color: #268faf;
+}
+
+.bg-grey {
+    background-color: #F0F3F8;
+}
+
+.ice-white-text {
+    color: #F6FDFE;
 }
 
 .main-text-color {
     color: #373F51;
+}
+
+.grey-text-color {
+    color: #8A98B0;
+}
+
+.content-header {
+    padding-top: 20px;
+}
+
+.header-border {
+    border-bottom: 8px solid;
+    border-color: #268faf;
+    max-width: 10rem;
+}
+
+.left-blue-border {
+    border-left: 25px solid;
+    border-color: #268faf;
+}
+
+.book-card-container {
+    padding: 1rem;
+}
+
+.book-card-body {
+    border: 2px solid #8A98B0!important;
+}
+
+.shadow {
+    box-shadow: 0 0 .25rem .25rem rgba(0, 0, 0, 0.05) !important;
+}
+
+.welcome-box {
+    padding: 20px;
+    height: 100%;
 }
 
 .btn {
@@ -83,6 +131,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border: 2px solid #F6FDFE;
 }
 
+.card {
+    padding: 1rem;
+    border: none;
+    border-radius: 0;
+}
+
 .info-box {
     color: #F6FDFE;
     max-width: 330px;
@@ -142,8 +196,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #F6FDFE;
     background-color: #268FaF;
 }
+
+.br-nav-link.active{
+    background-color: #268FaF;
+}
+
 .br-nav-icon {
     width: 26px;
+}
+
+.log-out-btn {
+    background-color: #373F51;
+    color: #F0F3F8;
+    border-color: #373F51;
 }
 
 .add-book-btn {
@@ -163,7 +228,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 4px;
 }
 
-@media (max-width: 590px) {
+.book-container,.book-form-container {
+    padding: 1rem;
+}
+
+@media (max-width: 700px) {
     .form-login, .form-registration {
         width: 100%;
         max-width: 100%;
