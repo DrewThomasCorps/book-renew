@@ -62,6 +62,19 @@ class BookTests {
     }
 
     @Test
+    @Order(4)
+    void testUserOwnsBook() throws JsonProcessingException {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson.get("bookUsers")
+                .get(0)
+                .path("book")
+                .path("title")
+                .asText());
+    }
+
+    @Test
     @Order(5)
     void testDeleteBook() {
         String id = responseRoot.path("id").asText();
@@ -72,7 +85,7 @@ class BookTests {
 
     @Test
     @Order(6)
-    void testDeleteBookWithNonExistentIdReturns500() {
+    void testDeleteBookWithNonExistentIdReturns400() {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         HttpClientErrorException exception =
@@ -81,7 +94,7 @@ class BookTests {
     }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
-        return restTemplate.exchange(baseUrl + "books/delete/" + id, HttpMethod.DELETE, request, String.class);
+        return restTemplate.exchange(baseUrl + "books/" + id, HttpMethod.DELETE, request, String.class);
     }
 
     private JSONObject buildBookJsonObject() throws JSONException {

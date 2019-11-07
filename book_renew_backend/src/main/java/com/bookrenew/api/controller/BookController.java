@@ -44,10 +44,12 @@ public class BookController {
         return bookUserRepository.save(bookUser);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deleteBookUserById(@PathVariable("id") String id){
         Long longId = Long.parseLong(id);
-        BookUser bookUser = bookUserRepository.findById(longId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist"));
+        BookUser bookUser = bookUserRepository.findById(longId).orElseThrow(
+                ()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist")
+        );
         User user = this.getUserFromAuthCredentials();
         if (!user.getEmail().equals(bookUser.getUser().getEmail())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");

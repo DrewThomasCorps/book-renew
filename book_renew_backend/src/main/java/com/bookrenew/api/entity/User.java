@@ -25,7 +25,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<BookUser> bookUsers;
 
     public Long getId() {
@@ -56,6 +56,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<BookUser> getBookUsers() {
+        return bookUsers;
+    }
+
+    public void setBookUsers(Set<BookUser> bookUsers) {
+        this.bookUsers = bookUsers;
     }
 
 }
