@@ -119,7 +119,7 @@ class BookTests {
     }
 
     private void sendBookPostRequest(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/owner", request, String.class);
+        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
         assert userResultsAsJsonString != null;
         responseRoot = objectMapper.readTree(userResultsAsJsonString);
     }

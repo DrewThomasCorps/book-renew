@@ -30,11 +30,11 @@ public class BookController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/owner")
-    public BookUser addToOwned(@RequestBody Book book) {
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/library")
+    public BookUser addToLibrary(@RequestBody Book book) {
         Book createdBook = this.createBook(book);
         BookUser bookUser = this.setupBookUser(createdBook);
-        bookUser.setStatus(BookUser.Status.owner);
+        bookUser.setStatus(BookUser.Status.library);
         return bookUserRepository.save(bookUser);
     }
 

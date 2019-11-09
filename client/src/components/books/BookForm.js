@@ -1,12 +1,12 @@
 import React, {useState}from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../../actions/book';
 
 const BookForm = ({ addBook }) => {
     const [isbn, setISBN] = useState('');
     const [title, setTitle] = useState('');
-    const [bookStatus, setStatus] = useState('owner');
+    const [bookStatus, setStatus] = useState('library');
+
 
     return (
         <div className={"row p-2"}>
@@ -15,11 +15,11 @@ const BookForm = ({ addBook }) => {
                 addBook({ isbn, title, bookStatus });
                 setISBN('');
                 setTitle('');
-                setStatus('owner');
+                setStatus('library');
             }}>
                 <h3 className={"text-capitalize grey-text-color"}>Add Books</h3>
                 <select className="form-control isbn-input-box" value={bookStatus} onChange={e=> setStatus(e.target.value)}>
-                    <option value={"owner"}>Library</option>
+                    <option value={"library"}>Library</option>
                     <option value={"wishlist"}>Wishlist</option>
                 </select>
                 <input type={"text"} className={"isbn-input-box"} placeholder={"Book Title"} value={title} onChange={e => setTitle(e.target.value)}/>
@@ -28,10 +28,6 @@ const BookForm = ({ addBook }) => {
             </form>
         </div>
     )
-};
-
-BookForm.propTypes = {
-
 };
 
 export default connect(null, { addBook })(BookForm);

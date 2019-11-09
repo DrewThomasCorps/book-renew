@@ -17,13 +17,13 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                         <section className={"row"}>
                             <section className={"col-12 order-first content-header"}>
                                 <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>Profile</h1>
-                                <a href="#" className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</a>
+                                <button className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</button>
                             </section>
                             <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
                                 <BookForm />
                                 <div className={"row books-container p-2"}>
                                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                                        <Books bookType={"owner"}/>
+                                        <Books bookType={"library"}/>
                                     </div>
                                 </div>
                                 <div className={"row books-container p-2"}>

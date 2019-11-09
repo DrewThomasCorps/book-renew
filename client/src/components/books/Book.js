@@ -17,7 +17,7 @@ const Book = ({
                             <h5 className={"card-title h6 my-1"}>{book.title}</h5>
                             <small>{book.isbn}</small>
                             {!auth.loading && auth.isAuthenticated === true && (
-                                <a href={"#"} className={"btn btn-primary btn-sm float-right"} onClick={e=> deleteBook(id)}>Delete</a>
+                                <button className={"btn btn-primary btn-sm float-right"} onClick={() => deleteBook(id)}>Delete</button>
                             )}
                         </div>
                     </div>
