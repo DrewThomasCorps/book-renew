@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import exchangeIcon from "../../exchange-icon.svg";
 import dashboardIcon from "../../dashboard-icon.svg";
 import profileIcon from "../../profile-icon.svg";
