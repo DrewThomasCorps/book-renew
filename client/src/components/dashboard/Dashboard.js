@@ -1,9 +1,8 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
 import Books from "../books/Books";
 
-const Dashboard = props => {
+const Dashboard = () => {
     return (
         <Fragment>
             <Navigation />
@@ -15,10 +14,6 @@ const Dashboard = props => {
             </section>
         </Fragment>
     )
-};
-
-Dashboard.propTypes = {
-
 };
 
 export default Dashboard;
