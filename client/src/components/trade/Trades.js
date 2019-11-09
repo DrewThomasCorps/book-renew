@@ -1,8 +1,7 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
 
-const Trades = props => {
+const Trades = () => {
     return (
         <Fragment>
             <Navigation />
@@ -13,10 +12,6 @@ const Trades = props => {
             </section>
         </Fragment>
     )
-};
-
-Trades.propTypes = {
-
 };
 
 export default Trades;
