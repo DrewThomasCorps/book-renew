@@ -26,7 +26,7 @@ export default function(state= initialState, action){
                 ...state,
                 books: [...state.books, payload],
                 loading: false
-            }
+            };
         case DELETE_BOOK:
             return {
                 ...state,
