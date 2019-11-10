@@ -11,7 +11,7 @@ const Book = ({
 
     return (
         <Fragment>
-                <div className={"book-card-container col-4"}>
+                <div className={"book-card-container col-xs-12 col-sm-10 col-md-10 col-lg-8 col-xl-6"}>
                     <div className={"card"}>
                         <div className={"card-body book-card-body"}>
                             <h5 className={"card-title h6 my-1"}>{book.title}</h5>
