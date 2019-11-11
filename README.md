@@ -8,8 +8,9 @@
 ## Setup
 ### Server
 1. Install MAMP or XAMPP  
-2. Start your apache server and mysql server  
-3. Open up phpmyadmin and create a new database `book_renew`  
+2. Move the project to the htdocs folder of MAMP or XAMPP
+3. Start your apache server and mysql server  
+4. Open up phpmyadmin and create a new database `book_renew`  
 
 ### Backend
 1. Open book_renew_backend as the root directory in a new project in Intellij  
