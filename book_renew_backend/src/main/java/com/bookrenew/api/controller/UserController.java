@@ -29,6 +29,10 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email Already Exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getEmail().equals("") || user.getEmail().equals(""))
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Email or Password Empty");
+        }
         return repository.save(user);
     }
 
