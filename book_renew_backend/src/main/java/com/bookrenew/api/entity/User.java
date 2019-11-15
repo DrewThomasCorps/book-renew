@@ -3,11 +3,12 @@ package com.bookrenew.api.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "users")
-public class User<email> {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,9 @@ public class User<email> {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BookUser> bookUsers;
 
     public Long getId() {
         return id;
