@@ -14,7 +14,7 @@ const Navigation = () => {
                         <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/dashboard"}><img alt={"Dashboard Icon"} className={"br-nav-icon br-vCenter"} src={dashboardIcon} /></NavLink>
                     </li>
                     <li className={"br-nav-item"}>
-                        <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/trades"}><img alt={"Trades Icon"} className={"br-nav-icon br-vCenter"} src={exchangeIcon} /></NavLink>
+                        <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/renewals"}><img alt={"Trades Icon"} className={"br-nav-icon br-vCenter"} src={exchangeIcon} /></NavLink>
                     </li>
                     <li className={"br-nav-item"}>
                         <NavLink className={"br-nav-link"} activeClassName={"active"} to={"/profile"}><img alt={"Profile Icon"} className={"br-nav-icon br-vCenter"} src={profileIcon} /></NavLink>

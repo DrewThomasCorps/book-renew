@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import Navigation from "../layout/Navigation";
 
-const Trades = () => {
+const Renewals = () => {
     return (
         <Fragment>
             <Navigation />
@@ -14,4 +14,4 @@ const Trades = () => {
     )
 };
 
-export default Trades;
+export default Renewals;

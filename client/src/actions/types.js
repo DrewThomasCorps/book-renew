@@ -9,3 +9,5 @@ export const BOOK_ERROR = 'BOOK_ERROR';
 export const DELETE_BOOK = 'DELETE_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
 export const LOGOUT = 'LOGOUT';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';

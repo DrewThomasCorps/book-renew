@@ -4,7 +4,8 @@ import Registration from "./components/auth/Registration";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import Profile from "./components/profile/Profile";
-import Trades from "./components/trade/Trades";
+import Renewals from "./components/renewal/Renewals";
+import Alert from './components/layout/Alert';
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 import { Provider } from 'react-redux';
@@ -28,11 +29,12 @@ const App = () =>{
         <Router>
             <Fragment>
                 <section className={"container-fluid"}>
+                    <Alert />
                     <Switch>
                         <Route exact path="/" component={Login} />
                         <Route exact path="/registration" component={Registration} />
                         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                        <PrivateRoute exact path="/trades" component={Trades} />
+                        <PrivateRoute exact path="/renewals" component={Renewals} />
                         <PrivateRoute exact path="/profile" component={Profile} />
                     </Switch>
                 </section>

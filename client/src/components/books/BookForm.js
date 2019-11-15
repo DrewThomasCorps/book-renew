@@ -1,8 +1,10 @@
 import React, {useState}from 'react';
 import { connect } from 'react-redux';
 import { addBook } from '../../actions/book';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-const BookForm = ({ addBook }) => {
+const BookForm = ({ setAlert, addBook }) => {
     const [isbn, setISBN] = useState('');
     const [title, setTitle] = useState('');
     const [bookStatus, setStatus] = useState('library');
@@ -12,10 +14,18 @@ const BookForm = ({ addBook }) => {
         <div className={"row p-2"}>
             <form className="col-12 book-form-container bg-white left-blue-border shadow" onSubmit={e => {
                 e.preventDefault();
-                addBook({ isbn, title, bookStatus });
-                setISBN('');
-                setTitle('');
-                setStatus('library');
+
+                if(title === ''){
+                    setAlert("Please enter a Book Title", "danger");
+                } else if(isbn === '' || (isbn.length !== 13 && isbn.length !== 10)){
+                    setAlert("Please enter a valid ISBN", "danger");
+                } else {
+                    addBook({ isbn, title, bookStatus });
+                    setISBN('');
+                    setTitle('');
+                    setStatus('library');
+                }
+
             }}>
                 <h3 className={"text-capitalize grey-text-color"}>Add Books</h3>
                 <select className="form-control isbn-input-box" value={bookStatus} onChange={e=> setStatus(e.target.value)}>
@@ -30,4 +40,8 @@ const BookForm = ({ addBook }) => {
     )
 };
 
-export default connect(null, { addBook })(BookForm);
+BookForm.propTypes = {
+    setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert, addBook })(BookForm);
