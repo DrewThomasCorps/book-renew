@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/auth';
 import { setAlert } from '../../actions/alert';
-import logo from "../../book_renew_white_vertical_logo.svg";
+import logo from "../../resources/book_renew_white_vertical_logo.svg";
 
 const Registration = ({setAlert, registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({

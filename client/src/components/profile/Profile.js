@@ -11,14 +11,11 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
     return (
         <Fragment>
             <Navigation />
-            <section className={"row br-content-container bg-grey"}>
-                <section className={"col-12 vh-100"}>
+            <section className={"row br-content-container"}>
                         <Header pageTitle={"Profile"} />
-                        <button className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</button>
 
             { !loading && (
                 <Fragment>
-                    <section className={"row"}>
                         <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
                             <BookForm />
                             <div className={"row books-container p-2"}>
@@ -38,10 +35,8 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
                                 <p>{user.email}</p>
                             </div>
                         </section>
-                    </section>
                 </Fragment>
             )}
-                </section>
             </section>
         </Fragment>
     )

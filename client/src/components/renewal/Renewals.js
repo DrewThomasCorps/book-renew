@@ -15,25 +15,22 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
     return (
         <Fragment>
             <Navigation />
-
             <section className={"row br-content-container"}>
-                <section className={"col-12 vh-100"}>
-                        <Header pageTitle={"Renewals"}/>
+                <Header pageTitle={"Renewals"}/>
 
-            {!loading && (
-                <Fragment>
-                    {
-                        renewals.map(renewal =>  (
-                            <div>
-                                {renewal.id}
-                                {renewal.book1}
-                                {renewal.book2}
-                            </div>
-                        ))
-                    }
-                </Fragment>
-            )}
-                </section>
+                {!loading && (
+                    <Fragment>
+                        {
+                            renewals.map(renewal =>  (
+                                <div className={"col-12"}>
+                                    {renewal.id}
+                                    {renewal.book1}
+                                    {renewal.book2}
+                                </div>
+                            ))
+                        }
+                    </Fragment>
+                )}
             </section>
         </Fragment>
         )
