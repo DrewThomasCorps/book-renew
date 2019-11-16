@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
+import Header from '../layout/Header';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 import BookForm from "../books/BookForm";
@@ -10,40 +11,38 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
     return (
         <Fragment>
             <Navigation />
+            <section className={"row br-content-container bg-grey"}>
+                <section className={"col-12 vh-100"}>
+                        <Header pageTitle={"Profile"} />
+                        <button className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</button>
+
             { !loading && (
-            <Fragment>
-                <section className={"row br-content-container"}>
-                    <section className={"col-12 bg-grey vh-100"}>
-                        <section className={"row"}>
-                            <section className={"col-12 order-first content-header"}>
-                                <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>Profile</h1>
-                                <button className={"float-right btn btn-dark my-1 md-3 log-out-btn"} onClick={logoutUser}>Log Out</button>
-                            </section>
-                            <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
-                                <BookForm />
-                                <div className={"row books-container p-2"}>
-                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                                        <Books bookType={"library"}/>
-                                    </div>
+                <Fragment>
+                    <section className={"row"}>
+                        <section className={"col-12 order-3 order-md-2 col-md-9 content-panel"}>
+                            <BookForm />
+                            <div className={"row books-container p-2"}>
+                                <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                                    <Books bookType={"library"}/>
                                 </div>
-                                <div className={"row books-container p-2"}>
-                                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                                        <Books bookType={"wishlist"}/>
-                                    </div>
+                            </div>
+                            <div className={"row books-container p-2"}>
+                                <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                                    <Books bookType={"wishlist"}/>
                                 </div>
-                            </section>
-                            <section className={"col-12 order-2 order-md-3 col-md-3 content-panel"}>
-                                <div className={"card bg-blue text-white"}>
-                                    <p className={"h4"}>Welcome {user.name}</p>
-                                    <p>{user.email}</p>
-                                </div>
-                            </section>
+                            </div>
+                        </section>
+                        <section className={"col-12 order-2 order-md-3 col-md-3 content-panel"}>
+                            <div className={"card bg-blue text-white"}>
+                                <p className={"h4"}>Welcome {user.name}</p>
+                                <p>{user.email}</p>
+                            </div>
                         </section>
                     </section>
-
-                </section>
-            </Fragment>
+                </Fragment>
             )}
+                </section>
+            </section>
         </Fragment>
     )
 };
