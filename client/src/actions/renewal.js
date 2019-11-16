@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_RENEWALS
+    GET_RENEWALS, RENEWAL_ERROR
 } from "./types";
 
 export const getRenewals = () => async dispatch => {
@@ -24,7 +24,7 @@ export const getRenewals = () => async dispatch => {
 
     } catch (error) {
         dispatch({
-
+            type: RENEWAL_ERROR
         })
     }
 };

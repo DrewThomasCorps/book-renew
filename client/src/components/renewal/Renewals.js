@@ -2,9 +2,10 @@ import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Navigation from "../layout/Navigation";
+import Navigation from '../layout/Navigation';
+import Renewal from '../renewal/Renewal';
 import Header from '../layout/Header';
-import { getRenewals } from "../../actions/renewal";
+import { getRenewals } from '../../actions/renewal';
 
 
 const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
@@ -22,11 +23,7 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
                     <Fragment>
                         {
                             renewals.map(renewal =>  (
-                                <div className={"col-12"}>
-                                    {renewal.id}
-                                    {renewal.book1}
-                                    {renewal.book2}
-                                </div>
+                                <Renewal key={renewal.id} renewal={renewal}/>
                             ))
                         }
                     </Fragment>
