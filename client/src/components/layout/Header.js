@@ -7,7 +7,7 @@ const Header = ({pageTitle}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <section class={"col-12 order-first content-header"}>
+                <section className={"col-12 order-first content-header"}>
                     <h1 className={"float-left text-uppercase font-weight-bolder main-text-color header-border"}>{pageTitle}</h1>
                 </section>
             </section>
