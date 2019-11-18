@@ -23,7 +23,7 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
                     <Fragment>
                         {
                             renewals.map(renewal =>  (
-                                <Renewal key={renewal.id} renewal={renewal}/>
+                                <Renewal key={renewal} renewal={renewal}/>
                             ))
                         }
                     </Fragment>
