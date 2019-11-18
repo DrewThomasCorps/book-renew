@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import {NavLink} from 'react-router-dom';
-import exchangeIcon from "../../exchange-icon.svg";
-import dashboardIcon from "../../dashboard-icon.svg";
-import profileIcon from "../../profile-icon.svg";
+import exchangeIcon from "../../resources/exchange-icon.svg";
+import dashboardIcon from "../../resources/dashboard-icon.svg";
+import profileIcon from "../../resources/profile-icon.svg";
 
 const Navigation = () => {
 

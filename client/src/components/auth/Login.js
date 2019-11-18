@@ -4,8 +4,8 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/auth';
 
-import logo from "../../book_renew_white_vertical_logo.svg";
-import background from "../../bookRenew_pattern.png";
+import logo from "../../resources/book_renew_white_vertical_logo.svg";
+import background from "../../resources/bookRenew_pattern.png";
 import {setAlert} from "../../actions/alert";
 
 const Login = ({setAlert, loginUser, isAuthenticated}) => {

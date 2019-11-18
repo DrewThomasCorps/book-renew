@@ -1,3 +1,8 @@
+@import "_base.scss";
+@import "_grid.scss";
+@import "_layout.scss";
+@import "_components.scss";
+
 * {
     font-family: Lato, sans-serif;
 }
@@ -19,23 +24,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .bg-blue {
-    background-color: #268faf;
+    background-color: $primary-color;
 }
 
 .bg-grey {
-    background-color: #F0F3F8;
+    background-color: lighten($mid-color, 36%);
 }
 
 .ice-white-text {
-    color: #F6FDFE;
+    color: $light-color;
 }
 
 .main-text-color {
-    color: #373F51;
+    color: $dark-color;
 }
 
 .grey-text-color {
-    color: #8A98B0;
+    color: $mid-color;
 }
 
 .content-header {
@@ -44,13 +49,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .header-border {
     border-bottom: 8px solid;
-    border-color: #268faf;
+    border-color: $primary-color;
     max-width: 10rem;
 }
 
 .left-blue-border {
     border-left: 25px solid;
-    border-color: #268faf;
+    border-color: $primary-color;
 }
 
 .book-card-container {
@@ -58,7 +63,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .book-card-body {
-    border: 2px solid #8A98B0!important;
+    border: 2px solid $mid-color!important;
 }
 
 .shadow {
@@ -77,26 +82,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .btn:active {
-    background-color: #F6FDFE;
+    background-color: $light-color;
 }
 
 .btn-primary {
     transition: .25s;
-    color: #F6FDFE;
-    background-color: #268faf;
-    border-color: #F6FDFE;
+    color: $light-color;
+    background-color: $primary-color;
+    border-color: $light-color;
 }
 
 .btn-primary:hover {
-    color: #F6FDFE;
-    background-color: #2CA4C9;
-    border-color: #F6FDFE;
+    color: $light-color;
+    background-color: lighten($primary-color, 5%);
+    border-color: $light-color;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-    color: #F6FDFE;
-    background-color: #1c677d;
-    border-color: #1c677d;
+    color: $light-color;
+    background-color: darken($primary-color, 5%);
+    border-color: darken($primary-color, 5%);
 }
 
 .br-vCenter {
@@ -108,7 +113,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .form-heading {
-    color: #F6FDFE;
+    color: $light-color;
     width: 100%;
     max-width: 330px;
     padding: 15px;
@@ -116,7 +121,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .form-user-input {
-    color: #373F51;
+    color: $dark-color;
     position: relative;
     box-sizing: border-box;
     padding: 10px;
@@ -128,7 +133,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     max-width: 430px;
     padding: 2.5rem;
     margin: 0 auto;
-    border: 2px solid #F6FDFE;
+    border: 2px solid $light-color;
 }
 
 .card {
@@ -138,14 +143,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .info-box {
-    color: #F6FDFE;
+    color: $light-color;
     max-width: 330px;
     padding: 2rem;
     margin: auto;
 }
 
 .br-navbar {
-    background-color: #373F51;
+    background-color: $dark-color;
     box-sizing: border-box;
     position: fixed;
     bottom: 0;
@@ -162,8 +167,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    color: #F6FDFE;
-    background-color: #373F51;
+    color: $light-color;
+    background-color: $dark-color;
 }
 
 .br-nav-item {
@@ -173,7 +178,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .br-nav-item:hover {
-    /*background-color: #268faf;*/
+    /*background-color: $primary-color;*/
     cursor: pointer;
 }
 
@@ -181,24 +186,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: block;
     height: 54px;
     width: 54px;
-    color:#F6FDFE;
+    color:$light-color;
     text-decoration: none;
     transition:.25s;
 }
 
 .br-nav-link:hover {
-    background-color: #268faf;
-    color: #F6FDFE;
+    background-color: $primary-color;
+    color: $light-color;
     text-decoration: none;
 }
 
 .br-nav-link:active {
-    color: #F6FDFE;
-    background-color: #268FaF;
+    color: $light-color;
+    background-color: $primary-color;
 }
 
 .br-nav-link.active{
-    background-color: #268FaF;
+    background-color: $primary-color;
 }
 
 .br-nav-icon {
@@ -206,21 +211,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .log-out-btn {
-    background-color: #373F51;
-    color: #F0F3F8;
-    border-color: #373F51;
+    background-color: $dark-color;
+    color: $light-color;
+    border-color: $dark-color;
 }
 
 .add-book-btn {
-    background-color: white;
-    border-color: #268FaF;
-    color: #268FaF;
+    background-color: $light-color;
+    border-color: $primary-color;
+    color: $primary-color;
 }
 
 .add-book-btn:hover {
-    background-color: #268FaF;
-    color: white;
-    border-color: #268FaF;
+    background-color: $primary-color;
+    color: $light-color;
+    border-color: $primary-color;
 }
 
 .isbn-input-box {
