@@ -168,5 +168,6 @@ class UserTests {
         Assertions.assertEquals("", responseRoot.path("password").asText());
         Assertions.assertNotNull(responseRoot.path("id"));
     }
+
 }
 
