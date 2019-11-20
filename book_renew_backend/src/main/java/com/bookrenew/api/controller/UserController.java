@@ -1,6 +1,7 @@
 package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.User;
+import com.bookrenew.api.entity.potential_trade.PotentialTrade;
 import com.bookrenew.api.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 
 @RestController
@@ -28,17 +31,23 @@ public class UserController {
         if (repository.findByEmail(user.getEmail()) != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email Already Exists");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(user.getEmail().equals("") || user.getEmail().equals(""))
+        if(user.getEmail().isBlank() || user.getPassword().isBlank())
         {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Email or Password Empty");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email or Password Empty");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
     @GetMapping(produces = {"application/json"}, path = "/self")
     public User getAuthenticatedUser() {
         return this.getUserFromAuthCredentials();
+    }
+
+    @GetMapping(produces = {"application/json"}, path = "/potential-trades")
+    public List<PotentialTrade> getPotentialTrades() {
+        User user = this.getUserFromAuthCredentials();
+        return repository.findPotentialTrades(user.getId());
     }
 
     private User getUserFromAuthCredentials() {
