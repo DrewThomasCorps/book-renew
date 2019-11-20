@@ -60,3 +60,7 @@
   color: $light-color;
   background-color: $primary-color;
 }
+
+.br-nav-link.active{
+  background-color: $primary-color;
+}
