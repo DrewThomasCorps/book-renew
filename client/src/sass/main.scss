@@ -11,17 +11,6 @@
     margin: 0 0 -1px;
 }
 
-
-
-.br-nav-link {
-    display: block;
-    height: 54px;
-    width: 54px;
-    color:$light-color;
-    text-decoration: none;
-    transition:.25s;
-}
-
 .br-nav-link:hover {
     background-color: $primary-color;
     color: $light-color;
