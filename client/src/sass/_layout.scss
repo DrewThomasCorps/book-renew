@@ -75,6 +75,14 @@
   border: 2px solid $light-color;
 }
 
+.form-user-input {
+  color: $dark-color;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0 0 -1px;
+}
+
 .info-box {
   color: $light-color;
   max-width: 330px;
