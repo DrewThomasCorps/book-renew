@@ -2,19 +2,3 @@
 @import "_grid.scss";
 @import "_layout.scss";
 @import "_components.scss";
-
-
-@media (max-width: 700px) {
-    .form-login, .form-registration {
-        width: 100%;
-        max-width: 100%;
-        min-width:100%;
-        padding: 0;
-        margin: 0 auto;
-        border: none;
-    }
-    .br-content-container {
-        padding-left: 0;
-        padding-bottom: 96px;
-    }
-}
