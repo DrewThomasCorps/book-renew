@@ -17,29 +17,4 @@
         padding-left: 0;
         padding-bottom: 96px;
     }
-    .br-navbar {
-        bottom: 0;
-        height: 96px;
-        width: 100%;
-        z-index: 100;
-    }
-    .br-navbar-nav li{
-        display: inline-block;
-    }
-    .br-nav-link {
-        display: inline-block;
-        height: 96px;
-        width: 100%;
-    }
-    .br-nav-item {
-        height: 96px;
-        width: 33%;
-    }
-    .br-nav-item:last-of-type {
-        width: 34%;
-    }
-    .br-nav-icon {
-        height: 40px;
-        width: auto;
-    }
 }
