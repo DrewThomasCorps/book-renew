@@ -103,3 +103,18 @@
 .shadow {
   box-shadow: 0 0 .25rem .25rem rgba(0, 0, 0, 0.05) !important;
 }
+
+@media (max-width: 700px) {
+  .form-login, .form-registration {
+    width: 100%;
+    max-width: 100%;
+    min-width:100%;
+    padding: 0;
+    margin: 0 auto;
+    border: none;
+  }
+  .br-content-container {
+    padding-left: 0;
+    padding-bottom: 96px;
+  }
+}
