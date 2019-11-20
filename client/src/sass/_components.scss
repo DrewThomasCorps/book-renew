@@ -20,3 +20,12 @@
   width: 54px;
   z-index: 100;
 }
+
+.br-navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: $light-color;
+  background-color: $dark-color;
+}
