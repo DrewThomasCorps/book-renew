@@ -3,26 +3,12 @@
 @import "_layout.scss";
 @import "_components.scss";
 
-
-
-
-
 .form-user-input {
     color: $dark-color;
     position: relative;
     box-sizing: border-box;
     padding: 10px;
     margin: 0 0 -1px;
-}
-
-
-
-
-
-.br-nav-item {
-    height: 54px;
-    width: 54px;
-    position: relative;
 }
 
 .br-nav-item:hover {
@@ -75,10 +61,6 @@
     color: $light-color;
     border-color: $primary-color;
 }
-
-
-
-
 
 @media (max-width: 700px) {
     .form-login, .form-registration {
