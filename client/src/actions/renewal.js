@@ -7,14 +7,30 @@ export const getRenewals = () => async dispatch => {
     try {
         const renewals = [
             {
-                "id": 1,
-                "book1" : "Book 1",
-                "book2" : "Book 2"
-            },
-            {
-                "id": 2,
-                "book1" : "Book 3",
-                "book2" : "Book 4"
+                "trader": {
+                    "user" : {
+                        "name" : "Drew Thomas",
+                        "id": 1,
+                        "email" : "amthomas12@bsu.edu"
+                    },
+                    "book": {
+                        "title": "Some Cool Title",
+                        "isbn": "123"
+                    },
+                    "book_user_id" : 4
+                },
+                "tradee": {
+                    "user" : {
+                        "name" : "Drew Thomas",
+                        "id": 2,
+                        "email" : "test@test.edu"
+                    },
+                    "book": {
+                        "title": "Seven Ate Nine!!",
+                        "isbn": "789"
+                    },
+                    "book_user_id" : 8
+                }
             }
         ];
         dispatch({
