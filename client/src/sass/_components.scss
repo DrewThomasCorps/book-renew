@@ -55,3 +55,8 @@
   color: $light-color;
   text-decoration: none;
 }
+
+.br-nav-link:active {
+  color: $light-color;
+  background-color: $primary-color;
+}
