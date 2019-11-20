@@ -7,3 +7,16 @@
 .book-card-body {
   border: 2px solid $mid-color!important;
 }
+
+.br-navbar {
+  background-color: $dark-color;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 54px;
+  z-index: 100;
+}
