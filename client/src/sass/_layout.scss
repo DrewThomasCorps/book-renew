@@ -11,3 +11,7 @@
 .bg-blue {
   background-color: $primary-color;
 }
+
+.bg-grey {
+  background-color: lighten($mid-color, 36%);
+}
