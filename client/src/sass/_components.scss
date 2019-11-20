@@ -40,3 +40,12 @@
   /*background-color: $primary-color;*/
   cursor: pointer;
 }
+
+.br-nav-link {
+  display: block;
+  height: 54px;
+  width: 54px;
+  color:$light-color;
+  text-decoration: none;
+  transition:.25s;
+}
