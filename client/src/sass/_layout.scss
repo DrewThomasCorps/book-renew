@@ -1,5 +1,9 @@
 @import "base.scss";
 
+* {
+  font-family: $font-stack;
+}
+
 .font-weight-bolder {
   font-weight: 900 !important;
 }
