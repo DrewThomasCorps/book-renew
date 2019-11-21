@@ -39,7 +39,7 @@ const Login2 = ({setAlert, loginUser, isAuthenticated}) => {
         <Fragment>
             <div className="grid-container grid-12 vh-100">
                 <div className="rstart-1 rspan-2 cstart-1 cspan-12 cspan-md-2 item">
-                    <img className="img-responive" src={logo} alt={"logo"}/>
+                    <img className="img-responsive" src={logo} alt={"logo"}/>
                 </div>
                 <div className="rstart-1 rspan-2 cstart-12 cspan-1 item">
                     <button className="btn btn-white">Sign Up</button>
