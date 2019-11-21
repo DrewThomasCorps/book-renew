@@ -187,3 +187,34 @@ input[type=text],input[type=email],input[type=password] {
     padding-bottom: 96px;
   }
 }
+
+@media (max-width: 575.98px){
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px){
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 80px;
+    text-align: right;
+  }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
