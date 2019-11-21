@@ -5,16 +5,6 @@ $mid-color: #8A98B0;
 
 $font-stack: "Lato", sans-serif;
 
-
-
-
-
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-  color: $light-color;
-  background-color: darken($primary-color, 5%);
-  border-color: darken($primary-color, 5%);
-}
-
 .card {
   padding: 1rem;
   border: none;
