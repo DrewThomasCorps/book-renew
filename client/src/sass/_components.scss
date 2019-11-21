@@ -8,6 +8,12 @@
   border: 2px solid $mid-color!important;
 }
 
+.card {
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+}
+
 .br-navbar {
   background-color: $dark-color;
   box-sizing: border-box;
