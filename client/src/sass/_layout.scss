@@ -6,7 +6,7 @@
 
 body {
   font-family: Lato, sans-serif;
-  color: #373f51;
+  color: $dark-color;
   margin: 0;
 }
 
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .ul {
   margin-top: 5px;
-  border-bottom: 10px solid #2896b8;
+  border-bottom: 10px solid $primary-color;
 }
 
 .font-weight-bolder {
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .br-patterned-bg {
-  background: url("bookRenew_pattern.png");
+  //background: url("bookRenew_pattern.png");
 }
 
 .img-responsive {
@@ -163,9 +163,9 @@ input[type=text],input[type=email],input[type=password] {
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 0px;
-  border-bottom: 2px solid grey;
-  border-radius: 0px;
+  border: 0;
+  border-bottom: 2px solid $mid-color;
+  border-radius: 0;
   box-sizing: border-box;
 }
 

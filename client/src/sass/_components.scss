@@ -77,8 +77,8 @@
 
 .btn {
   padding: .75rem 1.5rem;
-  border: 2px solid grey;
-  color: grey;
+  border: 2px solid $mid-color;
+  color: $mid-color;
   border-radius: 5px;
   background: none;
   cursor: pointer;
@@ -87,19 +87,19 @@
 }
 
 .btn-primary {
-  color: white;
-  border-color: #2896b8;
-  background: #2896b8;
+  color: $light-color;
+  border-color: $primary-color;
+  background: $primary-color;
 }
 
 .btn-white {
-  color: white;
-  border-color: white;
+  color: $light-color;
+  border-color: $light-color;
 }
 
 .btn-grey {
-  color: white;
-  background: grey;
+  color: $light-color;
+  background: $mid-color;
 }
 
 .log-out-btn {
