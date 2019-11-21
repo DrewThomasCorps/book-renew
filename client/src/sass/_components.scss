@@ -75,6 +75,10 @@
   font-weight: bold;
 }
 
+.btn:active {
+  background-color: $light-color;
+}
+
 .log-out-btn {
   background-color: $dark-color;
   color: $light-color;
