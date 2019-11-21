@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Navigation from '../layout/Navigation';
-import Renewal from '../renewal/Renewal';
 import Header from '../layout/Header';
+import Renewal from '../renewal/Renewal';
 import { getRenewals } from '../../actions/renewal';
-
 
 const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
     useEffect(()=>{
@@ -18,16 +17,15 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
             <Navigation />
             <section className={"row br-content-container"}>
                 <Header pageTitle={"Renewals"}/>
-
+                <section className={"col-12"}>
                 {!loading && (
                     <Fragment>
-                        {
-                            renewals.map(renewal =>  (
-                                <Renewal key={renewal} renewal={renewal}/>
-                            ))
-                        }
+                        {renewals.map(renewal =>  (
+                            renewal.status !== "active" ? <Renewal key={renewal} renewal={renewal}/> : <Fragment/>
+                        ))}
                     </Fragment>
                 )}
+                </section>
             </section>
         </Fragment>
         )

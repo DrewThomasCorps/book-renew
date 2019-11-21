@@ -1,0 +1,220 @@
+@import "base.scss";
+
+* {
+  font-family: $font-stack;
+}
+
+body {
+  font-family: Lato, sans-serif;
+  color: $dark-color;
+  margin: 0;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 32px;
+  text-align: center;
+  transition: .25s;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+}
+
+.d-block {
+  display:block;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.ul {
+  margin-top: 5px;
+  border-bottom: 10px solid $primary-color;
+}
+
+.font-weight-bolder {
+  font-weight: 900 !important;
+}
+
+.br-container-fluid {
+  min-height: 100vh;
+}
+
+.br-patterned-bg {
+  //background: url("bookRenew_pattern.png");
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.bg-blue {
+  background-color: $primary-color;
+}
+
+.bg-grey {
+  background-color: lighten($mid-color, 36%);
+}
+
+.ice-white-text {
+  color: $light-color;
+}
+
+.main-text-color {
+  color: $dark-color;
+}
+
+.grey-text-color {
+  color: $mid-color;
+}
+
+.left-blue-border {
+  border-left: 25px solid;
+  border-color: $primary-color;
+}
+
+.header-border {
+  border-bottom: 8px solid;
+  border-color: $primary-color;
+  max-width: 10rem;
+}
+
+.content-header {
+  padding-top: 20px;
+}
+
+.br-vCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.br-content-container {
+  padding-left: 54px;
+}
+
+.book-container,.book-form-container {
+  padding: 1rem;
+}
+
+.form {
+  margin: 2rem;
+  transition: .25s;
+}
+
+.form-heading {
+  color: $light-color;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-login, .form-registration {
+  width: 100%;
+  max-width: 430px;
+  padding: 2.5rem;
+  margin: 0 auto;
+  border: 2px solid $light-color;
+}
+
+.form-user-input {
+  color: $dark-color;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0 0 -1px;
+}
+
+.info-box {
+  color: $light-color;
+  max-width: 330px;
+  padding: 2rem;
+  margin: auto;
+}
+
+.isbn-input-box {
+  padding: 5px;
+  margin: 4px;
+}
+
+.welcome-box {
+  padding: 20px;
+  height: 100%;
+}
+
+input[type=text],input[type=email],input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 0;
+  border-bottom: 2px solid $mid-color;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.shadow {
+  box-shadow: 0 0 .25rem .25rem rgba(0, 0, 0, 0.05) !important;
+}
+
+@media (max-width: 700px) {
+  .form-login, .form-registration {
+    width: 100%;
+    max-width: 100%;
+    min-width:100%;
+    padding: 0;
+    margin: 0 auto;
+    border: none;
+  }
+  .br-content-container {
+    padding-left: 0;
+    padding-bottom: 96px;
+  }
+}
+
+@media (max-width: 575.98px){
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px){
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 80px;
+    text-align: right;
+  }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
