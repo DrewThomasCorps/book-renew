@@ -79,6 +79,13 @@
   background-color: $light-color;
 }
 
+.btn-primary {
+  transition: .25s;
+  color: $light-color;
+  background-color: $primary-color;
+  border-color: $light-color;
+}
+
 .log-out-btn {
   background-color: $dark-color;
   color: $light-color;
