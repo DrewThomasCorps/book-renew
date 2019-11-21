@@ -56,6 +56,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background: url("bookRenew_pattern.png");
 }
 
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
 .bg-blue {
   background-color: $primary-color;
 }
