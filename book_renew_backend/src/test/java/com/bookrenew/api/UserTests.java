@@ -37,12 +37,12 @@ class UserTests {
     }
     @Test
     @Order(2)
-    void testUserRegisterWithoutCredentialsReturns406() throws JSONException, IOException{
+    void testUserRegisterWithoutCredentialsReturns400() throws JSONException, IOException{
         JSONObject userJsonObject = this.buildEmptyLoginCredentials();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
-        Assertions.assertEquals(406, exception.getRawStatusCode());
+        Assertions.assertEquals(400, exception.getRawStatusCode());
     }
 
 
