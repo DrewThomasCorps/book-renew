@@ -1,7 +1,5 @@
 package com.bookrenew.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-
 import javax.persistence.*;
 
 @Entity

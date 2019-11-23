@@ -2,7 +2,7 @@ package com.bookrenew.api.controller;
 
 import com.bookrenew.api.entity.Renewal;
 import com.bookrenew.api.entity.User;
-import com.bookrenew.api.entity.potential_trade.PotentialTrade;
+import com.bookrenew.api.entity.PotentialTrade;
 import com.bookrenew.api.repository.RenewalRepository;
 import com.bookrenew.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
