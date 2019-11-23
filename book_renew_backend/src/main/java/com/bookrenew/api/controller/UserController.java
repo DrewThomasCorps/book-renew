@@ -1,8 +1,11 @@
 package com.bookrenew.api.controller;
 
+import com.bookrenew.api.entity.Renewal;
 import com.bookrenew.api.entity.User;
 import com.bookrenew.api.entity.potential_trade.PotentialTrade;
+import com.bookrenew.api.repository.RenewalRepository;
 import com.bookrenew.api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,10 +23,13 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository repository;
+    private final RenewalRepository renewalRepository;
 
-    public UserController(UserRepository repository, PasswordEncoder passwordEncoder) {
+    @Autowired
+    public UserController(UserRepository repository, PasswordEncoder passwordEncoder, RenewalRepository renewalRepository) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+        this.renewalRepository = renewalRepository;
     }
 
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/register")
@@ -48,6 +54,12 @@ public class UserController {
     public List<PotentialTrade> getPotentialTrades() {
         User user = this.getUserFromAuthCredentials();
         return repository.findPotentialTrades(user.getId());
+    }
+
+    @GetMapping(produces = {"application/json"}, path = "/renewals")
+    public List<Renewal> getRenewals() {
+        User user = this.getUserFromAuthCredentials();
+        return renewalRepository.findRenewalsByTrader_UserOrTradee_User(user, user);
     }
 
     private User getUserFromAuthCredentials() {

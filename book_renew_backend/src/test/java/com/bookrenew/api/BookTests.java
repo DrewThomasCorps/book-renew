@@ -65,9 +65,9 @@ class BookTests {
     @Order(4)
     void testUserOwnsBook() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        ResponseEntity<String> response = this.sendGetBooksRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson.get("bookUsers")
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson
                 .get(0)
                 .path("book")
                 .path("title")
@@ -164,7 +164,7 @@ class BookTests {
         restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
     }
 
-    private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
-        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
+    private ResponseEntity<String> sendGetBooksRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "books", HttpMethod.GET, request, String.class);
     }
 }

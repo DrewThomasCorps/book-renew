@@ -1,5 +1,7 @@
 package com.bookrenew.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,19 +13,11 @@ public class Renewal {
 
     @ManyToOne
     @JoinColumn(name = "trader_book_user_id")
-    private BookUser traderBookUser;
+    private BookUser trader;
 
     @ManyToOne
     @JoinColumn(name = "tradee_book_user_id")
-    private BookUser tradeeBookUser;
-
-    @ManyToOne
-    @JoinColumn(name = "trader_id")
-    private User trader;
-
-    @ManyToOne
-    @JoinColumn(name = "tradee_id")
-    private User tradee;
+    private BookUser tradee;
 
     public enum Status {
         pending,
@@ -44,36 +38,20 @@ public class Renewal {
         this.id = id;
     }
 
-    public BookUser getTraderBookUser() {
-        return traderBookUser;
-    }
-
-    public void setTraderBookUser(BookUser traderBookUser) {
-        this.traderBookUser = traderBookUser;
-    }
-
-    public BookUser getTradeeBookUser() {
-        return tradeeBookUser;
-    }
-
-    public void setTradeeBookUser(BookUser tradeeBookUser) {
-        this.tradeeBookUser = tradeeBookUser;
-    }
-
-    public User getTrader() {
+    public BookUser getTrader() {
         return trader;
     }
 
-    public void setTrader(User trader) {
-        this.trader = trader;
+    public void setTrader(BookUser traderBookUser) {
+        this.trader = traderBookUser;
     }
 
-    public User getTradee() {
+    public BookUser getTradee() {
         return tradee;
     }
 
-    public void setTradee(User tradee) {
-        this.tradee = tradee;
+    public void setTradee(BookUser tradeeBookUser) {
+        this.tradee = tradeeBookUser;
     }
 
     public Status getStatus() {
