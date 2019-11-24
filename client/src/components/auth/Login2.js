@@ -44,7 +44,7 @@ const Login2 = ({setAlert, loginUser, isAuthenticated}) => {
                 <div className="rstart-1 rspan-2 cstart-12 cspan-1 item">
                     <button className="btn btn-white">Sign Up</button>
                 </div>
-                <div className="rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-4 cspan-md-4 item item-js-start hidden-md">
+                <div className="jumbo-heading rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-4 cspan-md-4 item item-js-start hidden-md">
                     <h1><span className="ul">Bo</span>oktrading Platform</h1>
                 </div>
                 <div className="rstart-4 rspan-5 cstart-1 cspan-12 cspan-md-4 cspan-md-4 item w-100">
