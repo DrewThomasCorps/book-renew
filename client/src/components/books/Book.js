@@ -11,25 +11,20 @@ const Book = ({
 
     return (
         <Fragment>
-            <article className={"container-fluid book-container py-3"}>
-                <div className={"row book"}>
-                    <div className={"col-12 col-sm-2 book-cover"}>
-                        <img className={"img-fluid"} alt={"Book Cover"} src={"https://via.placeholder.com/150"} />
-                    </div>
-                    <div className={"col-12 col-sm-9 book-title"}>
-                        <h3>{title}</h3>
-                        <small>{isbn}</small>
-                    </div>
-                    {/*Should use user === auth.user._id, requires response data from backend*/}
-                    {!auth.loading && auth.isAuthenticated === true && (
-                        <div className={"col-12 col-sm-1"}>
-                            <button className={"btn btn-danger"} onClick={e=> deleteBook(id)}>Delete</button>
+            <div className={"col-6 col-md-4 col-lg-2 my-2"}>
+                <div className={"card"}>
+                    <img className={"card-img-top"} alt={"Book Cover"} src={"https://via.placeholder.com/150"} />
+                        <div className={"card-body"}>
+                            <h5 className={"card-title"}>{title}</h5>
+                            <small>{isbn}</small>
                         </div>
-                    )}
+                        <div className={"card-body"}>
+                            {!auth.loading && auth.isAuthenticated === true && (
+                            <a href={"#"} className={"btn btn-primary"} onClick={e=> deleteBook(id)}>Delete</a>
+                            )}
+                        </div>
                 </div>
-
-
-            </article>
+            </div>
         </Fragment>
     )
 };

@@ -12,20 +12,16 @@ const Books = ({getBooks,book:{books,loading}}) => {
 
     return loading ? <Fragment /> :
         <Fragment>
-            <div className={"col-12"}>
-                <h3>My Books</h3>
-                <BookForm/>
-                {books.map(book => (
-                    <Book key={book.id} book={book} />
-                ))}
+            <div className={"col-12 container-fluid"}>
+                <h2>Add Books</h2>
+                <BookForm />
+                {/*TODO Map books when GET request completed*/}
+                {/*<div className={"row"}>*/}
+                {/*    {books.map(book => (*/}
+                {/*        <Book key={book.isbn} book={book.title} />*/}
+                {/*    ))}*/}
+                {/*</div>*/}
                 <hr/>
-                <h3>Books I Need</h3>
-                <BookForm/>
-                {books.map(book => (
-                    <Book key={book.id} book={book} />
-                ))}
-                <hr/>
-                <h3>Active Trades</h3>
             </div>
         </Fragment>;
 };

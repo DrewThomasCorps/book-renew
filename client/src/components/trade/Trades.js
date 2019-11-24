@@ -7,7 +7,7 @@ const Trades = props => {
         <Fragment>
             <Navigation />
             <section className={"row br-content-container"}>
-                <div className={"col-12"}>
+                <div className={"col-12 main-text-color"}>
                     <h1>Trades</h1>
                     <hr/>
                 </div>
