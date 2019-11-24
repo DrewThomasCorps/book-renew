@@ -32,17 +32,26 @@ public class PotentialTrade {
         this.trader = trader;
     }
 
-    private void setupBookUser(BookUser bookUser, BigInteger UserId, String Isbn, BigInteger BookUserId, String BookTitle, String Name, String Email){
-        bookUser.setId(BookUserId.longValue());
+    private void setupBookUser(BookUser bookUser, BigInteger userId, String isbn, BigInteger bookUserId, String title, String name, String email){
+        bookUser.setId(bookUserId.longValue());
         bookUser.setStatus(BookUser.Status.library);
-        User User = new User();
-        User.setEmail(Email);
-        User.setName(Name);
-        User.setId(UserId.longValue());
-        bookUser.setUser(User);
-        Book Book = new Book();
-        Book.setIsbn(Isbn);
-        Book.setTitle(BookTitle);
-        bookUser.setBook(Book);
+        setupUser(bookUser, userId, name, email);
+        setupBook(bookUser, isbn, title);
     }
+
+    private void setupUser(BookUser bookUser, BigInteger id, String name, String email){
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        user.setId(id.longValue());
+        bookUser.setUser(user);
+    }
+
+    private void setupBook(BookUser bookUser, String isbn, String title) {
+        Book book = new Book();
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        bookUser.setBook(book);
+    }
+
 }
