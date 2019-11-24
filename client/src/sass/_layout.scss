@@ -141,6 +141,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin: 0 0 -1px;
 }
 
+input {
+  outline: none;
+}
+
 .info-box {
   color: $light-color;
   max-width: 330px;
