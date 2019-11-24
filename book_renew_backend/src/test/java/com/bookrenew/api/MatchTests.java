@@ -47,7 +47,7 @@ public class MatchTests {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertNull(userJson.get("bookUsers").get(0));
+        Assertions.assertNull(userJson.get("bookUsers"));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class MatchTests {
     @Order(5)
     void testUserOwnsBook() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        ResponseEntity<String> response = this.sendGetBooksRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson.get("bookUsers")
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson
                 .get(0)
                 .path("book")
                 .path("title")
@@ -101,17 +101,17 @@ public class MatchTests {
     @Order(9)
     void testNoMatches() throws JSONException, IOException
     {
-        ResponseEntity<String> response = this.sendGetMatchesRequest();
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetMatchesRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertNull(userJson.get(0));
     }
 
     @Test
     @Order(10)
     void testCreateSecondBookWishList() throws JSONException, IOException
     {
-        JSONObject book = this.buildSecondBookJsonObject();
-        HttpEntity<String> request = this.buildRequest(book);
-        this.sendBookPostRequestToWishList(request);
+
 
     }
 
@@ -119,24 +119,21 @@ public class MatchTests {
     @Order(11)
     void testOneMatch() throws JSONException, IOException
     {
-        ResponseEntity<String> response = this.sendGetMatchesRequest();
-        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+
     }
 
     @Test
     @Order(12)
     void testMultipleMatchesDifferentUsers() throws JSONException, IOException
     {
-        ResponseEntity<String> response = this.sendGetMatchesRequest();
-        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+
     }
 
     @Test
     @Order(13)
     void testMultipleMatchesSameUser() throws JSONException, IOException
     {
-        ResponseEntity<String> response = this.sendGetMatchesRequest();
-        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+
     }
 
     @Test
@@ -153,9 +150,9 @@ public class MatchTests {
         return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
     }
 
-    private ResponseEntity<String> sendGetMatchesRequest()
+    private ResponseEntity<String> sendGetMatchesRequest(HttpEntity<String> request)
     {
-        return restTemplate.getForEntity(baseUrl+"users/self/potential_trades", String.class);
+        return restTemplate.exchange(baseUrl+"users/potential-trades", HttpMethod.GET, request, String.class);
     }
 
     private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
@@ -193,13 +190,17 @@ public class MatchTests {
         JSONObject user = this.buildFirstUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
         authToken = response.getHeaders().toSingleValueMap().get("Authorization");
+        Assertions.assertNotNull(authToken);
     }
     private void loginSecondUser() throws JSONException, IOException {
         JSONObject user = this.buildSecondUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
         authToken = response.getHeaders().toSingleValueMap().get("Authorization");
+        Assertions.assertNotNull(authToken);
     }
 
     private JSONObject buildFirstUserJsonObject() throws JSONException {
@@ -222,8 +223,7 @@ public class MatchTests {
     }
 
     private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
-        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
-                request, String.class);
+        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST, request, String.class);
     }
     private JSONObject buildBookJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
@@ -265,5 +265,8 @@ public class MatchTests {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteUserRequest(request, id);
         Assertions.assertEquals(200, response.getStatusCodeValue());
+    }
+    private ResponseEntity<String> sendGetBooksRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "books", HttpMethod.GET, request, String.class);
     }
 }
