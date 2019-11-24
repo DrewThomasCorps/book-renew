@@ -56,7 +56,9 @@ public class MatchTests {
         JSONObject book = this.buildBookJsonObject();
         HttpEntity<String> request = this.buildRequest(book);
         this.sendBookPostRequestToLibrary(request);
-        this.testBookResponseContainsCorrectInformation();
+        book = this.buildThirdBookJsonObject();
+        request = this.buildRequest(book);
+        this.sendBookPostRequestToLibrary(request);
     }
     @Test
     @Order(5)
@@ -74,31 +76,13 @@ public class MatchTests {
     @Test
     @Order(6)
     void testCreateFirstBookWishList() throws JSONException, IOException {
-        JSONObject book = this.buildBookJsonObject();
+        JSONObject book = this.buildSecondBookJsonObject();
         HttpEntity<String> request = this.buildRequest(book);
         this.sendBookPostRequestToWishList(request);
-        this.testBookResponseContainsCorrectInformation();
     }
 
     @Test
     @Order(7)
-    void setAuthTokenUser2() throws JSONException, IOException {
-        this.registerSecondUser();
-        this.loginSecondUser();
-        Assertions.assertNotNull(authToken);
-    }
-
-    @Test
-    @Order(8)
-    void testCreateSecondBookLibrary() throws JSONException, IOException
-    {
-        JSONObject book = this.buildSecondBookJsonObject();
-        HttpEntity<String> request = this.buildRequest(book);
-        this.sendBookPostRequestToLibrary(request);
-    }
-
-    @Test
-    @Order(9)
     void testNoMatches() throws JSONException, IOException
     {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
@@ -108,10 +92,30 @@ public class MatchTests {
     }
 
     @Test
+    @Order(8)
+    void setAuthTokenUser2() throws JSONException, IOException {
+        this.registerSecondUser();
+        this.loginSecondUser();
+        Assertions.assertNotNull(authToken);
+    }
+
+    @Test
+    @Order(9)
+    void testCreateSecondBookLibrary() throws JSONException, IOException
+    {
+        JSONObject book = this.buildSecondBookJsonObject();
+        HttpEntity<String> request = this.buildRequest(book);
+        this.sendBookPostRequestToLibrary(request);
+    }
+
+
+    @Test
     @Order(10)
     void testCreateSecondBookWishList() throws JSONException, IOException
     {
-
+        JSONObject book = this.buildBookJsonObject();
+        HttpEntity<String> request = this.buildRequest(book);
+        this.sendBookPostRequestToWishList(request);
 
     }
 
@@ -119,21 +123,80 @@ public class MatchTests {
     @Order(11)
     void testOneMatch() throws JSONException, IOException
     {
-
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetMatchesRequest(request);
+        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        request = this.buildRequest(new JSONObject());
+        response = this.sendGetAuthenticatedUserRequest(request);
+        JsonNode userInfo = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals(userJson.get(0).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertNull(userJson.get(1));
+    }
+    @Test
+    @Order(11)
+    void testCreateThirdBookWishList() throws JSONException, IOException
+    {
+        JSONObject book = this.buildThirdBookJsonObject();
+        HttpEntity<String> request = this.buildRequest(book);
+        this.sendBookPostRequestToWishList(request);
     }
 
     @Test
     @Order(12)
-    void testMultipleMatchesDifferentUsers() throws JSONException, IOException
+    void testMultipleMatchesSameUser() throws JSONException, IOException
     {
-
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetMatchesRequest(request);
+        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        request = this.buildRequest(new JSONObject());
+        response = this.sendGetAuthenticatedUserRequest(request);
+        JsonNode userInfo = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals(userJson.get(0).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertEquals(userJson.get(1).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertEquals(userJson.get(0).path("tradee").path("user").path("id"), userJson.get(1).path("tradee").path("user").path("id"));
+        Assertions.assertNull(userJson.get(2));
     }
 
     @Test
     @Order(13)
-    void testMultipleMatchesSameUser() throws JSONException, IOException
-    {
+    void setAuthTokenUser3() throws JSONException, IOException {
+        this.registerThirdUser();
+        this.loginThirdUser();
+        Assertions.assertNotNull(authToken);
+    }
 
+    @Test
+    @Order(14)
+    void testCreateThirdBookLibrary() throws JSONException, IOException {
+        JSONObject book = this.buildThirdBookJsonObject();
+        HttpEntity<String> request = this.buildRequest(book);
+        this.sendBookPostRequestToLibrary(request);
+    }
+
+    @Test
+    @Order(15)
+    void testCreateFourthBookWishList() throws JSONException, IOException {
+        JSONObject book = this.buildSecondBookJsonObject();
+        HttpEntity<String> request = this.buildRequest(book);
+        this.sendBookPostRequestToWishList(request);
+    }
+
+    @Test
+    @Order(16)
+    void testMultipleMatchesDifferentUsers() throws JSONException, IOException
+    {
+        this.loginSecondUser();
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetMatchesRequest(request);
+        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        request = this.buildRequest(new JSONObject());
+        response = this.sendGetAuthenticatedUserRequest(request);
+        JsonNode userInfo = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals(userJson.get(0).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertEquals(userJson.get(1).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertEquals(userJson.get(2).path("trader").path("user").path("id"), userInfo.path("id"));
+        Assertions.assertNotEquals(userJson.get(0).path("tradee").path("user").path("id"), userJson.get(2).path("tradee").path("user").path("id"));
+        Assertions.assertNull(userJson.get(3));
     }
 
     @Test
@@ -143,6 +206,8 @@ public class MatchTests {
         this.loginFirstUser();
         deleteUsers();
         this.loginSecondUser();
+        deleteUsers();
+        this.loginThirdUser();
         deleteUsers();
     }
 
@@ -185,6 +250,11 @@ public class MatchTests {
         HttpEntity<String> request = this.buildRequest(user);
         this.sendRegisterRequest(request);
     }
+    private void registerThirdUser() throws JSONException, IOException {
+        JSONObject user = this.buildThirdUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(user);
+        this.sendRegisterRequest(request);
+    }
 
     private void loginFirstUser() throws JSONException, IOException {
         JSONObject user = this.buildFirstUserJsonObject();
@@ -196,6 +266,14 @@ public class MatchTests {
     }
     private void loginSecondUser() throws JSONException, IOException {
         JSONObject user = this.buildSecondUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(user);
+        ResponseEntity<String> response = this.sendLoginRequest(request);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
+        Assertions.assertNotNull(authToken);
+    }
+    private void loginThirdUser() throws JSONException, IOException {
+        JSONObject user = this.buildThirdUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
         Assertions.assertEquals(200, response.getStatusCodeValue());
@@ -214,6 +292,13 @@ public class MatchTests {
         JSONObject userJsonObject = new JSONObject();
         userJsonObject.put("name", "testUser1");
         userJsonObject.put("email", "book2@test.com");
+        userJsonObject.put("password", "password");
+        return userJsonObject;
+    }
+    private JSONObject buildThirdUserJsonObject() throws JSONException {
+        JSONObject userJsonObject = new JSONObject();
+        userJsonObject.put("name", "testUser2");
+        userJsonObject.put("email", "book3@test.com");
         userJsonObject.put("password", "password");
         return userJsonObject;
     }
@@ -237,6 +322,12 @@ public class MatchTests {
         userJsonObject.put("isbn", "9780590353427");
         return userJsonObject;
     }
+    private JSONObject buildThirdBookJsonObject() throws JSONException {
+        JSONObject userJsonObject = new JSONObject();
+        userJsonObject.put("title", "Harry Potter and the Goblet of Fire");
+        userJsonObject.put("isbn", "9781781101544");
+        return userJsonObject;
+    }
     private void sendBookPostRequestToLibrary(HttpEntity<String> request) throws IOException {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
         assert userResultsAsJsonString != null;
@@ -246,11 +337,6 @@ public class MatchTests {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/wishlist", request, String.class);
         assert userResultsAsJsonString != null;
         responseRoot = objectMapper.readTree(userResultsAsJsonString);
-    }
-    private void testBookResponseContainsCorrectInformation() {
-        Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", responseRoot.path("book").path("title").asText());
-        Assertions.assertEquals("9780545010221", responseRoot.path("book").path("isbn").asText());
     }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
