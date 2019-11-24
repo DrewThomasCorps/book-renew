@@ -37,7 +37,7 @@ class UserTests {
     }
     @Test
     @Order(2)
-    void testUserRegisterWithoutCredentialsReturns406() throws JSONException, IOException{
+    void testUserRegisterWithoutCredentialsReturns400() throws JSONException, IOException{
         JSONObject userJsonObject = this.buildEmptyLoginCredentials();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =

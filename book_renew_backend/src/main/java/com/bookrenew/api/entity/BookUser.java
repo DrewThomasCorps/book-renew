@@ -1,7 +1,5 @@
 package com.bookrenew.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +13,6 @@ public class BookUser {
     @JoinColumn(name = "isbn")
     private Book book;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
