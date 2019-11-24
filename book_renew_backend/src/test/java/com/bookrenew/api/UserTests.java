@@ -42,7 +42,7 @@ class UserTests {
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
-        Assertions.assertEquals(406, exception.getRawStatusCode());
+        Assertions.assertEquals(400, exception.getRawStatusCode());
     }
 
 

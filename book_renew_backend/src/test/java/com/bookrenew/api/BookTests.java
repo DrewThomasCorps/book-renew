@@ -92,6 +92,16 @@ class BookTests {
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteBookRequest(request, id));
         Assertions.assertEquals(400, exception.getRawStatusCode());
     }
+    @Test
+    @Order(7)
+    void testDuplicateBookthrows409() throws JSONException, IOException
+    {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(409, exception.getRawStatusCode());
+    }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
         return restTemplate.exchange(baseUrl + "books/" + id, HttpMethod.DELETE, request, String.class);
