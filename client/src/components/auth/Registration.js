@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/auth';
-import logo from "../../book_renew_white_vertical_logo.svg";
+import { setAlert } from '../../actions/alert';
+import logo from "../../resources/book_renew_white_vertical_logo.svg";
 
-const Registration = ({registerUser, isAuthenticated}) => {
+const Registration = ({setAlert, registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
         name: '',
         email: '',
@@ -20,9 +21,16 @@ const Registration = ({registerUser, isAuthenticated}) => {
     const handleAccountCreationSubmit = async e => {
         e.preventDefault();
 
-        if(password !== passwordConfirmation){
-            console.log("Password mismatch");
-        } else {
+        if(name === ''){
+            setAlert("Please enter your name", "danger");
+        } else if(email === ''){
+            setAlert("Please enter a valid Email Address", "danger");
+        } else if(password === ''){
+            setAlert("Please enter a password", "danger");
+        } else if(password !== passwordConfirmation){
+            setAlert("Oops! Your passwords don't match", "danger");
+        }
+        else {
             registerUser({name,email,password});
         }
     };
@@ -34,7 +42,7 @@ const Registration = ({registerUser, isAuthenticated}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                <div className={"col-12 br-container-fluid bg-blue"}>
                     <section className={"br-vCenter"}>
                         <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>
@@ -57,11 +65,12 @@ const Registration = ({registerUser, isAuthenticated}) => {
 
 Registration.propTypes = {
     registerUser: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
+    setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, {registerUser})(Registration);
+export default connect(mapStateToProps, {setAlert,registerUser})(Registration);

@@ -35,9 +35,19 @@ class UserTests {
         this.sendRegisterRequest(request);
         this.testRegisterResponseContainsCorrectData();
     }
-
     @Test
     @Order(2)
+    void testUserRegisterWithoutCredentialsReturns400() throws JSONException, IOException{
+        JSONObject userJsonObject = this.buildEmptyLoginCredentials();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(400, exception.getRawStatusCode());
+    }
+
+
+    @Test
+    @Order(3)
     void testCreatingDuplicateUserReturns409() throws JSONException, IOException {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
@@ -47,7 +57,7 @@ class UserTests {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     void testLoginFailsWithIncorrectCredentials() throws JSONException {
         JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
         HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
@@ -57,7 +67,7 @@ class UserTests {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void testLoginSuccess() throws JSONException, IOException {
         JSONObject loginCredentials = this.buildLoginCredentials();
         HttpEntity<String> request = this.buildRequest(loginCredentials);
@@ -68,7 +78,7 @@ class UserTests {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void testGetAuthenticatedUser() throws IOException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
@@ -76,7 +86,7 @@ class UserTests {
     }
 
     @Test
-    @Order(6)
+    @Order(7)
     void testDeleteUser() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteRequest(request);
@@ -101,6 +111,13 @@ class UserTests {
         JSONObject credentials = new JSONObject();
         credentials.put("email", "test@test.com");
         credentials.put("password", "testPassword");
+        return credentials;
+    }
+
+    private JSONObject buildEmptyLoginCredentials() throws JSONException{
+        JSONObject credentials = new JSONObject();
+        credentials.put("email", "");
+        credentials.put("password", "");
         return credentials;
     }
 
@@ -151,5 +168,6 @@ class UserTests {
         Assertions.assertEquals("", responseRoot.path("password").asText());
         Assertions.assertNotNull(responseRoot.path("id"));
     }
+
 }
 

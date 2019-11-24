@@ -1,7 +1,9 @@
 package com.bookrenew.api;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
@@ -13,7 +15,9 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 import java.util.Collections;
 
+@ImportAutoConfiguration
 @SpringBootApplication
+@EntityScan("com.bookrenew.api.entity")
 public class ApiApplication {
 
     @Bean

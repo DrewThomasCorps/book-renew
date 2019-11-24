@@ -4,9 +4,11 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/auth';
 
-import logo from "../../book_renew_white_vertical_logo.svg";
+import logo from "../../resources/book_renew_white_vertical_logo.svg";
+import background from "../../resources/bookRenew_pattern.png";
+import {setAlert} from "../../actions/alert";
 
-const Login = ({loginUser, isAuthenticated}) => {
+const Login = ({setAlert, loginUser, isAuthenticated}) => {
     const [loginInformation, setLoginInformation] = useState({
         email: '',
         password: ''
@@ -18,7 +20,15 @@ const Login = ({loginUser, isAuthenticated}) => {
 
     const handleLoginSubmit = async e => {
         e.preventDefault();
-        loginUser(email,password);
+
+        if(email === ''){
+            setAlert("Please enter your Email Address", "danger");
+        } else if(password === ''){
+            setAlert("Oops! You didn't enter your password", "danger");
+        }
+        else {
+            loginUser(email,password);
+        }
     };
 
     if(isAuthenticated){
@@ -28,7 +38,7 @@ const Login = ({loginUser, isAuthenticated}) => {
     return(
         <Fragment>
             <section className={"row"}>
-                <div className={"col-12 br-container-fluid br-bg-blue"}>
+                <div className={"col-12 br-container-fluid bg-blue"}>
                     <section className={"br-vCenter"}>
                         <form className={"form form-login text-center"} onSubmit={handleLoginSubmit}>
                             <img src={logo} alt={"book renew logo"} className={"my-5"}/>
@@ -48,11 +58,12 @@ const Login = ({loginUser, isAuthenticated}) => {
 
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
+    setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, {loginUser})(Login);
+export default connect(mapStateToProps, {setAlert,loginUser})(Login);

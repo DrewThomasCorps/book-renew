@@ -9,30 +9,22 @@ import {
 
 export const getBooks = () => async dispatch => {
     try {
-        //TODO implement axios request to get books
-        const books = [
-            {
-                id: 5,
-                title: "Harry Potter and the Philosopher's Stone",
-                isbn: "0747532745"
-
-            }
-        ];
+        const res = await axios.get(BASE_URL + "/books");
         dispatch({
             type: GET_BOOKS,
-            payload: books
+            payload: res.data
         })
     } catch (err) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: {err}
         });
     }
 };
 
 export const deleteBook = id => async dispatch => {
     try {
-        //TODO implement axios request to delete book
+        await axios.delete(BASE_URL + "/books/" + id);
         dispatch({
             type: DELETE_BOOK,
             payload: id
@@ -42,7 +34,7 @@ export const deleteBook = id => async dispatch => {
     } catch (err) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status },
+            payload: err,
             loading: false
         });
     }
@@ -59,12 +51,12 @@ export const addBook = formData => async dispatch => {
         const res = await axios.post(BASE_URL + "/books/" + formData.bookStatus, formData, setHeaders);
         dispatch({
             type: ADD_BOOK,
-            payload: res.book
+            payload: res.data
         })
     } catch (error) {
         dispatch({
             type: BOOK_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status },
+            payload: error,
             loading: false
         })
     }

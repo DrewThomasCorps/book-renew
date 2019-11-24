@@ -1,9 +1,8 @@
 package com.bookrenew.api.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -16,7 +15,8 @@ public class Book {
     @Column(name = "title", updatable = false, nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<BookUser> bookUsers;
 
     public String getIsbn() {

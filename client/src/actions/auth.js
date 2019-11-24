@@ -10,6 +10,7 @@ import {
 } from "../actions/types";
 import {BASE_URL} from "../config/config";
 import setAuthToken from "../utils/setAuthToken";
+import {setAlert} from "./alert";
 
 export const loadUser = () => async dispatch => {
     if (localStorage.authToken) {
@@ -39,12 +40,12 @@ export const registerUser = ({name, email, password}) => async dispatch => {
 
     try {
         await axios.post(BASE_URL + "/users/register", body, setHeaders);
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: {'authToken': '123456'}
-        })
-    } catch (err) {
-        console.log(err);
+
+        dispatch(
+            loginUser(email, password)
+        );
+    } catch (error) {
+        dispatch(setAlert(error.response.data.message,'danger'));
         dispatch({
             type: REGISTER_FAIL
         })
@@ -69,10 +70,23 @@ export const loginUser = (email, password) => async dispatch => {
             });
             dispatch(loadUser());
         }).catch(error => {
-        //TODO handle error data
-        dispatch({
-            type: LOGIN_FAIL
-        })
+            let message;
+
+            switch(error.response.status){
+                case(403):
+                    message = "Login failed: Incorrect Email or Password";
+                    break;
+                case(500):
+                    message = "Uh oh! Something went wrong. If this happens again, call Drew.";
+                    break;
+                default:
+                    message = "Uh oh! An error has occurred";
+            }
+
+            dispatch(setAlert(message,'danger'));
+            dispatch({
+                type: LOGIN_FAIL
+            })
     });
 };
 

@@ -6,25 +6,22 @@ import { deleteBook } from '../../actions/book';
 const Book = ({
     deleteBook,
     auth,
-    book: { id, title, isbn }
+    book: { id, book }
   }) => {
 
     return (
         <Fragment>
-            <div className={"col-6 col-md-4 col-lg-2 my-2"}>
-                <div className={"card"}>
-                    <img className={"card-img-top"} alt={"Book Cover"} src={"https://via.placeholder.com/150"} />
-                        <div className={"card-body"}>
-                            <h5 className={"card-title"}>{title}</h5>
-                            <small>{isbn}</small>
-                        </div>
-                        <div className={"card-body"}>
+                <div className={"book-card-container col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6"}>
+                    <div className={"card"}>
+                        <div className={"card-body book-card-body"}>
+                            <h5 className={"card-title h6 my-1"}>{book.title}</h5>
+                            <small>{book.isbn}</small>
                             {!auth.loading && auth.isAuthenticated === true && (
-                            <a href={"#"} className={"btn btn-primary"} onClick={e=> deleteBook(id)}>Delete</a>
+                                <button className={"btn btn-primary btn-sm float-right"} onClick={() => deleteBook(id)}>Delete</button>
                             )}
                         </div>
+                    </div>
                 </div>
-            </div>
         </Fragment>
     )
 };

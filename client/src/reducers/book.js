@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     books: [],
-    book: null,
     loading: true,
     error: {}
 };
@@ -27,7 +26,7 @@ export default function(state= initialState, action){
                 ...state,
                 books: [...state.books, payload],
                 loading: false
-            }
+            };
         case DELETE_BOOK:
             return {
                 ...state,
@@ -37,7 +36,7 @@ export default function(state= initialState, action){
         case BOOK_ERROR:
             return {
                 ...state,
-                books: payload
+                error: payload
             };
         default:
             return state;

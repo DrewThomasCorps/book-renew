@@ -6,11 +6,14 @@ import com.bookrenew.api.entity.User;
 import com.bookrenew.api.repository.BookRepository;
 import com.bookrenew.api.repository.BookUserRepository;
 import com.bookrenew.api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -20,17 +23,18 @@ public class BookController {
     private final BookUserRepository bookUserRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public BookController(BookRepository bookRepository, BookUserRepository bookUserRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.bookUserRepository = bookUserRepository;
         this.userRepository = userRepository;
     }
 
-    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/owned")
-    public BookUser addToOwned(@RequestBody Book book) {
+    @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/library")
+    public BookUser addToLibrary(@RequestBody Book book) {
         Book createdBook = this.createBook(book);
         BookUser bookUser = this.setupBookUser(createdBook);
-        bookUser.setStatus(BookUser.Status.owner);
+        bookUser.setStatus(BookUser.Status.library);
         return bookUserRepository.save(bookUser);
     }
 
@@ -42,15 +46,23 @@ public class BookController {
         return bookUserRepository.save(bookUser);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deleteBookUserById(@PathVariable("id") String id){
         Long longId = Long.parseLong(id);
-        BookUser bookUser = bookUserRepository.findById(longId).orElse(new BookUser());
+        BookUser bookUser = bookUserRepository.findById(longId).orElseThrow(
+                ()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist")
+        );
         User user = this.getUserFromAuthCredentials();
         if (!user.getEmail().equals(bookUser.getUser().getEmail())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");
         }
         bookUserRepository.delete(bookUser);
+    }
+
+    @GetMapping(path = "")
+    public List<BookUser> getAllBooks(){
+        User user = this.getUserFromAuthCredentials();
+        return bookUserRepository.findByUser_id(user.getId());
     }
 
     private Book createBook(Book book) {

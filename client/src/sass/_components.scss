@@ -1,0 +1,169 @@
+@import "_base.scss";
+
+.book-card-container {
+  padding: 1rem;
+}
+
+.book-card-body {
+  border: 2px solid $mid-color!important;
+}
+
+.card {
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+}
+
+.br-navbar {
+  background-color: $dark-color;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 54px;
+  z-index: 100;
+}
+
+.br-navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: $light-color;
+  background-color: $dark-color;
+}
+
+.br-nav-item {
+  height: 54px;
+  width: 54px;
+  position: relative;
+}
+
+.br-nav-item:hover {
+  /*background-color: $primary-color;*/
+  cursor: pointer;
+}
+
+.br-nav-link {
+  display: block;
+  height: 54px;
+  width: 54px;
+  color:$light-color;
+  text-decoration: none;
+  transition:.25s;
+}
+
+.br-nav-link:hover {
+  background-color: $primary-color;
+  color: $light-color;
+  text-decoration: none;
+}
+
+.br-nav-link:active {
+  color: $light-color;
+  background-color: $primary-color;
+}
+
+.br-nav-link.active{
+  background-color: $primary-color;
+}
+
+.br-nav-icon {
+  width: 26px;
+}
+
+.btn {
+  padding: .75rem 1.5rem;
+  border: 2px solid $mid-color;
+  color: $mid-color;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  color: $light-color;
+  border-color: $primary-color;
+  background: $primary-color;
+}
+
+.btn-white {
+  color: $light-color;
+  border-color: $light-color;
+}
+
+.btn-grey {
+  color: $light-color;
+  background: $mid-color;
+}
+
+.log-out-btn {
+  background-color: $dark-color;
+  color: $light-color;
+  border-color: $dark-color;
+}
+
+.add-book-btn {
+  background-color: $light-color;
+  border-color: $primary-color;
+  color: $primary-color;
+}
+
+.add-book-btn:hover {
+  background-color: $primary-color;
+  color: $light-color;
+  border-color: $primary-color;
+}
+
+@media (max-width: 700px) {
+  .br-navbar {
+    bottom: 0;
+    height: 96px;
+    width: 100%;
+    z-index: 100;
+  }
+  .br-navbar-nav li{
+    display: inline-block;
+  }
+  .br-nav-link {
+    display: inline-block;
+    height: 96px;
+    width: 100%;
+  }
+  .br-nav-item {
+    height: 96px;
+    width: 33%;
+  }
+  .br-nav-item:last-of-type {
+    width: 34%;
+  }
+  .br-nav-icon {
+    height: 40px;
+    width: auto;
+  }
+}
+
+@media (max-width: 575.98px){
+
+}
+@media (max-width: 767.98px){
+
+}
+
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}

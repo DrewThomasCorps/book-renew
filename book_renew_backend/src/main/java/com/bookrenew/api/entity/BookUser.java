@@ -19,14 +19,13 @@ public class BookUser {
 
     public enum Status {
         wishlist,
-        owner,
+        library,
         traded
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", columnDefinition = "ENUM('wishlist', 'owner', 'traded')")
+    @Column(name = "status", columnDefinition = "ENUM('wishlist', 'library', 'traded')")
     private Status status;
-
 
     public Long getId() {
         return id;

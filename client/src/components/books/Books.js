@@ -3,32 +3,27 @@ import { connect } from 'react-redux';
 import { getBooks } from "../../actions/book";
 import PropTypes from 'prop-types';
 import Book from "./Book";
-import BookForm from "./BookForm";
 
-const Books = ({getBooks,book:{books,loading}}) => {
+const Books = ({bookType,getBooks,book:{books,loading}}) => {
     useEffect(() => {
         getBooks();
     }, [getBooks]);
 
-    return loading ? <Fragment /> :
+    return loading ? <Fragment/> :
         <Fragment>
-            <div className={"col-12 container-fluid"}>
-                <h2>Add Books</h2>
-                <BookForm />
-                {/*TODO Map books when GET request completed*/}
-                {/*<div className={"row"}>*/}
-                {/*    {books.map(book => (*/}
-                {/*        <Book key={book.isbn} book={book.title} />*/}
-                {/*    ))}*/}
-                {/*</div>*/}
-                <hr/>
-            </div>
-        </Fragment>;
+            <h3 className={"text-capitalize grey-text-color"}>{bookType}</h3>
+                <div className={"row"}>
+                {books.map(book => (
+                    book.status === bookType ? <Book key={book.id} book={book} /> : <Fragment/>
+                ))}
+                </div>
+        </Fragment>
 };
 
 Books.propTypes = {
     getBooks: PropTypes.func.isRequired,
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    bookType: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
