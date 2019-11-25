@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .br-patterned-bg {
-  //background: url("bookRenew_pattern.png");
+  background: url("../resources/bookRenew_pattern.png");
 }
 
 .img-responsive {
@@ -189,12 +189,16 @@ input[type=text],input[type=email],input[type=password] {
 }
 
 @media (max-width: 575.98px){
+
+}
+
+@media (max-width: 767.98px){
   .hidden-sm {
     display: none;
   }
 }
 
-@media (max-width: 767.98px){
+@media (max-width: 991.98px) {
   .hidden-md {
     display: none;
   }
