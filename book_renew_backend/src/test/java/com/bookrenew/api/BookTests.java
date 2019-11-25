@@ -65,9 +65,9 @@ class BookTests {
     @Order(4)
     void testUserOwnsBook() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
+        ResponseEntity<String> response = this.sendGetBooksRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson.get("bookUsers")
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson
                 .get(0)
                 .path("book")
                 .path("title")
@@ -91,6 +91,16 @@ class BookTests {
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteBookRequest(request, id));
         Assertions.assertEquals(400, exception.getRawStatusCode());
+    }
+    @Test
+    @Order(7)
+    void testDuplicateBookthrows409() throws JSONException, IOException
+    {
+        JSONObject userJsonObject = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(userJsonObject);
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRegisterRequest(request));
+        Assertions.assertEquals(409, exception.getRawStatusCode());
     }
 
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
@@ -164,7 +174,7 @@ class BookTests {
         restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
     }
 
-    private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
-        return restTemplate.exchange(baseUrl + "users/self", HttpMethod.GET, request, String.class);
+    private ResponseEntity<String> sendGetBooksRequest(HttpEntity<String> request) {
+        return restTemplate.exchange(baseUrl + "books", HttpMethod.GET, request, String.class);
     }
 }

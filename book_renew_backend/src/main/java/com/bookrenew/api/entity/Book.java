@@ -16,7 +16,7 @@ public class Book {
     private String title;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<BookUser> bookUsers;
 
     public String getIsbn() {
