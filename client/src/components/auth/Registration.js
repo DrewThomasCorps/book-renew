@@ -2,9 +2,9 @@ import React, {Fragment, useState} from 'react';
 import { connect } from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { registerUser } from '../../actions/auth';
 import { setAlert } from '../../actions/alert';
-import logo from "../../resources/book_renew_white_vertical_logo.svg";
+import logo from "../../resources/book_renew_charcoal_horizontal_logo.svg";
+import {registerUser} from "../../actions/auth";
 
 const Registration = ({setAlert, registerUser, isAuthenticated}) => {
     const [accountData, setAccountData] = useState({
@@ -41,24 +41,37 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
 
     return(
         <Fragment>
-            <section className={"row"}>
-                <div className={"col-12 br-container-fluid bg-blue"}>
-                    <section className={"br-vCenter"}>
-                        <form className={"form form-registration text-center"} onSubmit={handleAccountCreationSubmit}>
-                            <img src={logo} alt={"book renew logo"} className={"my-5"}/>
-                            <input className={"form-input mb-4 form-control"} type={"text"} onChange={handleInputChange} name={"name"} value={name} placeholder={"Name"} />
-                            <input className={"form-input mb-4 form-control"} type={"email"} onChange={handleInputChange} name="email" value={email} placeholder={"Email Address"} />
-                            <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange} name="password"  value={password} placeholder={"Password"} />
-                            <input className={"form-input mb-4 form-control"} type={"password"} onChange={handleInputChange}
-                                   name="passwordConfirmation"  value={passwordConfirmation} placeholder={"Password Confirmation"}/>
-                            <input className={"btn btn-primary mb-4 btn-lg btn-block"} type={"submit"} value={"Sign Up"} />
-                            <div className={"info-box mb-5"}>
-                                <p className={"info-box-text"}>Already have an account? <Link className={"info-box-link text-white font-weight-bold"} to={"/"}>Sign in</Link> here.</p>
-                            </div>
-                        </form>
-                    </section>
+            <div className="grid-container grid-12 vh-100">
+                <div className="rstart-1 rspan-2 cstart-1 cspan-12 cspan-lg-2 item">
+                    <img className="img-responsive" src={logo} alt={"logo"}/>
                 </div>
-            </section>
+                <div className="rstart-1 rspan-2 cstart-12 cspan-1 item hidden-md">
+                    <Link className="btn btn-white" to={"/"}>Sign In</Link>
+                </div>
+                <div className="rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-1 cspan-md-12 cstart-lg-4 cspan-lg-4 item item-js-start hidden-md">
+                    <h1><span className="ul">Bo</span>oktrading Platform</h1>
+                </div>
+                <div className="rstart-4 rspan-5 rstart-lg-5 cstart-1 cspan-12 cstart-md-3 cspan-md-8 cstart-lg-1 cspan-lg-4 item w-100">
+                    <form className="form" onSubmit={handleAccountCreationSubmit}>
+                        <input type={"text"} name={"name"} value={name} onChange={handleInputChange} placeholder={"Name"}/>
+                        <br />
+                        <input type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email"}/>
+                        <br />
+                        <input type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
+                        <br />
+                        <input type={"text"} name={"passwordConfirmation"} value={passwordConfirmation} onChange={handleInputChange} placeholder={"Confirm Password"}/>
+                        <br />
+                        <input className="btn btn-primary d-block mx-auto mt-5" type="submit" value="Sign Up"/>
+                    </form>
+                    <div className={"text-center"}>
+                        Already have an account? <Link to={"/"}>Sign In here.</Link>
+                    </div>
+                </div>
+                <div className="rstart-1 rspan-12 cstart-1 cspan-12 bg-white z-index-back">
+                </div>
+                <div className="rstart-1 rspan-12 cstart-md-7 cspan-md-6 cstart-lg-5 cspan-lg-8 br-patterned-bg z-index-back hidden-md">
+                </div>
+            </div>
         </Fragment>
     )
 };

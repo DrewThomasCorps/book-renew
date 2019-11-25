@@ -9,12 +9,11 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.util.Assert;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.Objects;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -136,7 +135,6 @@ public class MatchTests {
 
     }
 
-    @Test
     @AfterAll
     void testDeleteUsers() throws JSONException, IOException
     {
@@ -256,14 +254,13 @@ public class MatchTests {
     private ResponseEntity<String> sendDeleteBookRequest(HttpEntity<String> request, String id) {
         return restTemplate.exchange(baseUrl + "books/" + id, HttpMethod.DELETE, request, String.class);
     }
-    private ResponseEntity<String> sendDeleteUserRequest(HttpEntity<String> request, String id) {
+    private ResponseEntity<String> sendDeleteUserRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
     }
     private void deleteUsers()
     {
-        String id = responseRoot.path("user_id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendDeleteUserRequest(request, id);
+        ResponseEntity<String> response = this.sendDeleteUserRequest(request);
         Assertions.assertEquals(200, response.getStatusCodeValue());
     }
     private ResponseEntity<String> sendGetBooksRequest(HttpEntity<String> request) {

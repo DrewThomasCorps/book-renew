@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.bookrenew.api.security.SecurityConstants.HEADER_STRING;
-import static com.bookrenew.api.security.SecurityConstants.SECRET;
-import static com.bookrenew.api.security.SecurityConstants.TOKEN_PREFIX;
+import static com.bookrenew.api.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
