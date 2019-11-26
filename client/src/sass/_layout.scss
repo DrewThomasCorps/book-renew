@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-h1 {
+.jumbo-heading {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 32px;
@@ -21,6 +21,10 @@ h1 {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: bold;
+}
+
+.header-size {
+  font-size: 2.5rem;
 }
 
 .d-block {
@@ -139,6 +143,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   box-sizing: border-box;
   padding: 10px;
   margin: 0 0 -1px;
+}
+
+input {
+  outline: none;
 }
 
 .info-box {
