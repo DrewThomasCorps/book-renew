@@ -63,7 +63,6 @@ export const loginUser = (email, password) => async dispatch => {
 
     axios.post(BASE_URL + "/login", body, setHeaders)
         .then(response => {
-            console.log(response);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: {'authToken': response.headers['authorization']}
