@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import Navigation from "../layout/Navigation";
 import Header from '../layout/Header';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/auth';
 import BookForm from "../books/BookForm";
 import Books from "../books/Books";
 
-const Profile = ({ auth: {user,loading}, logoutUser}) => {
+const Profile = ({ auth: {user,loading}}) => {
     return (
         <Fragment>
             <Navigation />
@@ -43,7 +42,6 @@ const Profile = ({ auth: {user,loading}, logoutUser}) => {
 };
 
 Profile.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
 
@@ -51,4 +49,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps,{ logoutUser })(Profile);
+export default connect(mapStateToProps)(Profile);
