@@ -1,10 +1,13 @@
 import axios from 'axios';
 import {
-    GET_RENEWALS, RENEWAL_ERROR
+    GET_RENEWALS,
+    RENEWAL_ERROR,
+    OFFER_RENEWAL
 } from "./types";
 
 export const getRenewals = () => async dispatch => {
     try {
+        //TODO Handle axios request for GET_RENEWALS action
         const renewals = [
             {
                 "trader": {
@@ -67,7 +70,23 @@ export const getRenewals = () => async dispatch => {
 
     } catch (error) {
         dispatch({
-            type: RENEWAL_ERROR
+            type: RENEWAL_ERROR,
+            loading: false
         })
     }
 };
+
+export const offerRenewal = (traderBookId,tradeeBookId) => async dispatch => {
+    try {
+        //TODO Handle axios request for OFFER_RENEWAL action
+        dispatch({
+            type: OFFER_RENEWAL
+        });
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            loading: false
+        })
+    }
+};
+

@@ -1,9 +1,11 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { offerRenewal } from '../../actions/renewal';
 
 const Renewal = ({
-     renewal:{trader,tradee,status}
+    renewal:{trader,tradee,status},
+    offerRenewal
 }) => {
 
     return (
@@ -19,7 +21,9 @@ const Renewal = ({
                 </div>
                 <div className={"card-body"}>
                     { !status ?
-                        <button className={"btn btn-primary"}>Send Offer</button> : <Fragment/>
+                        <button className={"btn btn-primary"} onClick={() => offerRenewal(trader.book_user_id,tradee.book_user_id)}>
+                            Send Offer
+                        </button> : <Fragment/>
                     }
                 </div>
             </article>
@@ -28,10 +32,8 @@ const Renewal = ({
 };
 
 Renewal.propTypes = {
-    renewal: PropTypes.object.isRequired
+    renewal: PropTypes.object.isRequired,
+    offerRenewal: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-})
-
-export default connect(mapStateToProps, null)(Renewal);
+export default connect(null,{offerRenewal})(Renewal);
