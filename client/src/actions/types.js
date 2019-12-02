@@ -11,6 +11,7 @@ export const ADD_BOOK = 'ADD_BOOK';
 export const LOGOUT = 'LOGOUT';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const GET_POTENTIAL_RENEWALS = 'GET_POTENTIAL_RENEWALS';
 export const GET_RENEWALS = 'GET_RENEWALS';
 export const RENEWAL_ERROR = 'RENEWAL_ERROR';
 export const OFFER_RENEWAL = 'OFFER_RENEWAL';
