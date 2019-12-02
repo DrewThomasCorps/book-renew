@@ -1,71 +1,18 @@
 import axios from 'axios';
 import {
+    GET_POTENTIAL_RENEWALS,
     GET_RENEWALS,
     RENEWAL_ERROR,
     OFFER_RENEWAL
 } from "./types";
+import {BASE_URL} from "../config/config";
 
-export const getRenewals = () => async dispatch => {
+export const getPotentialRenewals = () => async dispatch => {
     try {
-        //TODO Handle axios request for GET_RENEWALS action
-        const renewals = [
-            {
-                "trader": {
-                    "user" : {
-                        "name" : "Drew Thomas",
-                        "id": 1,
-                        "email" : "amthomas12@bsu.edu"
-                    },
-                    "book": {
-                        "title": "Some Cool Title",
-                        "isbn": "123"
-                    },
-                    "book_user_id" : 4
-                },
-                "tradee": {
-                    "user" : {
-                        "name" : "Drew Thomas",
-                        "id": 2,
-                        "email" : "test@test.edu"
-                    },
-                    "book": {
-                        "title": "Seven Ate Nine!!",
-                        "isbn": "789"
-                    },
-                    "book_user_id" : 8
-                },
-                "status": "active"
-            },
-            {
-                "trader": {
-                    "user" : {
-                        "name" : "Drew Thomas",
-                        "id": 1,
-                        "email" : "amthomas12@bsu.edu"
-                    },
-                    "book": {
-                        "title": "Some Cool Title",
-                        "isbn": "123"
-                    },
-                    "book_user_id" : 4
-                },
-                "tradee": {
-                    "user" : {
-                        "name" : "Drew Thomas",
-                        "id": 2,
-                        "email" : "test@test.edu"
-                    },
-                    "book": {
-                        "title": "Seven Ate Nine!!",
-                        "isbn": "789"
-                    },
-                    "book_user_id" : 8
-                }
-            }
-        ];
+        const res = await axios.get(BASE_URL + "/users/potential-trades");
         dispatch({
-            type: GET_RENEWALS,
-            payload: renewals
+            type: GET_POTENTIAL_RENEWALS,
+            payload: res.data
         })
 
     } catch (error) {
@@ -76,15 +23,45 @@ export const getRenewals = () => async dispatch => {
     }
 };
 
-export const offerRenewal = (traderBookId,tradeeBookId) => async dispatch => {
+export const getRenewals = () => async dispatch => {
+    try {
+        const res = await axios.get(BASE_URL + "/users/renewals");
+        dispatch({
+            type: GET_RENEWALS,
+            payload: res.data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            loading: false
+        })
+    }
+};
+
+export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async dispatch => {
+    const setHeaders = {
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    };
+
+    const body = JSON.stringify(
+        {
+        "trader_book_user_id" : trader_book_user_id,
+        "tradee_book_user_id" : tradee_book_user_id
+    });
+
     try {
         //TODO Handle axios request for OFFER_RENEWAL action
+        const res = await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
         dispatch({
             type: OFFER_RENEWAL
         });
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,
+            payload: error,
             loading: false
         })
     }

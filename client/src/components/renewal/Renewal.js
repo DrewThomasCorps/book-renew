@@ -21,7 +21,7 @@ const Renewal = ({
                 </div>
                 <div className={"card-body"}>
                     { !status ?
-                        <button className={"btn btn-primary"} onClick={() => offerRenewal(trader.book_user_id,tradee.book_user_id)}>
+                        <button className={"btn btn-primary"} onClick={() => offerRenewal(trader.id,tradee.id)}>
                             Send Offer
                         </button> : <Fragment/>
                     }

@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import Navigation from '../layout/Navigation';
 import Header from '../layout/Header';
 import Renewal from '../renewal/Renewal';
+import { getPotentialRenewals } from '../../actions/renewal';
 import { getRenewals } from '../../actions/renewal';
 
-const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
+const Renewals = ({auth: {loading},getPotentialRenewals,getRenewals,renewal:{renewals}}) => {
     useEffect(()=>{
+        getPotentialRenewals();
         getRenewals();
-    }, [getRenewals]);
+    }, [getRenewals,getPotentialRenewals]);
 
     return (
         <Fragment>
@@ -20,8 +22,8 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
                 <section className={"col-12"}>
                 {!loading && (
                     <Fragment>
-                        {renewals.map(renewal =>  (
-                            renewal.status !== "active" ? <Renewal key={renewal} renewal={renewal}/> : <Fragment/>
+                        {renewals.map((renewal, index) =>  (
+                            renewal.status !== "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
                         ))}
                     </Fragment>
                 )}
@@ -32,6 +34,7 @@ const Renewals = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
 };
 
 Renewals.propTypes = {
+    getPotentialRenewals: PropTypes.func.isRequired,
     getRenewals: PropTypes.func.isRequired,
     renewal: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
@@ -42,4 +45,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps,{ getRenewals })(Renewals);
+export default connect(mapStateToProps,{ getPotentialRenewals,getRenewals })(Renewals);

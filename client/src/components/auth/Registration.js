@@ -59,7 +59,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                         <br />
                         <input type={"password"} name={"password"} value={password} onChange={handleInputChange} placeholder={"Password"}/>
                         <br />
-                        <input type={"password"} name={"passwordConfirmation"} value={passwordConfirmation} onChange={handleInputChange} placeholder={"Confirm Password"}/>
+                        <input type={"text"} name={"passwordConfirmation"} value={passwordConfirmation} onChange={handleInputChange} placeholder={"Confirm Password"}/>
                         <br />
                         <input className="btn btn-primary d-block mx-auto mt-5" type="submit" value="Sign Up"/>
                     </form>

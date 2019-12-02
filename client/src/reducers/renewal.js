@@ -1,4 +1,5 @@
 import {
+    GET_POTENTIAL_RENEWALS,
     GET_RENEWALS,
     RENEWAL_ERROR,
     OFFER_RENEWAL
@@ -14,6 +15,7 @@ export default function(state = initialState, action) {
     const {type, payload} = action;
 
     switch(type){
+        case GET_POTENTIAL_RENEWALS:
         case GET_RENEWALS:
             return {
                 ...state,
