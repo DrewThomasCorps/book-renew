@@ -25,7 +25,7 @@ const Renewal = ({
             break;
         case("pending"):
             if(tradee.id === userId){
-                buttonGroup = <button>Pending</button>;
+                buttonGroup = <button disabled>Pending</button>;
             } else {
                 buttonGroup =
                     <Fragment>
