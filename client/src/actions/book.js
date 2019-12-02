@@ -34,8 +34,7 @@ export const deleteBook = id => async dispatch => {
     } catch (err) {
         dispatch({
             type: BOOK_ERROR,
-            payload: err,
-            loading: false
+            payload: err
         });
     }
 };
