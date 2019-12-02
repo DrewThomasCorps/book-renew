@@ -7,6 +7,7 @@ import {
 
 const initialState = {
     renewals: [],
+    potentialTrades: [],
     loading: true,
     error: {}
 };
@@ -16,6 +17,11 @@ export default function(state = initialState, action) {
 
     switch(type){
         case GET_POTENTIAL_RENEWALS:
+            return {
+                ...state,
+                potentialTrades: payload,
+                loading: false
+            };
         case GET_RENEWALS:
             return {
                 ...state,
