@@ -8,5 +8,5 @@ import java.util.List;
 
 @RepositoryRestResource(exported = false)
 public interface BookUserRepository extends JpaRepository<BookUser, Long> {
-    List<BookUser> findByUser_id(Long $userId);
+    List<BookUser> findByUser_id(Long userId);
 }

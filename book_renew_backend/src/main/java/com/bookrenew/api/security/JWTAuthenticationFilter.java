@@ -17,10 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static com.bookrenew.api.security.SecurityConstants.EXPIRATION_TIME;
-import static com.bookrenew.api.security.SecurityConstants.HEADER_STRING;
-import static com.bookrenew.api.security.SecurityConstants.SECRET;
-import static com.bookrenew.api.security.SecurityConstants.TOKEN_PREFIX;
+import static com.bookrenew.api.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;

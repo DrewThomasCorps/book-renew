@@ -2,6 +2,7 @@ package com.bookrenew.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Set;
