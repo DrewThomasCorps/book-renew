@@ -94,7 +94,7 @@ class MatchTests {
 
     @Test
     @Order(8)
-    void setAuthTokenUser2() throws JSONException, IOException {
+    void setAuthTokenUser2() throws JSONException {
         this.registerSecondUser();
         this.loginSecondUser();
         Assertions.assertNotNull(authToken);
