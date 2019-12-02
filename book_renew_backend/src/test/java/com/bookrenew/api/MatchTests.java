@@ -9,8 +9,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.util.Assert;
-import org.springframework.web.client.HttpClientErrorException;
+
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -257,6 +256,7 @@ public class MatchTests {
     }
 
     private void loginFirstUser() throws JSONException, IOException {
+        authToken = null;
         JSONObject user = this.buildFirstUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
@@ -265,6 +265,7 @@ public class MatchTests {
         Assertions.assertNotNull(authToken);
     }
     private void loginSecondUser() throws JSONException, IOException {
+        authToken = null;
         JSONObject user = this.buildSecondUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
@@ -273,6 +274,7 @@ public class MatchTests {
         Assertions.assertNotNull(authToken);
     }
     private void loginThirdUser() throws JSONException, IOException {
+        authToken = null;
         JSONObject user = this.buildThirdUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
@@ -308,8 +310,10 @@ public class MatchTests {
     }
 
     private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
-        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST, request, String.class);
+        return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
+                request, String.class);
     }
+
     private JSONObject buildBookJsonObject() throws JSONException {
         JSONObject userJsonObject = new JSONObject();
         userJsonObject.put("title", "Harry Potter and the Deathly Hollows");
