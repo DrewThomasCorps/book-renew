@@ -1,58 +1,12 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { offerRenewal } from '../../actions/renewal';
-import { cancelRenewal } from '../../actions/renewal';
-import { completeRenewal } from '../../actions/renewal';
-import { acceptRenewal } from '../../actions/renewal';
+import RenewalButtonGroup from "./RenewalButtonGroup";
 
 const Renewal = ({
-    userId,
-    renewal:{id,trader,tradee,status},
-    offerRenewal,
-    cancelRenewal,
-    completeRenewal,
-    acceptRenewal
+    renewal:{trader,tradee,status},
+    renewal
 }) => {
-
-    let buttonGroup = <Fragment/>;
-
-    switch(status){
-        case("active"):
-            buttonGroup =
-                <Fragment>
-                    <button onClick={() => completeRenewal(id)}>
-                        Complete
-                    </button>
-                    <button onClick={() => cancelRenewal(id)}>
-                        Cancel
-                    </button>
-                </Fragment>;
-            break;
-        case("pending"):
-            if(trader.user.id === userId){
-                buttonGroup = <button disabled>Pending...</button>;
-            } else {
-                buttonGroup =
-                    <Fragment>
-                        <button onClick={() => acceptRenewal(id)}>
-                            Accept
-                        </button>
-                        <button onClick={() => cancelRenewal(id)}>
-                            Decline
-                        </button>
-                    </Fragment>;
-            }
-            break;
-        case("declined"):
-            buttonGroup = <button disabled>Declined</button>;
-            break;
-        case undefined:
-            buttonGroup = <button onClick={() => offerRenewal(trader.id,tradee.id)}>Send Offer</button>;
-            break;
-        default:
-            break;
-    }
 
     return (
         <Fragment>
@@ -72,7 +26,7 @@ const Renewal = ({
                     <small>{tradee.book.isbn}</small>
                 </div>
                 <div className={"card-body"}>
-                    { buttonGroup }
+                    <RenewalButtonGroup renewal={renewal}/>
                 </div>
             </article>
         </Fragment>
@@ -80,12 +34,7 @@ const Renewal = ({
 };
 
 Renewal.propTypes = {
-    userId: PropTypes.number,
-    renewal: PropTypes.object.isRequired,
-    offerRenewal: PropTypes.func.isRequired,
-    cancelRenewal: PropTypes.func.isRequired,
-    completeRenewal: PropTypes.func.isRequired,
-    acceptRenewal: PropTypes.func.isRequired
+    renewal: PropTypes.object.isRequired
 };
 
-export default connect(null,{offerRenewal,cancelRenewal,completeRenewal,acceptRenewal})(Renewal);
+export default connect()(Renewal);
