@@ -6,8 +6,7 @@ import {
     OFFER_RENEWAL,
     CANCEL_RENEWAL,
     COMPLETE_RENEWAL,
-    ACCEPT_RENEWAL,
-    DECLINE_RENEWAL
+    ACCEPT_RENEWAL
 } from "./types";
 import {BASE_URL} from "../config/config";
 
