@@ -22,7 +22,7 @@ const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{rene
                 <section className={"col-12 content-panel"}>
                 <section className={"row p-2"}>
                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                        <h2>Potential</h2>
+                        <h2 className={"text-capitalize grey-text-color"}>Potential</h2>
                         {!loading && (
                             <Fragment>
                                 {potentialTrades.map((trade, index) =>  (
@@ -34,7 +34,7 @@ const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{rene
                 </section>
                 <section className={"row p-2"}>
                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                        <h2>Pending</h2>
+                        <h2 className={"text-capitalize grey-text-color"}>Pending</h2>
                         {!loading && (
                             <Fragment>
                                 {renewals.map((renewal, index) =>  (
@@ -46,7 +46,7 @@ const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{rene
                 </section>
                 <section className={"row p-2"}>
                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                        <h2>Complete</h2>
+                        <h2 className={"text-capitalize grey-text-color"}>Complete</h2>
                         {!loading && (
                             <Fragment>
                                 {renewals.map((renewal, index) =>  (
@@ -58,7 +58,7 @@ const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{rene
                 </section>
                 <section className={"row p-2"}>
                     <div className={"col-12 book-container bg-white left-blue-border shadow"}>
-                        <h2>Declined</h2>
+                        <h2 className={"text-capitalize grey-text-color"}>Declined</h2>
                         {!loading && (
                             <Fragment>
                                 {renewals.map((renewal, index) =>  (
