@@ -5,7 +5,6 @@ import { offerRenewal } from '../../actions/renewal';
 import { cancelRenewal } from '../../actions/renewal';
 import { completeRenewal } from '../../actions/renewal';
 import { acceptRenewal } from '../../actions/renewal';
-import { declineRenewal } from '../../actions/renewal';
 
 const Renewal = ({
     userId,
@@ -13,8 +12,7 @@ const Renewal = ({
     offerRenewal,
     cancelRenewal,
     completeRenewal,
-    acceptRenewal,
-    declineRenewal
+    acceptRenewal
 }) => {
 
     let buttonGroup = <Fragment/>;
@@ -40,7 +38,7 @@ const Renewal = ({
                         <button onClick={() => acceptRenewal(id)}>
                             Accept
                         </button>
-                        <button onClick={() => declineRenewal(id)}>
+                        <button onClick={() => cancelRenewal(id)}>
                             Decline
                         </button>
                     </Fragment>;
@@ -87,8 +85,7 @@ Renewal.propTypes = {
     offerRenewal: PropTypes.func.isRequired,
     cancelRenewal: PropTypes.func.isRequired,
     completeRenewal: PropTypes.func.isRequired,
-    acceptRenewal: PropTypes.func.isRequired,
-    declineRenewal: PropTypes.func.isRequired
+    acceptRenewal: PropTypes.func.isRequired
 };
 
-export default connect(null,{offerRenewal,cancelRenewal,completeRenewal,acceptRenewal,declineRenewal})(Renewal);
+export default connect(null,{offerRenewal,cancelRenewal,completeRenewal,acceptRenewal})(Renewal);

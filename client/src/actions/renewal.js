@@ -146,18 +146,3 @@ export const acceptRenewal = id => async dispatch => {
         })
     }
 };
-
-export const declineRenewal = id => async dispatch => {
-    //TODO Handle PUT axios request for declineRenewal
-    try {
-        dispatch({
-            type: DECLINE_RENEWAL,
-            payload: id
-        })
-    } catch (error) {
-        dispatch({
-            type: RENEWAL_ERROR,
-            payload: error
-        })
-    }
-};
