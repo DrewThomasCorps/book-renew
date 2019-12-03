@@ -10,22 +10,22 @@ const Renewal = ({
 
     return (
         <Fragment>
-            <article className={"card"}>
-                <div className={"card-body"}>
+            <article className={"row"}>
+                <div className={"col-3"}>
                     <small>
-                        { status === "active" ? tradee.user.email : "Library"}
+                        { status === "active" ? tradee.user.email : tradee.user.name}
                     </small>
                     <h5 className={"card-title h6 my-1"}>{trader.book.title}</h5>
                     <small>{trader.book.isbn}</small>
                 </div>
-                <div className={"card-body"}>
+                <div className={"col-3"}>
                     <small>
-                        { status === "active" ? trader.user.email : "Wishlist"}
+                        { status === "active" ? trader.user.email : tradee.user.name}
                     </small>
                     <h5 className={"card-title h6 my-1"}>{tradee.book.title}</h5>
                     <small>{tradee.book.isbn}</small>
                 </div>
-                <div className={"card-body"}>
+                <div className={"col-3"}>
                     <RenewalButtonGroup renewal={renewal}/>
                 </div>
             </article>
