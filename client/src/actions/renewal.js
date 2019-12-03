@@ -21,8 +21,7 @@ export const getPotentialRenewals = () => async dispatch => {
 
     } catch (error) {
         dispatch({
-            type: RENEWAL_ERROR,
-            loading: false
+            type: RENEWAL_ERROR
         })
     }
 };
@@ -37,8 +36,7 @@ export const getRenewals = () => async dispatch => {
 
     } catch (error) {
         dispatch({
-            type: RENEWAL_ERROR,
-            loading: false
+            type: RENEWAL_ERROR
         })
     }
 };
@@ -64,8 +62,7 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,
-            payload: error,
-            loading: false
+            payload: error
         })
     }
 };
@@ -87,7 +84,9 @@ export const cancelRenewal = id => async dispatch => {
         dispatch({
             type: CANCEL_RENEWAL,
             payload: id
-        })
+        });
+
+        dispatch(getRenewals());
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,
@@ -97,12 +96,24 @@ export const cancelRenewal = id => async dispatch => {
 };
 
 export const completeRenewal = id => async dispatch => {
-    //TODO Handle PUT axios request for completeRenewal
+    const setHeaders = {
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    };
+
+    const body = JSON.stringify(
+        {
+            "status" : "completed"
+        });
     try {
+        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
         dispatch({
             type: COMPLETE_RENEWAL,
             payload: id
-        })
+        });
+
+        dispatch(getRenewals());
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,

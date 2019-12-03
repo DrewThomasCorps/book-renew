@@ -32,6 +32,8 @@ export default function(state = initialState, action) {
                 renewals: payload,
                 loading: false
             };
+        case ACCEPT_RENEWAL:
+        case CANCEL_RENEWAL:
         case DECLINE_RENEWAL:
         case COMPLETE_RENEWAL:
         case OFFER_RENEWAL:
@@ -39,17 +41,11 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: false
             };
-        case ACCEPT_RENEWAL:
-        case CANCEL_RENEWAL:
-            return {
-                ...state,
-                renewals: state.renewals.filter(renewal => renewal.id !== payload),
-                loading: false
-            };
         case RENEWAL_ERROR:
             return {
                 ...state,
-                error: payload
+                error: payload,
+                loading: false
             };
         default:
             return state;
