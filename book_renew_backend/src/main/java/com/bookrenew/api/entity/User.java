@@ -92,6 +92,7 @@ import java.util.Set;
                 @ColumnResult(name = "tradeeEmail", type = String.class)
         })
 })
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "users")
 public class User {
