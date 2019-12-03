@@ -19,46 +19,56 @@ const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{rene
             <Navigation />
             <section className={"row br-content-container"}>
                 <Header pageTitle={"Renewals"}/>
-                <section className={"col-12"}>
-                    <h2>Potential</h2>
-                    {!loading && (
-                        <Fragment>
-                            {potentialTrades.map((trade, index) =>  (
-                                <Renewal key={index} renewal={trade}/>
-                            ))}
-                        </Fragment>
-                    )}
+                <section className={"col-12 content-panel"}>
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2>Potential</h2>
+                        {!loading && (
+                            <Fragment>
+                                {potentialTrades.map((trade, index) =>  (
+                                    <Renewal key={index} renewal={trade}/>
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
                 </section>
-                <section className={"col-12"}>
-                    <h2>Pending</h2>
-                    {!loading && (
-                        <Fragment>
-                            {renewals.map((renewal, index) =>  (
-                                renewal.status === "pending" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
-                            ))}
-                        </Fragment>
-                    )}
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2>Pending</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "pending" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
                 </section>
-                <section className={"col-12"}>
-                    <h2>Complete</h2>
-                    {!loading && (
-                        <Fragment>
-                            {renewals.map((renewal, index) =>  (
-                                renewal.status === "completed" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
-                            ))}
-                        </Fragment>
-                    )}
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2>Complete</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "completed" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
                 </section>
-                <section className={"col-12"}>
-                    <h2>Declined</h2>
-                    {!loading && (
-                        <Fragment>
-                            {renewals.map((renewal, index) =>  (
-                                renewal.status === "declined" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
-                            ))}
-                        </Fragment>
-                    )}
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2>Declined</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "declined" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
                 </section>
+              </section>
             </section>
         </Fragment>
         )
