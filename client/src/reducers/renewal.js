@@ -3,7 +3,8 @@ import {
     GET_RENEWALS,
     RENEWAL_ERROR,
     OFFER_RENEWAL,
-    CANCEL_RENEWAL
+    CANCEL_RENEWAL,
+    COMPLETE_RENEWAL
 } from "../actions/types";
 
 const initialState = {
@@ -29,12 +30,9 @@ export default function(state = initialState, action) {
                 renewals: payload,
                 loading: false
             };
-        case OFFER_RENEWAL:
-            return {
-                ...state,
-                loading: false
-            };
+        case COMPLETE_RENEWAL:
         case CANCEL_RENEWAL:
+        case OFFER_RENEWAL:
             return {
                 ...state,
                 loading: false

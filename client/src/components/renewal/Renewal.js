@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { offerRenewal } from '../../actions/renewal';
 import { cancelRenewal } from '../../actions/renewal';
+import { completeRenewal } from '../../actions/renewal';
 
 const Renewal = ({
     userId,
     renewal:{id,trader,tradee,status},
     offerRenewal,
-    cancelRenewal
+    cancelRenewal,
+    completeRenewal
 }) => {
 
     let buttonGroup = <Fragment/>;
@@ -17,7 +19,7 @@ const Renewal = ({
         case("active"):
             buttonGroup =
                 <Fragment>
-                    <button>
+                    <button onClick={() => completeRenewal(id)}>
                         Complete
                     </button>
                     <button onClick={() => cancelRenewal(id)}>
@@ -73,7 +75,8 @@ Renewal.propTypes = {
     userId: PropTypes.number,
     renewal: PropTypes.object.isRequired,
     offerRenewal: PropTypes.func.isRequired,
-    cancelRenewal: PropTypes.func.isRequired
+    cancelRenewal: PropTypes.func.isRequired,
+    completeRenewal: PropTypes.func.isRequired
 };
 
-export default connect(null,{offerRenewal,cancelRenewal})(Renewal);
+export default connect(null,{offerRenewal,cancelRenewal,completeRenewal})(Renewal);
