@@ -17,14 +17,19 @@ const Dashboard = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
             <Navigation />
             <section className={"row br-content-container"}>
                 <Header pageTitle={"Dashboard"} />
-                <section className={"col-12"}>
-                    {!loading && (
-                        <Fragment>
-                            {renewals.map((renewal, index) =>  (
-                                renewal.status === "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
-                            ))}
-                        </Fragment>
-                    )}
+                <section className={"col-12 content-panel"}>
+                    <section className={"row p-2"}>
+                        <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                            <h2 className={"text-capitalize grey-text-color"}>Active Renewals</h2>
+                            {!loading && (
+                                <Fragment>
+                                    {renewals.map((renewal, index) =>  (
+                                        renewal.status === "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
+                                    ))}
+                                </Fragment>
+                            )}
+                        </div>
+                    </section>
                 </section>
             </section>
         </Fragment>
