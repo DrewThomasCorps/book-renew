@@ -112,8 +112,18 @@ export const completeRenewal = id => async dispatch => {
 };
 
 export const acceptRenewal = id => async dispatch => {
-    //TODO Handle PUT axios request for acceptRenewal
+    const setHeaders = {
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    };
+
+    const body = JSON.stringify(
+        {
+            "status" : "active"
+        });
     try {
+        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
         dispatch({
             type: ACCEPT_RENEWAL,
             payload: id

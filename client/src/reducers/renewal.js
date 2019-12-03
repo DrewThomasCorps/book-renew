@@ -32,7 +32,6 @@ export default function(state = initialState, action) {
                 renewals: payload,
                 loading: false
             };
-        case ACCEPT_RENEWAL:
         case DECLINE_RENEWAL:
         case COMPLETE_RENEWAL:
         case OFFER_RENEWAL:
@@ -40,6 +39,7 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: false
             };
+        case ACCEPT_RENEWAL:
         case CANCEL_RENEWAL:
             return {
                 ...state,
