@@ -5,7 +5,8 @@ import {
     OFFER_RENEWAL,
     CANCEL_RENEWAL,
     COMPLETE_RENEWAL,
-    ACCEPT_RENEWAL
+    ACCEPT_RENEWAL,
+    DECLINE_RENEWAL
 } from "../actions/types";
 
 const initialState = {
@@ -32,6 +33,7 @@ export default function(state = initialState, action) {
                 loading: false
             };
         case ACCEPT_RENEWAL:
+        case DECLINE_RENEWAL:
         case COMPLETE_RENEWAL:
         case CANCEL_RENEWAL:
         case OFFER_RENEWAL:
