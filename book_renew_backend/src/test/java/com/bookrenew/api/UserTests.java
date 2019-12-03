@@ -23,7 +23,7 @@ class UserTests {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String baseUrl = "http://localhost:8080/";
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
     private JsonNode responseRoot;
     private String authToken;
 
