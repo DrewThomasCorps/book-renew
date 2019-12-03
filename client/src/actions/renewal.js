@@ -3,7 +3,8 @@ import {
     GET_POTENTIAL_RENEWALS,
     GET_RENEWALS,
     RENEWAL_ERROR,
-    OFFER_RENEWAL
+    OFFER_RENEWAL,
+    CANCEL_RENEWAL
 } from "./types";
 import {BASE_URL} from "../config/config";
 
@@ -63,6 +64,21 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
             type: RENEWAL_ERROR,
             payload: error,
             loading: false
+        })
+    }
+};
+
+export const cancelRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for cancelRenewal
+    try {
+        dispatch({
+            type: CANCEL_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
         })
     }
 };
