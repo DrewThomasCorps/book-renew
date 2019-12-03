@@ -5,7 +5,8 @@ import {
     RENEWAL_ERROR,
     OFFER_RENEWAL,
     CANCEL_RENEWAL,
-    COMPLETE_RENEWAL
+    COMPLETE_RENEWAL,
+    ACCEPT_RENEWAL
 } from "./types";
 import {BASE_URL} from "../config/config";
 
@@ -98,3 +99,17 @@ export const completeRenewal = id => async dispatch => {
     }
 };
 
+export const acceptRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for acceptRenewal
+    try {
+        dispatch({
+            type: ACCEPT_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
+        })
+    }
+};
