@@ -71,8 +71,19 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
 };
 
 export const cancelRenewal = id => async dispatch => {
-    //TODO Handle PUT axios request for cancelRenewal
+    const setHeaders = {
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    };
+
+    const body = JSON.stringify(
+        {
+            "status" : "declined"
+        });
+
     try {
+        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
         dispatch({
             type: CANCEL_RENEWAL,
             payload: id

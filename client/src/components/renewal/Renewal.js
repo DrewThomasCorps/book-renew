@@ -33,7 +33,7 @@ const Renewal = ({
             break;
         case("pending"):
             if(tradee.id === userId){
-                buttonGroup = <button disabled>Pending</button>;
+                buttonGroup = <button disabled>Pending...</button>;
             } else {
                 buttonGroup =
                     <Fragment>
@@ -46,8 +46,14 @@ const Renewal = ({
                     </Fragment>;
             }
             break;
+        case("declined"):
+            buttonGroup = <button disabled>Declined</button>;
+            break;
+        case undefined:
+            buttonGroup = <button onClick={() => offerRenewal(trader.id,tradee.id)}>Send Offer</button>;
+            break;
         default:
-            buttonGroup = <button onClick={() => offerRenewal(trader.id,tradee.id)}>Send Offer</button>
+            break;
     }
 
     return (
