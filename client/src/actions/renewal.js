@@ -12,7 +12,7 @@ import {BASE_URL} from "../config/config";
 
 export const getPotentialRenewals = () => async dispatch => {
     try {
-        const res = await axios.get(BASE_URL + "/users/potential-trades");
+        const res = await axios.get(BASE_URL + "/potential-trades");
         dispatch({
             type: GET_POTENTIAL_RENEWALS,
             payload: res.data
@@ -27,7 +27,7 @@ export const getPotentialRenewals = () => async dispatch => {
 
 export const getRenewals = () => async dispatch => {
     try {
-        const res = await axios.get(BASE_URL + "/users/renewals");
+        const res = await axios.get(BASE_URL + "/renewals");
         dispatch({
             type: GET_RENEWALS,
             payload: res.data
@@ -54,7 +54,7 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
     });
 
     try {
-        await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
+        await axios.post(BASE_URL + "/renewals", body, setHeaders);
         dispatch({
             type: OFFER_RENEWAL
         });
@@ -79,7 +79,7 @@ export const cancelRenewal = id => async dispatch => {
         });
 
     try {
-        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
+        await axios.put(BASE_URL + "/renewals/" + id, body, setHeaders);
         dispatch({
             type: CANCEL_RENEWAL,
             payload: id
@@ -106,7 +106,7 @@ export const completeRenewal = id => async dispatch => {
             "status" : "completed"
         });
     try {
-        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
+        await axios.put(BASE_URL + "/renewals/" + id, body, setHeaders);
         dispatch({
             type: COMPLETE_RENEWAL,
             payload: id
@@ -133,7 +133,7 @@ export const acceptRenewal = id => async dispatch => {
             "status" : "active"
         });
     try {
-        await axios.put(BASE_URL + "/users/renewals/" + id, body, setHeaders);
+        await axios.put(BASE_URL + "/renewals/" + id, body, setHeaders);
         dispatch({
             type: ACCEPT_RENEWAL,
             payload: id
