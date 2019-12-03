@@ -13,14 +13,14 @@ const Renewal = ({
             <article className={"row"}>
                 <div className={"col-3"}>
                     <small>
-                        { status === "active" ? tradee.user.email : tradee.user.name}
+                        { status === "active" ? trader.user.email : trader.user.name}
                     </small>
                     <h5 className={"card-title h6 my-1"}>{trader.book.title}</h5>
                     <small>{trader.book.isbn}</small>
                 </div>
                 <div className={"col-3"}>
                     <small>
-                        { status === "active" ? trader.user.email : tradee.user.name}
+                        { status === "active" ? tradee.user.email : tradee.user.name}
                     </small>
                     <h5 className={"card-title h6 my-1"}>{tradee.book.title}</h5>
                     <small>{tradee.book.isbn}</small>
