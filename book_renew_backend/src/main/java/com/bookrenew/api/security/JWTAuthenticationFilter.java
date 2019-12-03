@@ -19,8 +19,8 @@ import java.util.Date;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.bookrenew.api.security.SecurityConstants.*;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+    private final AuthenticationManager authenticationManager;
 
     JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
