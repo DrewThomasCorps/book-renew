@@ -80,18 +80,27 @@ public class UserController {
         BookUser traderBookUser = bookUserRepository.findById(traderBookUserId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trader cannot offer book that doesn't exist")
         );
+        BookUser tradeeBookUser = bookUserRepository.findById(tradeeBookUserId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trader cannot ask for book that doesn't exist")
+        );
+        validateTrade(traderBookUser, tradeeBookUser);
+        return createTrade(traderBookUser, tradeeBookUser);
+    }
+
+    private void validateTrade(BookUser traderBookUser, BookUser tradeeBookUser) {
         if (traderBookUser.getStatus() != BookUser.Status.library) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trader does not have book in their library.");
         }
         if (!traderBookUser.getUser().getId().equals(this.getUserFromAuthCredentials().getId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Trader cannot offer book from someone else's library.");
         }
-        BookUser tradeeBookUser = bookUserRepository.findById(tradeeBookUserId).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trader cannot ask for book that doesn't exist")
-        );
+
         if (tradeeBookUser.getStatus() != BookUser.Status.library) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tradee's book is not in their library");
         }
+    }
+
+    private Renewal createTrade(BookUser traderBookUser, BookUser tradeeBookUser) {
         Renewal offer = new Renewal();
         offer.setStatus(Renewal.Status.pending);
         offer.setTrader(traderBookUser);
