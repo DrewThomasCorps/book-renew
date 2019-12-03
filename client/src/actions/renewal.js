@@ -54,8 +54,7 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
     });
 
     try {
-        //TODO Handle axios request for OFFER_RENEWAL action
-        const res = await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
+        await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
         dispatch({
             type: OFFER_RENEWAL
         });
