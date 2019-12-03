@@ -37,7 +37,7 @@ class UserTests {
     }
     @Test
     @Order(2)
-    void testUserRegisterWithoutCredentialsReturns400() throws JSONException, IOException{
+    void testUserRegisterWithoutCredentialsReturns400() throws JSONException {
         JSONObject userJsonObject = this.buildEmptyLoginCredentials();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
@@ -48,7 +48,7 @@ class UserTests {
 
     @Test
     @Order(3)
-    void testCreatingDuplicateUserReturns409() throws JSONException, IOException {
+    void testCreatingDuplicateUserReturns409() throws JSONException {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
@@ -68,7 +68,7 @@ class UserTests {
 
     @Test
     @Order(5)
-    void testLoginSuccess() throws JSONException, IOException {
+    void testLoginSuccess() throws JSONException {
         JSONObject loginCredentials = this.buildLoginCredentials();
         HttpEntity<String> request = this.buildRequest(loginCredentials);
         ResponseEntity<String> response = this.sendLoginRequest(request);
@@ -121,7 +121,7 @@ class UserTests {
         return credentials;
     }
 
-    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
+    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
                 request, String.class);
     }

@@ -210,7 +210,7 @@ class MatchTests {
     }
 
     private ResponseEntity<String> sendGetMatchesRequest(HttpEntity<String> request) {
-        return restTemplate.exchange(baseUrl + "users/potential-trades", HttpMethod.GET, request, String.class);
+        return restTemplate.exchange(baseUrl + "potential-trades", HttpMethod.GET, request, String.class);
     }
 
     private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
