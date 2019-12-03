@@ -38,7 +38,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 loading: false
-            }
+            };
         case RENEWAL_ERROR:
             return {
                 ...state,
