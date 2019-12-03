@@ -8,7 +8,7 @@ import Renewal from '../renewal/Renewal';
 import { getPotentialRenewals } from '../../actions/renewal';
 import { getRenewals } from '../../actions/renewal';
 
-const Renewals = ({auth: {loading},getPotentialRenewals,getRenewals,renewal:{renewals}}) => {
+const Renewals = ({auth:{loading,user},getPotentialRenewals,getRenewals,renewal:{renewals,potentialTrades}}) => {
     useEffect(()=>{
         getPotentialRenewals();
         getRenewals();
@@ -20,10 +20,21 @@ const Renewals = ({auth: {loading},getPotentialRenewals,getRenewals,renewal:{ren
             <section className={"row br-content-container"}>
                 <Header pageTitle={"Renewals"}/>
                 <section className={"col-12"}>
+                    <h2>Pending</h2>
+                {!loading && (
+                    <div className={"col-12 col-lg-6 col-xl-3"}>
+                        {renewals.map((renewal, index) =>  (
+                            renewal.status !== "active" ? <Renewal key={index} renewal={renewal} userId={user.id}/> : <Fragment/>
+                        ))}
+                    </div>
+                )}
+                </section>
+                <section className={"col-12"}>
+                    <h2>Potential</h2>
                 {!loading && (
                     <Fragment>
-                        {renewals.map((renewal, index) =>  (
-                            renewal.status !== "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
+                        {potentialTrades.map((trade, index) =>  (
+                            <Renewal key={index} renewal={trade}/>
                         ))}
                     </Fragment>
                 )}

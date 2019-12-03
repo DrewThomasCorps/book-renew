@@ -3,7 +3,11 @@ import {
     GET_POTENTIAL_RENEWALS,
     GET_RENEWALS,
     RENEWAL_ERROR,
-    OFFER_RENEWAL
+    OFFER_RENEWAL,
+    CANCEL_RENEWAL,
+    COMPLETE_RENEWAL,
+    ACCEPT_RENEWAL,
+    DECLINE_RENEWAL
 } from "./types";
 import {BASE_URL} from "../config/config";
 
@@ -53,8 +57,7 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
     });
 
     try {
-        //TODO Handle axios request for OFFER_RENEWAL action
-        const res = await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
+        await axios.post(BASE_URL + "/users/renewals", body, setHeaders);
         dispatch({
             type: OFFER_RENEWAL
         });
@@ -67,3 +70,62 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
     }
 };
 
+export const cancelRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for cancelRenewal
+    try {
+        dispatch({
+            type: CANCEL_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
+        })
+    }
+};
+
+export const completeRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for completeRenewal
+    try {
+        dispatch({
+            type: COMPLETE_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
+        })
+    }
+};
+
+export const acceptRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for acceptRenewal
+    try {
+        dispatch({
+            type: ACCEPT_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
+        })
+    }
+};
+
+export const declineRenewal = id => async dispatch => {
+    //TODO Handle PUT axios request for declineRenewal
+    try {
+        dispatch({
+            type: DECLINE_RENEWAL,
+            payload: id
+        })
+    } catch (error) {
+        dispatch({
+            type: RENEWAL_ERROR,
+            payload: error
+        })
+    }
+};
