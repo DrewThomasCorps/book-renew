@@ -20,8 +20,8 @@ const Dashboard = ({auth: {loading},getRenewals,renewal:{renewals}}) => {
                 <section className={"col-12"}>
                     {!loading && (
                         <Fragment>
-                            {renewals.map(renewal =>  (
-                                renewal.status === "active" ? <Renewal key={renewal} renewal={renewal}/> : <Fragment/>
+                            {renewals.map((renewal, index) =>  (
+                                renewal.status === "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
                             ))}
                         </Fragment>
                     )}
