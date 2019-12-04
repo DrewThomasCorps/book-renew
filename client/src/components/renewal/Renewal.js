@@ -12,7 +12,7 @@ const Renewal = ({
     return (
         <Fragment>
             <article className={"row"}>
-                <div className={"col-3"}>
+                <div className={"col-3 book-card-body book-card-container"}>
                     <small>
                         { status === "active" ? trader.user.email : trader.user.name}
                     </small>
@@ -20,9 +20,9 @@ const Renewal = ({
                     <small>{trader.book.isbn}</small>
                 </div>
                 <div className={"col-3"}>
-                    <img alt={"Renewal Arrows"} src={renewalArrows} />
+                    <img alt={"Renewal Arrows"} className={"br-vCenter"} src={renewalArrows} />
                 </div>
-                <div className={"col-3"}>
+                <div className={"col-3 book-card-body book-card-container"}>
                     <small>
                         { status === "active" ? tradee.user.email : tradee.user.name}
                     </small>
