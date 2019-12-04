@@ -92,7 +92,18 @@
   background: $primary-color;
 }
 
+.btn-primary:hover {
+  color: $light-color;
+  border-color: darken($primary-color, 5%);
+  background: darken($primary-color, 5%);
+}
+
 .btn-white {
+  color: $light-color;
+  border-color: $light-color;
+}
+
+.btn-white:hover {
   color: $light-color;
   border-color: $light-color;
 }

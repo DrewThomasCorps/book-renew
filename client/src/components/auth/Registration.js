@@ -53,7 +53,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                 </div>
                 <div className="rstart-4 rspan-5 rstart-lg-5 cstart-1 cspan-12 cstart-md-3 cspan-md-8 cstart-lg-1 cspan-lg-4 item w-100">
                     <form className="form" onSubmit={handleAccountCreationSubmit}>
-                        <input type={"text"} name={"name"} value={name} onChange={handleInputChange} placeholder={"Name"}/>
+                        <input className={"login-form"} type={"text"} name={"name"} value={name} onChange={handleInputChange} placeholder={"Name"}/>
                         <br />
                         <input type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email"}/>
                         <br />
@@ -64,7 +64,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                         <input className="btn btn-primary d-block mx-auto mt-5" type="submit" value="Sign Up"/>
                     </form>
                     <div className={"text-center"}>
-                        Already have an account? <Link to={"/"}>Sign In here.</Link>
+                        Already have an account? <Link className={"sign-up-link"} to={"/"}>Sign In </Link>here.
                     </div>
                 </div>
                 <div className="rstart-1 rspan-12 cstart-1 cspan-12 bg-white z-index-back">
