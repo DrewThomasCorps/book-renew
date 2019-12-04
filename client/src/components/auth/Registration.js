@@ -64,7 +64,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                         <input className="btn btn-primary d-block mx-auto mt-5" type="submit" value="Sign Up"/>
                     </form>
                     <div className={"text-center"}>
-                        Already have an account? <Link to={"/"}>Sign In here.</Link>
+                        Already have an account? <Link className={"sign-up-link"} to={"/"}>Sign In </Link>here.
                     </div>
                 </div>
                 <div className="rstart-1 rspan-12 cstart-1 cspan-12 bg-white z-index-back">
