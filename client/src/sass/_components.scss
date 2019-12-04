@@ -98,6 +98,18 @@
   background: darken($primary-color, 5%);
 }
 
+.btn-secondary {
+  background-color: $dark-color;
+  color: $light-color;
+  border-color: $dark-color;
+}
+
+.btn-secondary:hover {
+  color: $light-color;
+  background-color: darken($dark-color, 5%);
+  border-color: darken($dark-color, 5%);
+}
+
 .btn-white {
   color: $light-color;
   border-color: $light-color;
@@ -111,24 +123,6 @@
 .btn-grey {
   color: $light-color;
   background: $mid-color;
-}
-
-.log-out-btn {
-  background-color: $dark-color;
-  color: $light-color;
-  border-color: $dark-color;
-}
-
-.add-book-btn {
-  background-color: $light-color;
-  border-color: $primary-color;
-  color: $primary-color;
-}
-
-.add-book-btn:hover {
-  background-color: $primary-color;
-  color: $light-color;
-  border-color: $primary-color;
 }
 
 @media (max-width: 700px) {
