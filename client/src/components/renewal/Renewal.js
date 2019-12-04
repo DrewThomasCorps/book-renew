@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RenewalButtonGroup from "./RenewalButtonGroup";
+import renewalArrows from "../../resources/renewal_arrows_primary.svg";
 
 const Renewal = ({
     renewal:{trader,tradee,status},
@@ -17,6 +18,9 @@ const Renewal = ({
                     </small>
                     <h5 className={"card-title h6 my-1"}>{trader.book.title}</h5>
                     <small>{trader.book.isbn}</small>
+                </div>
+                <div className={"col-3"}>
+                    <img alt={"Renewal Arrows"} src={renewalArrows} />
                 </div>
                 <div className={"col-3"}>
                     <small>
