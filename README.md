@@ -25,8 +25,9 @@ For more help see the HELP.md file located in the backend directory
 ### Frontend
 1. Install Node.js and NPM.
 2. Open up the terminal and `cd` into the client directory.  
-3. Run `npm install && npm start`  
-4. This should open up the project on localhost port 3000  
-5. You may have to edit the config file located in client/src/config  
+3. Run `npm install && npm start`
+4. PC users will see SKIPPING OPTIONAL DEPENDENCY: fsevents. This dependency is for Mac users.  
+5. This should open up the project on localhost port 3000  
+6. You may have to edit the config file located in client/src/config  
 
 For more help see the README.md in the client directory  
