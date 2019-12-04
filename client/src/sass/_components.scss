@@ -141,7 +141,7 @@
 @media (max-width: 700px) {
   .br-navbar {
     bottom: 0;
-    height: 96px;
+    height: 50px;
     width: 100%;
     z-index: 100;
   }
@@ -150,18 +150,18 @@
   }
   .br-nav-link {
     display: inline-block;
-    height: 96px;
+    height: 50px;
     width: 100%;
   }
   .br-nav-item {
-    height: 96px;
+    height: 50px;
     width: 33%;
   }
   .br-nav-item:last-of-type {
     width: 34%;
   }
   .br-nav-icon {
-    height: 40px;
+    height: 25px;
     width: auto;
   }
 }
