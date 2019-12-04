@@ -2,9 +2,8 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { offerRenewal } from '../../actions/renewal';
-import { cancelRenewal } from '../../actions/renewal';
-import { completeRenewal } from '../../actions/renewal';
-import { acceptRenewal } from '../../actions/renewal';
+import { updateRenewal } from '../../actions/renewal';
+
 
 const RenewalButtonGroup = (
     {
@@ -12,9 +11,7 @@ const RenewalButtonGroup = (
         renewal: {trader,tradee},
         renewal,
         offerRenewal,
-        cancelRenewal,
-        completeRenewal,
-        acceptRenewal
+        updateRenewal
    }
    ) => {
 
@@ -38,10 +35,10 @@ const RenewalButtonGroup = (
     const getActiveButtons = () => {
         return (
             <Fragment>
-                <button onClick={() => completeRenewal(renewal.id)}>
+                <button onClick={() => updateRenewal(renewal.id,"completed")}>
                     Complete
                 </button>
-                <button onClick={() => cancelRenewal(renewal.id)}>
+                <button onClick={() => updateRenewal(renewal.id,"declined")}>
                     Cancel
                 </button>
             </Fragment>
@@ -67,10 +64,10 @@ const RenewalButtonGroup = (
             </Fragment>
         } else {
             buttonGroup = <Fragment>
-                <button onClick={() => acceptRenewal(renewal.id)}>
+                <button onClick={() => updateRenewal(renewal.id,"active")}>
                     Accept
                 </button>
-                <button onClick={() => cancelRenewal(renewal.id)}>
+                <button onClick={() => updateRenewal(renewal.id,"declined")}>
                     Decline
                 </button>
             </Fragment>
@@ -107,13 +104,11 @@ const RenewalButtonGroup = (
 RenewalButtonGroup.propTypes = {
     renewal: PropTypes.object.isRequired,
     offerRenewal: PropTypes.func.isRequired,
-    cancelRenewal: PropTypes.func.isRequired,
-    completeRenewal: PropTypes.func.isRequired,
-    acceptRenewal: PropTypes.func.isRequired
+    updateRenewal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps,{offerRenewal,cancelRenewal,completeRenewal,acceptRenewal})(RenewalButtonGroup);
+export default connect(mapStateToProps,{offerRenewal,updateRenewal})(RenewalButtonGroup);
