@@ -12,7 +12,7 @@ const Header = ({ pageTitle, logoutUser}) => {
             </section>
             { pageTitle === "Profile" && (
                 <section className={"col-3"}>
-                    <button className={"btn btn-dark my-1 md-3 btn-secondary"} onClick={logoutUser}>Log Out</button>
+                    <button className={"btn btn-dark my-1 md-3 btn-secondary float-right"} onClick={logoutUser}>Log Out</button>
                 </section>
             )}
         </Fragment>
