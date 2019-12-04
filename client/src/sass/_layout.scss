@@ -116,6 +116,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   padding: 1rem;
 }
 
+.sign-up-link {
+  text-decoration: none;
+  color: $dark-color;
+}
+
+.sign-up-link:hover{
+  text-decoration: none;
+  color: $dark-color;
+  font-weight: bold;
+
+}
 .form {
   margin: 2rem;
   transition: .25s;
