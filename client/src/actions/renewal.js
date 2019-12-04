@@ -8,7 +8,9 @@ import {
     COMPLETE_RENEWAL,
     ACCEPT_RENEWAL
 } from "./types";
+
 import {BASE_URL} from "../config/config";
+import {setAlert} from "./alert";
 
 export const getPotentialRenewals = () => async dispatch => {
     try {
@@ -58,6 +60,7 @@ export const offerRenewal = (trader_book_user_id,tradee_book_user_id) => async d
         dispatch({
             type: OFFER_RENEWAL
         });
+        dispatch(setAlert("Successfully sent offer",'success'));
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,
@@ -84,7 +87,7 @@ export const cancelRenewal = id => async dispatch => {
             type: CANCEL_RENEWAL,
             payload: id
         });
-
+        dispatch(setAlert("Renewal cancelled",'success'));
         dispatch(getRenewals());
     } catch (error) {
         dispatch({
@@ -105,13 +108,14 @@ export const completeRenewal = id => async dispatch => {
         {
             "status" : "completed"
         });
+
     try {
         await axios.put(BASE_URL + "/renewals/" + id, body, setHeaders);
         dispatch({
             type: COMPLETE_RENEWAL,
             payload: id
         });
-
+        dispatch(setAlert("Renewal has been completed",'success'));
         dispatch(getRenewals());
     } catch (error) {
         dispatch({
@@ -132,12 +136,14 @@ export const acceptRenewal = id => async dispatch => {
         {
             "status" : "active"
         });
+
     try {
         await axios.put(BASE_URL + "/renewals/" + id, body, setHeaders);
         dispatch({
             type: ACCEPT_RENEWAL,
             payload: id
-        })
+        });
+        dispatch(setAlert("Successfully accepted renewal",'success'));
     } catch (error) {
         dispatch({
             type: RENEWAL_ERROR,
