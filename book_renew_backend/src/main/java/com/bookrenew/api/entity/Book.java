@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 @Entity
 public class Book {
 
@@ -23,7 +24,7 @@ public class Book {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -31,7 +32,7 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 

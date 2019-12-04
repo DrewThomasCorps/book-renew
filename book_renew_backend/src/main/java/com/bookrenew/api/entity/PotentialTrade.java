@@ -2,6 +2,7 @@ package com.bookrenew.api.entity;
 
 import java.math.BigInteger;
 
+@SuppressWarnings("unused")
 public class PotentialTrade {
 
 

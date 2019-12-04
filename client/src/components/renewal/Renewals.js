@@ -8,7 +8,7 @@ import Renewal from '../renewal/Renewal';
 import { getPotentialRenewals } from '../../actions/renewal';
 import { getRenewals } from '../../actions/renewal';
 
-const Renewals = ({auth: {loading},getPotentialRenewals,getRenewals,renewal:{renewals}}) => {
+const Renewals = ({auth:{loading},getPotentialRenewals,getRenewals,renewal:{renewals,potentialTrades}}) => {
     useEffect(()=>{
         getPotentialRenewals();
         getRenewals();
@@ -19,15 +19,56 @@ const Renewals = ({auth: {loading},getPotentialRenewals,getRenewals,renewal:{ren
             <Navigation />
             <section className={"row br-content-container"}>
                 <Header pageTitle={"Renewals"}/>
-                <section className={"col-12"}>
-                {!loading && (
-                    <Fragment>
-                        {renewals.map((renewal, index) =>  (
-                            renewal.status !== "active" ? <Renewal key={index} renewal={renewal}/> : <Fragment/>
-                        ))}
-                    </Fragment>
-                )}
+                <section className={"col-12 content-panel"}>
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2 className={"text-capitalize grey-text-color"}>Potential</h2>
+                        {!loading && (
+                            <Fragment>
+                                {potentialTrades.map((trade, index) =>  (
+                                    <Renewal key={index} renewal={trade}/>
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
                 </section>
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2 className={"text-capitalize grey-text-color"}>Pending</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "pending" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
+                </section>
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2 className={"text-capitalize grey-text-color"}>Complete</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "completed" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
+                </section>
+                <section className={"row p-2"}>
+                    <div className={"col-12 book-container bg-white left-blue-border shadow"}>
+                        <h2 className={"text-capitalize grey-text-color"}>Declined</h2>
+                        {!loading && (
+                            <Fragment>
+                                {renewals.map((renewal, index) =>  (
+                                    renewal.status === "declined" ? <Renewal key={index} renewal={renewal}/> : <Fragment />
+                                ))}
+                            </Fragment>
+                        )}
+                    </div>
+                </section>
+              </section>
             </section>
         </Fragment>
         )

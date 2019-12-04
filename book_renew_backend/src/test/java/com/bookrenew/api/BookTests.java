@@ -24,7 +24,7 @@ class BookTests {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String baseUrl = "http://localhost:8080/";
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
     private JsonNode responseRoot;
     private String authToken;
 
@@ -46,7 +46,7 @@ class BookTests {
 
     @Test
     @Order(2)
-    void setAuthToken() throws JSONException, IOException {
+    void setAuthToken() throws JSONException {
         this.registerUser();
         this.login();
         Assertions.assertNotNull(authToken);
@@ -94,7 +94,7 @@ class BookTests {
     }
     @Test
     @Order(7)
-    void testDuplicateBookthrows409() throws JSONException, IOException
+    void testDuplicateBookThrows409() throws JSONException
     {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
@@ -134,7 +134,7 @@ class BookTests {
         responseRoot = objectMapper.readTree(userResultsAsJsonString);
     }
 
-    private void registerUser() throws JSONException, IOException {
+    private void registerUser() throws JSONException {
         JSONObject user = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         this.sendRegisterRequest(request);
@@ -148,18 +148,18 @@ class BookTests {
         return userJsonObject;
     }
 
-    private void sendRegisterRequest(HttpEntity<String> request) throws IOException {
+    private void sendRegisterRequest(HttpEntity<String> request) {
         restTemplate.postForObject(baseUrl + "users/register", request, String.class);
     }
 
-    private void login() throws JSONException, IOException {
+    private void login() throws JSONException {
         JSONObject user = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         ResponseEntity<String> response = this.sendLoginRequest(request);
         authToken = response.getHeaders().toSingleValueMap().get("Authorization");
     }
 
-    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) throws IOException {
+    private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
                 request, String.class);
     }
