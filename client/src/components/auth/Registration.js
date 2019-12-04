@@ -42,10 +42,10 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
     return(
         <Fragment>
             <div className="grid-container grid-12 vh-100">
-                <div className="rstart-1 rspan-2 cstart-1 cspan-12 cspan-lg-2 item">
-                    <img className="img-responsive" src={logo} alt={"logo"}/>
+                <div className="rstart-1 rspan-2 cstart-1 cspan-12 cspan-lg-3 cspan-xl-2 item">
+                    <img className="img-responsive p-2" src={logo} alt={"logo"}/>
                 </div>
-                <div className="rstart-1 rspan-2 cstart-12 cspan-1 item hidden-md">
+                <div className="rstart-1 rspan-2 cstart-11 cspan-2 item hidden-md">
                     <Link className="btn btn-white" to={"/"}>Sign In</Link>
                 </div>
                 <div className="jumbo-heading rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-1 cspan-md-12 cstart-lg-4 cspan-lg-4 item item-js-start hidden-md">
