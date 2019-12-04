@@ -34,7 +34,7 @@ const BookForm = ({ setAlert, addBook }) => {
                 </select>
                 <input type={"text"} className={"isbn-input-box"} placeholder={"Book Title"} value={title} onChange={e => setTitle(e.target.value)}/>
                 <input type={"text"} className={"isbn-input-box"} placeholder={"Book ISBN"} value={isbn} onChange={e => setISBN(e.target.value)}/>
-                <input type={"submit"} className={"btn btn-dark add-book-btn btn-md d-block"} value={"Add Book"}/>
+                <input type={"submit"} className={"btn btn-primary btn-md d-block"} value={"Add Book"}/>
             </form>
         </div>
     )
