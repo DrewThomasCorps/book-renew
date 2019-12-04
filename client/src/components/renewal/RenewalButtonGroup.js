@@ -48,7 +48,7 @@ const RenewalButtonGroup = (
     const getDeclinedButtons = () => {
         return (
             <Fragment>
-                <button disabled>Declined</button>
+                <button className={"btn btn-status br-vCenter"} disabled>Declined</button>
             </Fragment>
         )
     };
@@ -58,7 +58,7 @@ const RenewalButtonGroup = (
 
         if(trader.user.id === auth.user.id){
             buttonGroup = <Fragment>
-                <button disabled>
+                <button className={"btn btn-status br-vCenter"} disabled>
                     Pending
                 </button>
             </Fragment>
@@ -79,7 +79,7 @@ const RenewalButtonGroup = (
     const getCompletedButtons = () => {
         return (
             <Fragment>
-                <button disabled>
+                <button className={"btn btn-status br-vCenter"} disabled>
                     Completed
                 </button>
             </Fragment>
