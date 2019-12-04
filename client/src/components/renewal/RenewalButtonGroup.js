@@ -35,10 +35,10 @@ const RenewalButtonGroup = (
     const getActiveButtons = () => {
         return (
             <Fragment>
-                <button onClick={() => updateRenewal(renewal.id,"completed")}>
+                <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"completed")}>
                     Complete
                 </button>
-                <button onClick={() => updateRenewal(renewal.id,"declined")}>
+                <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
                     Cancel
                 </button>
             </Fragment>
@@ -64,10 +64,10 @@ const RenewalButtonGroup = (
             </Fragment>
         } else {
             buttonGroup = <Fragment>
-                <button onClick={() => updateRenewal(renewal.id,"active")}>
+                <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"active")}>
                     Accept
                 </button>
-                <button onClick={() => updateRenewal(renewal.id,"declined")}>
+                <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
                     Decline
                 </button>
             </Fragment>
@@ -89,7 +89,7 @@ const RenewalButtonGroup = (
     const getPotentialButtons = () => {
         return (
             <Fragment>
-                <button onClick={()=> offerRenewal(trader.id,tradee.id)}>Send Offer</button>
+                <button className={"btn btn-primary br-vCenter"} onClick={()=> offerRenewal(trader.id,tradee.id)}>Send Offer</button>
             </Fragment>
         )
     };
