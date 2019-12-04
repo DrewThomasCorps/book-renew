@@ -11,7 +11,7 @@ const Renewal = ({
 
     return (
         <Fragment>
-            <article className={"row"}>
+            <article className={"row p-3"}>
                 <div className={"col-3 book-card-body book-card-container"}>
                     <small>
                         { status === "active" ? trader.user.email : trader.user.name}
