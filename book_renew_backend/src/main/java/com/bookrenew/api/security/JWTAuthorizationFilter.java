@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static com.bookrenew.api.security.SecurityConstants.*;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);

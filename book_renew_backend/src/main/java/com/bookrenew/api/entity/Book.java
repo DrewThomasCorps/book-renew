@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 @Entity
 public class Book {
 

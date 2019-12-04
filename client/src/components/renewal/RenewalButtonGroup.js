@@ -18,49 +18,88 @@ const RenewalButtonGroup = (
    }
    ) => {
 
-    let buttonGroup = <Fragment/>;
+    const renderButtons = () => {
+        switch(renewal.status) {
+            case("active"):
+                return getActiveButtons();
+            case("pending"):
+                return getPendingButtons();
+            case("declined"):
+                return getDeclinedButtons();
+            case("completed"):
+                return getCompletedButtons();
+            case undefined:
+                return getPotentialButtons();
+            default:
+                return <Fragment/>;
+        }
+    };
 
-    switch(renewal.status){
-        case("active"):
-            buttonGroup =
-                <Fragment>
-                    <button onClick={() => completeRenewal(renewal.id)}>
-                        Complete
-                    </button>
-                    <button onClick={() => cancelRenewal(renewal.id)}>
-                        Cancel
-                    </button>
-                </Fragment>;
-            break;
-        case("pending"):
-            if(trader.user.id === auth.user.id){
-                buttonGroup = <button disabled>Pending...</button>;
-            } else {
-                buttonGroup =
-                    <Fragment>
-                        <button onClick={() => acceptRenewal(renewal.id)}>
-                            Accept
-                        </button>
-                        <button onClick={() => cancelRenewal(renewal.id)}>
-                            Decline
-                        </button>
-                    </Fragment>;
-            }
-            break;
-        case("declined"):
-            buttonGroup = <button disabled>Declined</button>;
-            break;
-        case undefined:
-            buttonGroup = <button onClick={() => offerRenewal(trader.id,tradee.id)}>Send Offer</button>;
-            break;
-        default:
-            break;
-    }
+    const getActiveButtons = () => {
+        return (
+            <Fragment>
+                <button onClick={() => completeRenewal(renewal.id)}>
+                    Complete
+                </button>
+                <button onClick={() => cancelRenewal(renewal.id)}>
+                    Cancel
+                </button>
+            </Fragment>
+        )
+    };
 
+    const getDeclinedButtons = () => {
+        return (
+            <Fragment>
+                <button disabled>Declined</button>
+            </Fragment>
+        )
+    };
+
+    const getPendingButtons = () => {
+        let buttonGroup = <Fragment/>;
+
+        if(trader.user.id === auth.user.id){
+            buttonGroup = <Fragment>
+                <button disabled>
+                    Pending
+                </button>
+            </Fragment>
+        } else {
+            buttonGroup = <Fragment>
+                <button onClick={() => acceptRenewal(renewal.id)}>
+                    Accept
+                </button>
+                <button onClick={() => cancelRenewal(renewal.id)}>
+                    Decline
+                </button>
+            </Fragment>
+        }
+
+        return buttonGroup;
+    };
+
+    const getCompletedButtons = () => {
+        return (
+            <Fragment>
+                <button disabled>
+                    Completed
+                </button>
+            </Fragment>
+        )
+    };
+
+    const getPotentialButtons = () => {
+        return (
+            <Fragment>
+                <button onClick={()=> offerRenewal(trader.id,tradee.id)}>Send Offer</button>
+            </Fragment>
+        )
+    };
 
     return (
         <Fragment>
-            {buttonGroup}
+            {renderButtons()}
         </Fragment>
     )
 };

@@ -2,6 +2,7 @@ package com.bookrenew.api.entity;
 
 import javax.persistence.*;
 
+@SuppressWarnings("unused")
 @Entity
 public class Renewal {
 
