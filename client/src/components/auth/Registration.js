@@ -48,7 +48,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                 <div className="rstart-1 rspan-2 cstart-12 cspan-1 item hidden-md">
                     <Link className="btn btn-white" to={"/"}>Sign In</Link>
                 </div>
-                <div className="rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-1 cspan-md-12 cstart-lg-4 cspan-lg-4 item item-js-start hidden-md">
+                <div className="jumbo-heading rstart-3 rspan-3 cstart-1 cspan-12 cstart-md-1 cspan-md-12 cstart-lg-4 cspan-lg-4 item item-js-start hidden-md">
                     <h1><span className="ul">Bo</span>oktrading Platform</h1>
                 </div>
                 <div className="rstart-4 rspan-5 rstart-lg-5 cstart-1 cspan-12 cstart-md-3 cspan-md-8 cstart-lg-1 cspan-lg-4 item w-100">
