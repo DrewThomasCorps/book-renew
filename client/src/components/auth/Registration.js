@@ -53,7 +53,7 @@ const Registration = ({setAlert, registerUser, isAuthenticated}) => {
                 </div>
                 <div className="rstart-4 rspan-5 rstart-lg-5 cstart-1 cspan-12 cstart-md-3 cspan-md-8 cstart-lg-1 cspan-lg-4 item w-100">
                     <form className="form" onSubmit={handleAccountCreationSubmit}>
-                        <input type={"text"} name={"name"} value={name} onChange={handleInputChange} placeholder={"Name"}/>
+                        <input className={"login-form"} type={"text"} name={"name"} value={name} onChange={handleInputChange} placeholder={"Name"}/>
                         <br />
                         <input type={"email"} name={"email"} value={email} onChange={handleInputChange} placeholder={"Email"}/>
                         <br />
