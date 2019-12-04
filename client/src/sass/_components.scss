@@ -110,6 +110,19 @@
   border-color: darken($dark-color, 5%);
 }
 
+.btn-status {
+  color: $light-color;
+  background-color: lighten($dark-color, 55%);
+  border-color: lighten($dark-color, 55%);
+}
+
+.btn-status:hover {
+  color: $light-color;
+  background-color: lighten($dark-color, 55%);
+  border-color: lighten($dark-color, 55%);
+}
+
+
 .btn-white {
   color: $light-color;
   border-color: $light-color;
