@@ -63,10 +63,10 @@ public class RenewalAction {
         return renewalRepository.save(renewal);
     }
 
-    public void getRenewalFromId(String id)
+    public void deleteRenewal(String id)
     {
         Long longId = Long.parseLong(id);
-        Renewal renewal = renewalRepository.findById(longId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist"));
+        Renewal renewal = renewalRepository.findById(longId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "ID does not exist"));
         renewalRepository.delete(renewal);
     }
 

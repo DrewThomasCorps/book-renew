@@ -43,9 +43,9 @@ public class RenewalController {
     }
 
     @DeleteMapping(path = "/renewals/{id}")
-    public void getRenewalFromId(@PathVariable("id") String id)
+    public void deleteRenewal(@PathVariable("id") String id)
     {
-        renewalAction.getRenewalFromId(id);
+        renewalAction.deleteRenewal(id);
     }
 
 

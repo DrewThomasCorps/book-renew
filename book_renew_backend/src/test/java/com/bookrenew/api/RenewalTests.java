@@ -1,5 +1,6 @@
 package com.bookrenew.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
@@ -32,10 +33,17 @@ class RenewalTests {
 
 
     @BeforeAll
-    @Order(0)
     void setup() throws JSONException, IOException {
         this.setupFirstUser();
         this.setupSecondUser();
+    }
+
+    @AfterAll
+    void deleteUsers() throws JSONException {
+        this.loginFirstUser();
+        deleteUser();
+        this.loginSecondUser();
+        deleteUser();
     }
 
     @Test
@@ -77,6 +85,35 @@ class RenewalTests {
 
     @Test
     @Order(6)
+    void testGetRenewals_ReturnsRenewal() throws JsonProcessingException {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetRenewalsRequest(request);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertNotNull(responseRoot.get(0).get("id"));
+        Assertions.assertNull(responseRoot.get(1));
+    }
+
+    @Test
+    @Order(7)
+    void testDeleteRenewal_Returns200() {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        String id = responseRoot.get(0).path("id").toString();
+        ResponseEntity<String> response = this.sendDeleteRenewalsRequest(request, id);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
+    @Order(8)
+    void testDeleteMissingRenewal_Returns404() {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        String id = responseRoot.get(0).path("id").toString();
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteRenewalsRequest(request, id));
+        Assertions.assertEquals(404, exception.getRawStatusCode());
+    }
+
+    @Test
+    @Order(9)
     void testOfferingFromWishListThrows400() throws JSONException {
         JSONObject renewal = this.buildRenewal(wishlistBookId, firstUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
@@ -86,32 +123,13 @@ class RenewalTests {
     }
 
     @Test
-    @Order(7)
+    @Order(10)
     void testOfferingUnownedBookThrows403() throws JSONException {
         JSONObject renewal = this.buildRenewal(firstUserLibraryBookId, secondUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendRenewalPostRequest(request));
         Assertions.assertEquals(403, exception.getRawStatusCode());
-    }
-
-    @Test
-    @Order(8)
-    void testDeleteRenewals() throws IOException {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetRenewalsRequest(request);
-        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        String id = userJson.get(0).path("id").toString();
-        response = this.sendDeleteRenewalsRequest(request, id);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-    }
-
-    @AfterAll
-    void deleteUsers() throws JSONException {
-        this.loginFirstUser();
-        deleteUser();
-        this.loginSecondUser();
-        deleteUser();
     }
 
     private void setupFirstUser() throws JSONException, IOException {
