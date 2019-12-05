@@ -19,11 +19,12 @@ import java.util.Objects;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class RenewalsTests {
+class RenewalTests {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String baseUrl = "http://localhost:8080/";
     private final RestTemplate restTemplate = new RestTemplate();
     private JsonNode responseRoot;
+
     private String authToken;
     private Long firstUserLibraryBookId;
     private Long secondUserLibraryBookId;
@@ -76,7 +77,7 @@ class RenewalsTests {
 
     @Test
     @Order(6)
-    void testTradingFromWishListThrows400() throws JSONException {
+    void testOfferingFromWishListThrows400() throws JSONException {
         JSONObject renewal = this.buildRenewal(wishlistBookId, firstUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
         HttpClientErrorException exception =
@@ -86,7 +87,7 @@ class RenewalsTests {
 
     @Test
     @Order(7)
-    void testTradingWithUnownedBookThrows403() throws JSONException {
+    void testOfferingUnownedBookThrows403() throws JSONException {
         JSONObject renewal = this.buildRenewal(firstUserLibraryBookId, secondUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
         HttpClientErrorException exception =
@@ -106,11 +107,11 @@ class RenewalsTests {
     }
 
     @AfterAll
-    void testDeleteUsers() throws JSONException {
+    void deleteUsers() throws JSONException {
         this.loginFirstUser();
-        deleteUsers();
+        deleteUser();
         this.loginSecondUser();
-        deleteUsers();
+        deleteUser();
     }
 
     private void setupFirstUser() throws JSONException, IOException {
@@ -250,7 +251,7 @@ class RenewalsTests {
         responseRoot = objectMapper.readTree(Objects.requireNonNull(userResultsAsJsonString));
     }
 
-    private void deleteUsers() {
+    private void deleteUser() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteUserRequest(request);
         Assertions.assertEquals(200, response.getStatusCodeValue());
