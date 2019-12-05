@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { offerRenewal } from '../../actions/renewal';
 import { updateRenewal } from '../../actions/renewal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 const RenewalButtonGroup = (
@@ -36,10 +38,10 @@ const RenewalButtonGroup = (
         return (
             <div className={"br-vCenter btn-group"}>
                 <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"completed")}>
-                    Complete
+                    <FontAwesomeIcon icon={faCheck} />
                 </button>
                 <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
-                    Cancel
+                    <FontAwesomeIcon icon={faTimes} />
                 </button>
             </div>
         )
@@ -65,10 +67,10 @@ const RenewalButtonGroup = (
         } else {
             buttonGroup = <div className={"br-vCenter btn-group"}>
                 <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"active")}>
-                    Accept
+                    <FontAwesomeIcon icon={faCheck} />
                 </button>
                 <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
-                    Decline
+                    <FontAwesomeIcon icon={faTimes} />
                 </button>
             </div>
         }
