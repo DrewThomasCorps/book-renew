@@ -70,6 +70,13 @@ public class RenewalController {
         renewal.setStatus(status);
         return renewalRepository.save(renewal);
     }
+    @DeleteMapping(path = "/renewals/{id}")
+    public void getRenewalFromId(@PathVariable("id") String id)
+    {
+        Long longId = Long.parseLong(id);
+        Renewal renewal = renewalRepository.findById(longId).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist"));
+        renewalRepository.delete(renewal);
+    }
 
     private void validateTrade(BookUser traderBookUser, BookUser tradeeBookUser) {
         if (traderBookUser.getStatus() != BookUser.Status.library) {
