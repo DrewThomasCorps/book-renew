@@ -1,5 +1,6 @@
 package com.bookrenew.api.controller;
 
+import com.bookrenew.api.action.BookAction;
 import com.bookrenew.api.entity.Book;
 import com.bookrenew.api.entity.BookUser;
 import com.bookrenew.api.entity.User;
@@ -19,72 +20,31 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookRepository bookRepository;
-    private final BookUserRepository bookUserRepository;
-    private final UserRepository userRepository;
+    private final BookAction bookAction;
 
     @Autowired
     public BookController(BookRepository bookRepository, BookUserRepository bookUserRepository, UserRepository userRepository) {
-        this.bookRepository = bookRepository;
-        this.bookUserRepository = bookUserRepository;
-        this.userRepository = userRepository;
+        this.bookAction = new BookAction(bookRepository, bookUserRepository, userRepository);
     }
 
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/library")
     public BookUser addToLibrary(@RequestBody Book book) {
-        Book createdBook = this.createBook(book);
-        BookUser bookUser = this.setupBookUser(createdBook);
-        bookUser.setStatus(BookUser.Status.library);
-        return bookUserRepository.save(bookUser);
+        return bookAction.addToLibrary(book);
     }
 
     @PostMapping(consumes = {"application/json"}, produces = {"application/json"}, path = "/wishlist")
     public BookUser addToWishlist(@RequestBody Book book) {
-        Book createdBook = this.createBook(book);
-        BookUser bookUser = this.setupBookUser(createdBook);
-        bookUser.setStatus(BookUser.Status.wishlist);
-        return bookUserRepository.save(bookUser);
+        return bookAction.addToWishlist(book);
     }
 
     @DeleteMapping(path = "/{id}")
     public void deleteBookUserById(@PathVariable("id") String id){
-        Long longId = Long.parseLong(id);
-        BookUser bookUser = bookUserRepository.findById(longId).orElseThrow(
-                ()->new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID does not exist")
-        );
-        User user = this.getUserFromAuthCredentials();
-        if (!user.getEmail().equals(bookUser.getUser().getEmail())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Book belongs to different user");
-        }
-        bookUserRepository.delete(bookUser);
+        bookAction.deleteBookUserById(id);
     }
 
     @GetMapping(path = "")
     public List<BookUser> getAllBooks(){
-        User user = this.getUserFromAuthCredentials();
-        return bookUserRepository.findByUser_id(user.getId());
-    }
-
-    private Book createBook(Book book) {
-        Book createdBook = book;
-        if (bookRepository.findByIsbn(book.getIsbn()) == null) {
-            createdBook = bookRepository.save(book);
-        }
-        return createdBook;
-    }
-
-    private User getUserFromAuthCredentials() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        return userRepository.findByEmail(email);
-    }
-
-    private BookUser setupBookUser(Book book) {
-        User user = this.getUserFromAuthCredentials();
-        BookUser bookUser = new BookUser();
-        bookUser.setBook(book);
-        bookUser.setUser(user);
-        return bookUser;
+        return bookAction.getAllBooks();
     }
 
 }
