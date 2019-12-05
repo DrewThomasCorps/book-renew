@@ -34,14 +34,14 @@ const RenewalButtonGroup = (
 
     const getActiveButtons = () => {
         return (
-            <Fragment>
+            <div className={"br-vCenter btn-group"}>
                 <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"completed")}>
                     Complete
                 </button>
                 <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
                     Cancel
                 </button>
-            </Fragment>
+            </div>
         )
     };
 
@@ -63,14 +63,14 @@ const RenewalButtonGroup = (
                 </button>
             </Fragment>
         } else {
-            buttonGroup = <Fragment>
+            buttonGroup = <div className={"br-vCenter btn-group"}>
                 <button className={"btn btn-primary"} onClick={() => updateRenewal(renewal.id,"active")}>
                     Accept
                 </button>
                 <button className={"btn btn-secondary"} onClick={() => updateRenewal(renewal.id,"declined")}>
                     Decline
                 </button>
-            </Fragment>
+            </div>
         }
 
         return buttonGroup;
