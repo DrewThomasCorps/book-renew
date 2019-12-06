@@ -77,7 +77,6 @@ public class RenewalAction {
         if (!traderBookUser.getUser().getId().equals(userAction.getUserFromAuthCredentials().getId())) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Trader cannot offer book from someone else's library.");
         }
-
         if (tradeeBookUser.getStatus() != BookUser.Status.library) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tradee's book is not in their library");
         }

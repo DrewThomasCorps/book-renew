@@ -49,68 +49,6 @@ class RenewalTests {
 
     @Test
     @Order(1)
-    void testOfferRenewal_ReturnsPendingRenewal() throws JSONException, IOException {
-        JSONObject renewal = this.buildRenewal(secondUserLibraryBookId, firstUserLibraryBookId);
-        HttpEntity<String> request = this.buildRequest(renewal);
-        this.sendOfferRenewalRequest(request);
-        Assertions.assertEquals("pending", responseRoot.get("status").asText());
-    }
-
-    @Test
-    @Order(2)
-    void testOfferRenewal_ReturnsCorrectTraderBook() {
-        Assertions.assertEquals("9780590353427", responseRoot.get("trader").get("book").get("isbn").asText());
-    }
-
-    @Test
-    @Order(3)
-    void testOfferRenewal_ReturnsCorrectTraderUser() {
-        Assertions.assertEquals("bookSecond@test.com", responseRoot.get("trader").get("user").get("email").asText());
-    }
-
-    @Test
-    @Order(4)
-    void testOfferRenewal_ReturnsCorrectTradeeBook() {
-        Assertions.assertEquals("9780545010221", responseRoot.get("tradee").get("book").get("isbn").asText());
-    }
-
-    @Test
-    @Order(5)
-    void testOfferRenewal_ReturnsCorrectTradeeUser() {
-        Assertions.assertEquals("bookFirst@test.com", responseRoot.get("tradee").get("user").get("email").asText());
-    }
-
-    @Test
-    @Order(6)
-    void testGetRenewals_ReturnsRenewal() throws JsonProcessingException {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        ResponseEntity<String> response = this.sendGetRenewalsRequest(request);
-        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertNotNull(responseRoot.get(0).get("id"));
-        Assertions.assertNull(responseRoot.get(1));
-    }
-
-    @Test
-    @Order(7)
-    void testDeleteRenewal_Returns200() {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        String id = responseRoot.get(0).path("id").toString();
-        ResponseEntity<String> response = this.sendDeleteRenewalsRequest(request, id);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-    }
-
-    @Test
-    @Order(8)
-    void testDeleteMissingRenewal_Throws404() {
-        HttpEntity<String> request = this.buildRequest(new JSONObject());
-        String id = responseRoot.get(0).path("id").toString();
-        HttpClientErrorException exception =
-                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteRenewalsRequest(request, id));
-        Assertions.assertEquals(404, exception.getRawStatusCode());
-    }
-
-    @Test
-    @Order(9)
     void testOfferingFromWishList_Throws400() throws JSONException {
         JSONObject renewal = this.buildRenewal(wishlistBookId, firstUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
@@ -120,13 +58,87 @@ class RenewalTests {
     }
 
     @Test
-    @Order(10)
+    @Order(2)
     void testOfferingOtherUsersBook_Throws403() throws JSONException {
         JSONObject renewal = this.buildRenewal(firstUserLibraryBookId, secondUserLibraryBookId);
         HttpEntity<String> request = this.buildRequest(renewal);
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendOfferRenewalRequest(request));
         Assertions.assertEquals(403, exception.getRawStatusCode());
+    }
+
+    @Test
+    @Order(3)
+    void testOfferRenewal_ReturnsPendingRenewal() throws JSONException, IOException {
+        JSONObject renewal = this.buildRenewal(secondUserLibraryBookId, firstUserLibraryBookId);
+        HttpEntity<String> request = this.buildRequest(renewal);
+        this.sendOfferRenewalRequest(request);
+        Assertions.assertEquals("pending", responseRoot.get("status").asText());
+    }
+
+    @Test
+    @Order(4)
+    void testOfferRenewal_ReturnsCorrectTraderBook() {
+        Assertions.assertEquals("9780590353427", responseRoot.get("trader").get("book").get("isbn").asText());
+    }
+
+    @Test
+    @Order(5)
+    void testOfferRenewal_ReturnsCorrectTraderUser() {
+        Assertions.assertEquals("bookSecond@test.com", responseRoot.get("trader").get("user").get("email").asText());
+    }
+
+    @Test
+    @Order(6)
+    void testOfferRenewal_ReturnsCorrectTradeeBook() {
+        Assertions.assertEquals("9780545010221", responseRoot.get("tradee").get("book").get("isbn").asText());
+    }
+
+    @Test
+    @Order(7)
+    void testOfferRenewal_ReturnsCorrectTradeeUser() {
+        Assertions.assertEquals("bookFirst@test.com", responseRoot.get("tradee").get("user").get("email").asText());
+    }
+
+    @Test
+    @Order(8)
+    void testCompleteRenewals_ReturnsCompleteStatus() throws JSONException, JsonProcessingException {
+        JSONObject updateRenewalJSON = new JSONObject();
+        updateRenewalJSON.put("status", "completed");
+        HttpEntity<String> request = this.buildRequest(updateRenewalJSON);
+        String id = responseRoot.path("id").toString();
+        ResponseEntity<String> response = this.sendPutRenewalsRequest(request, id);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals("completed", responseRoot.get("status").asText());
+    }
+
+    @Test
+    @Order(9)
+    void testGetRenewals_ReturnsRenewal() throws JsonProcessingException {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        ResponseEntity<String> response = this.sendGetRenewalsRequest(request);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertNotNull(responseRoot.get(0).get("id"));
+        Assertions.assertNull(responseRoot.get(1));
+    }
+
+    @Test
+    @Order(10)
+    void testDeleteRenewal_Returns200() {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        String id = responseRoot.get(0).path("id").toString();
+        ResponseEntity<String> response = this.sendDeleteRenewalsRequest(request, id);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
+    @Order(11)
+    void testDeleteMissingRenewal_Throws404() {
+        HttpEntity<String> request = this.buildRequest(new JSONObject());
+        String id = responseRoot.get(0).path("id").toString();
+        HttpClientErrorException exception =
+                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteRenewalsRequest(request, id));
+        Assertions.assertEquals(404, exception.getRawStatusCode());
     }
 
     private void setupFirstUser() throws JSONException, IOException {
@@ -229,29 +241,29 @@ class RenewalTests {
     }
 
     private JSONObject buildFirstBookJsonObject() throws JSONException {
-        JSONObject userJsonObject = new JSONObject();
-        userJsonObject.put("title", "Harry Potter and the Deathly Hollows");
-        userJsonObject.put("isbn", "9780545010221");
-        return userJsonObject;
+        JSONObject bookJsonObject = new JSONObject();
+        bookJsonObject.put("title", "Harry Potter and the Deathly Hollows");
+        bookJsonObject.put("isbn", "9780545010221");
+        return bookJsonObject;
     }
 
     private JSONObject buildSecondBookJsonObject() throws JSONException {
-        JSONObject userJsonObject = new JSONObject();
-        userJsonObject.put("title", "Harry Potter and the Sorcerer's Stone");
-        userJsonObject.put("isbn", "9780590353427");
-        return userJsonObject;
+        JSONObject bookJsonObject = new JSONObject();
+        bookJsonObject.put("title", "Harry Potter and the Sorcerer's Stone");
+        bookJsonObject.put("isbn", "9780590353427");
+        return bookJsonObject;
     }
 
     private void sendAddToLibraryRequest(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        String bookResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
+        assert bookResultsAsJsonString != null;
+        responseRoot = objectMapper.readTree(bookResultsAsJsonString);
     }
 
     private void sendAddToWishListRequest(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/wishlist", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        String bookResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/wishlist", request, String.class);
+        assert bookResultsAsJsonString != null;
+        responseRoot = objectMapper.readTree(bookResultsAsJsonString);
     }
 
     private void sendOfferRenewalRequest(HttpEntity<String> request) throws IOException {
@@ -282,6 +294,10 @@ class RenewalTests {
 
     private ResponseEntity<String> sendGetRenewalsRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "renewals", HttpMethod.GET, request, String.class);
+    }
+
+    private ResponseEntity<String> sendPutRenewalsRequest(HttpEntity<String> request, String id) {
+        return restTemplate.exchange(baseUrl + "renewals/" + id, HttpMethod.PUT, request, String.class);
     }
 }
 
