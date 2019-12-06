@@ -289,15 +289,15 @@ class PotentialTradesTests {
     }
 
     private void sendBookPostRequestToLibrary(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        String bookResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
+        assert bookResultsAsJsonString != null;
+        responseRoot = objectMapper.readTree(bookResultsAsJsonString);
     }
 
     private void sendBookPostRequestToWishList(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/wishlist", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        String bookResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/wishlist", request, String.class);
+        assert bookResultsAsJsonString != null;
+        responseRoot = objectMapper.readTree(bookResultsAsJsonString);
     }
 
     private ResponseEntity<String> sendDeleteUserRequest(HttpEntity<String> request) {
