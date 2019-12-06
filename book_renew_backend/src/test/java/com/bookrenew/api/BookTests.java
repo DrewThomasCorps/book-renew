@@ -59,8 +59,8 @@ class BookTests {
     void testUserOwnsBook_ReturnsUsersFirstBook() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetBooksRequest(request);
-        JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", userJson
+        JsonNode booksJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", booksJson
                 .get(0)
                 .path("book")
                 .path("title")
@@ -102,10 +102,10 @@ class BookTests {
     }
 
     private JSONObject buildBookJsonObject() throws JSONException {
-        JSONObject userJsonObject = new JSONObject();
-        userJsonObject.put("title", "Harry Potter and the Deathly Hollows");
-        userJsonObject.put("isbn", "9780545010221");
-        return userJsonObject;
+        JSONObject bookJsonObject = new JSONObject();
+        bookJsonObject.put("title", "Harry Potter and the Deathly Hollows");
+        bookJsonObject.put("isbn", "9780545010221");
+        return bookJsonObject;
     }
 
     private HttpEntity<String> buildRequest(JSONObject data) {
@@ -123,8 +123,8 @@ class BookTests {
     }
 
     private void sendBookPostRequest(HttpEntity<String> request) throws IOException {
-        String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
-        responseRoot = objectMapper.readTree(Objects.requireNonNull(userResultsAsJsonString));
+        String bookResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(bookResultsAsJsonString));
     }
 
     private void setupUser() throws JSONException {
