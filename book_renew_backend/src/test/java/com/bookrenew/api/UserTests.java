@@ -29,15 +29,34 @@ class UserTests {
 
     @Test
     @Order(1)
-    void testUserRegister() throws JSONException, IOException {
+    void testUserRegister_ReturnsUserName() throws JSONException, IOException {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         this.sendRegisterRequest(request);
-        this.testRegisterResponseContainsCorrectData();
+        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
     }
+
     @Test
     @Order(2)
-    void testUserRegisterWithoutCredentialsReturns400() throws JSONException {
+    void testUserRegister_ReturnsUserEmail() {
+        Assertions.assertEquals("test@test.com", responseRoot.path("email").asText());
+    }
+
+    @Test
+    @Order(3)
+    void testUserRegister_DoesNotReturnUserPassword() {
+        Assertions.assertEquals("", responseRoot.path("password").asText());
+    }
+
+    @Test
+    @Order(4)
+    void testUserRegister_ReturnsUserId() {
+        Assertions.assertNotNull(responseRoot.path("id"));
+    }
+
+    @Test
+    @Order(5)
+    void testUserRegisterWithoutCredentials_Returns400() throws JSONException {
         JSONObject userJsonObject = this.buildEmptyLoginCredentials();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
@@ -45,10 +64,9 @@ class UserTests {
         Assertions.assertEquals(400, exception.getRawStatusCode());
     }
 
-
     @Test
-    @Order(3)
-    void testCreatingDuplicateUserReturns409() throws JSONException {
+    @Order(6)
+    void testCreatingDuplicateUser_Returns409() throws JSONException {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
         HttpClientErrorException exception =
@@ -57,8 +75,8 @@ class UserTests {
     }
 
     @Test
-    @Order(4)
-    void testLoginFailsWithIncorrectCredentials() throws JSONException {
+    @Order(7)
+    void testLoginFailsWithIncorrectCredentials_Returns403() throws JSONException {
         JSONObject incorrectLoginCredentials = this.buildIncorrectLoginCredentials();
         HttpEntity<String> request = this.buildRequest(incorrectLoginCredentials);
         HttpClientErrorException exception =
@@ -67,26 +85,26 @@ class UserTests {
     }
 
     @Test
-    @Order(5)
-    void testLoginSuccess() throws JSONException {
+    @Order(8)
+    void testLoginSuccess_ReturnsAuthToken() throws JSONException {
         JSONObject loginCredentials = this.buildLoginCredentials();
         HttpEntity<String> request = this.buildRequest(loginCredentials);
         ResponseEntity<String> response = this.sendLoginRequest(request);
-        Assertions.assertEquals(200, response.getStatusCodeValue());
         authToken = response.getHeaders().toSingleValueMap().get("Authorization");
         Assertions.assertNotNull(authToken);
     }
 
     @Test
-    @Order(6)
-    void testGetAuthenticatedUser() throws IOException {
+    @Order(9)
+    void testGetAuthenticatedUser_ReturnsAuthenticatedUser() throws IOException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetAuthenticatedUserRequest(request);
-        this.testAuthenticatedUserResponseResults(response);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
+        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
     }
 
     @Test
-    @Order(7)
+    @Order(10)
     void testDeleteUser() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteRequest(request);
@@ -95,12 +113,6 @@ class UserTests {
 
     private ResponseEntity<String> sendDeleteRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "users/self", HttpMethod.DELETE, request, String.class);
-    }
-
-    private void testAuthenticatedUserResponseResults(ResponseEntity<String> response) throws IOException {
-        responseRoot = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
-        Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
     }
 
     private ResponseEntity<String> sendGetAuthenticatedUserRequest(HttpEntity<String> request) {
@@ -157,17 +169,7 @@ class UserTests {
 
     private void sendRegisterRequest(HttpEntity<String> request) throws IOException {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "users/register", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(userResultsAsJsonString));
     }
-
-    private void testRegisterResponseContainsCorrectData() {
-        Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("testUser", responseRoot.path("name").asText());
-        Assertions.assertEquals("test@test.com", responseRoot.path("email").asText());
-        Assertions.assertEquals("", responseRoot.path("password").asText());
-        Assertions.assertNotNull(responseRoot.path("id"));
-    }
-
 }
 
