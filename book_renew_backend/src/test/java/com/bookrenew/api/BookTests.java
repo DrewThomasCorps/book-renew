@@ -28,6 +28,11 @@ class BookTests {
     private JsonNode responseRoot;
     private String authToken;
 
+    @BeforeAll
+    void setup() throws JSONException {
+        this.setupUser();
+    }
+
     @AfterAll
     void deleteUser() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
@@ -36,34 +41,22 @@ class BookTests {
 
     @Test
     @Order(1)
-    void testReturns403WhenNotAuthenticated() throws JSONException {
+    void testCreateBook_ReturnsBookTitle() throws JSONException, IOException {
         JSONObject book = this.buildBookJsonObject();
         HttpEntity<String> request = this.buildRequest(book);
-        HttpClientErrorException exception =
-                Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendBookPostRequest(request));
-        Assertions.assertEquals(403, exception.getRawStatusCode());
+        this.sendBookPostRequest(request);
+        Assertions.assertEquals("Harry Potter and the Deathly Hollows", responseRoot.path("book").path("title").asText());
     }
 
     @Test
     @Order(2)
-    void setAuthToken() throws JSONException {
-        this.registerUser();
-        this.login();
-        Assertions.assertNotNull(authToken);
+    void testCreateBook_ReturnsBookIsbn() {
+        Assertions.assertEquals("9780545010221", responseRoot.path("book").path("isbn").asText());
     }
 
     @Test
     @Order(3)
-    void testCreateBook() throws JSONException, IOException {
-        JSONObject book = this.buildBookJsonObject();
-        HttpEntity<String> request = this.buildRequest(book);
-        this.sendBookPostRequest(request);
-        this.testBookResponseContainsCorrectInformation();
-    }
-
-    @Test
-    @Order(4)
-    void testUserOwnsBook() throws JsonProcessingException {
+    void testUserOwnsBook_ReturnsUsersFirstBook() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetBooksRequest(request);
         JsonNode userJson = objectMapper.readTree(Objects.requireNonNull(response.getBody()));
@@ -75,8 +68,8 @@ class BookTests {
     }
 
     @Test
-    @Order(5)
-    void testDeleteBook() {
+    @Order(4)
+    void testDeleteBook_Returns200() {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendDeleteBookRequest(request, id);
@@ -84,17 +77,18 @@ class BookTests {
     }
 
     @Test
-    @Order(6)
-    void testDeleteBookWithNonExistentIdReturns400() {
+    @Order(5)
+    void testDeleteBookWithNonExistentId_Returns400() {
         String id = responseRoot.path("id").asText();
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         HttpClientErrorException exception =
                 Assertions.assertThrows(HttpClientErrorException.class, () -> this.sendDeleteBookRequest(request, id));
         Assertions.assertEquals(400, exception.getRawStatusCode());
     }
+
     @Test
-    @Order(7)
-    void testDuplicateBookThrows409() throws JSONException
+    @Order(6)
+    void testDuplicateBook_Throws409() throws JSONException
     {
         JSONObject userJsonObject = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(userJsonObject);
@@ -130,14 +124,26 @@ class BookTests {
 
     private void sendBookPostRequest(HttpEntity<String> request) throws IOException {
         String userResultsAsJsonString = restTemplate.postForObject(baseUrl + "books/library", request, String.class);
-        assert userResultsAsJsonString != null;
-        responseRoot = objectMapper.readTree(userResultsAsJsonString);
+        responseRoot = objectMapper.readTree(Objects.requireNonNull(userResultsAsJsonString));
+    }
+
+    private void setupUser() throws JSONException {
+        this.registerUser();
+        this.loginUser();
     }
 
     private void registerUser() throws JSONException {
         JSONObject user = this.buildUserJsonObject();
         HttpEntity<String> request = this.buildRequest(user);
         this.sendRegisterRequest(request);
+    }
+
+    private void loginUser() throws JSONException {
+        authToken = null;
+        JSONObject user = this.buildUserJsonObject();
+        HttpEntity<String> request = this.buildRequest(user);
+        ResponseEntity<String> response = this.sendLoginRequest(request);
+        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
     }
 
     private JSONObject buildUserJsonObject() throws JSONException {
@@ -152,22 +158,9 @@ class BookTests {
         restTemplate.postForObject(baseUrl + "users/register", request, String.class);
     }
 
-    private void login() throws JSONException {
-        JSONObject user = this.buildUserJsonObject();
-        HttpEntity<String> request = this.buildRequest(user);
-        ResponseEntity<String> response = this.sendLoginRequest(request);
-        authToken = response.getHeaders().toSingleValueMap().get("Authorization");
-    }
-
     private ResponseEntity<String> sendLoginRequest(HttpEntity<String> request) {
         return restTemplate.exchange(baseUrl + "login", HttpMethod.POST,
                 request, String.class);
-    }
-
-    private void testBookResponseContainsCorrectInformation() {
-        Assertions.assertNotNull(responseRoot);
-        Assertions.assertEquals("Harry Potter and the Deathly Hollows", responseRoot.path("book").path("title").asText());
-        Assertions.assertEquals("9780545010221", responseRoot.path("book").path("isbn").asText());
     }
 
     private void sendDeleteUserRequest(HttpEntity<String> request) {
