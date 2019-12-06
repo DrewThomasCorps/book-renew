@@ -102,7 +102,7 @@ class RenewalTests {
 
     @Test
     @Order(8)
-    void testCompleteRenewals_ReturnsCompleteStatus() throws JSONException, JsonProcessingException {
+    void testCompleteRenewal_ReturnsCompleteStatus() throws JSONException, JsonProcessingException {
         JSONObject updateRenewalJSON = new JSONObject();
         updateRenewalJSON.put("status", "completed");
         HttpEntity<String> request = this.buildRequest(updateRenewalJSON);
@@ -114,6 +114,18 @@ class RenewalTests {
 
     @Test
     @Order(9)
+    void testCompletedRenewal_TraderHasTradedStatus() {
+        Assertions.assertEquals("traded", responseRoot.get("trader").get("status").asText());
+    }
+
+    @Test
+    @Order(10)
+    void testCompletedRenewal_TradeeHasTradedStatus() {
+        Assertions.assertEquals("traded", responseRoot.get("tradee").get("status").asText());
+    }
+
+    @Test
+    @Order(11)
     void testGetRenewals_ReturnsRenewal() throws JsonProcessingException {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         ResponseEntity<String> response = this.sendGetRenewalsRequest(request);
@@ -123,7 +135,7 @@ class RenewalTests {
     }
 
     @Test
-    @Order(10)
+    @Order(12)
     void testDeleteRenewal_Returns200() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         String id = responseRoot.get(0).path("id").toString();
@@ -132,7 +144,7 @@ class RenewalTests {
     }
 
     @Test
-    @Order(11)
+    @Order(13)
     void testDeleteMissingRenewal_Throws404() {
         HttpEntity<String> request = this.buildRequest(new JSONObject());
         String id = responseRoot.get(0).path("id").toString();
